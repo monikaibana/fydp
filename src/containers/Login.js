@@ -2,27 +2,28 @@ import React from "react";
 import "../styles/mainstyles.css";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
+import { Auth } from "aws-amplify";
 
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
-  checkUsername = (rule, value, callback) => {
-    const form = this.props.form;
-    form.setFields({
-      username: {
-        value: "asdas"
-      }
-    });
-    form.setFieldsValue("pedro, manada");
-  };
+  // checkUsername = (rule, value, callback) => {
+  //   const form = this.props.form;
+  //   form.setFields({
+  //     username: {
+  //       value: "email"
+  //     }
+  //   });
+  //   form.setFieldsValue("email");
+  // };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
-  };
+    // this.props.form.validateFields((err, values) => {
+    //   if (!err) {
+    //     console.log("Received values of form: ", values);
+    //   }
+    // });
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -74,8 +75,6 @@ class LoginPage extends React.Component {
               >
                 Log in
               </Button>
-              Or <a href="">register now!</a>
-              {/* need to add link to href  */}
             </FormItem>
           </Form>
         </div>
