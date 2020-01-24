@@ -2,28 +2,41 @@ import React from "react";
 import "../styles/mainstyles.css";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
-import { Auth } from "aws-amplify";
+// import { Auth } from "aws-amplify";
 
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
-  // checkUsername = (rule, value, callback) => {
-  //   const form = this.props.form;
-  //   form.setFields({
-  //     username: {
-  //       value: "email"
-  //     }
-  //   });
-  //   form.setFieldsValue("email");
-  // };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     console.log("Received values of form: ", values);
-    //   }
-    // });
-  }
+  checkUsername = (rule, value, callback) => {
+    const form = this.props.form;
+    form.setFields({
+      username: {
+        value: "email"
+      }
+    });
+    form.setFieldsValue("email");
+  };
+
+  // handleSubmit = async e => {
+  //   e.preventDefault();
+  //   try {
+  //     await Auth.signIn(this.state.username, this.state.password);
+  //     alert("Logged in!!")
+  //   } catch (err) {
+  //     alert(err)
+  //   }
+  // }
+
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          alert('Received values of form: ', values);
+        } else {
+          alert(err)
+        }
+      });
+    }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -66,7 +79,7 @@ class LoginPage extends React.Component {
               })(<Checkbox>Remember me</Checkbox>)}
               <a className="login-form-forgot" href="">
                 Forgot password
-                {/* need to add link to href  */}
+                {/* TODO: add link to href  */}
               </a>
               <Button
                 type="primary"
