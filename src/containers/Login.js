@@ -1,29 +1,30 @@
 import React from "react";
 import "../styles/mainstyles.css";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
+// import Routes from "../Routes";
 import "antd/dist/antd.css";
 import Amplify, { Auth } from "aws-amplify";
-import awsconfig from '../aws-exports';
+import awsconfig from "../aws-exports";
 Amplify.configure(awsconfig);
 
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
-
-  signIn = async(user, pass) => {
-    try{
-      await Auth.signIn(user, pass)
-      alert("Logged in")
-    } catch(e) {
-      alert(e.message)
+  signIn = async (user, pass) => {
+    try {
+      await Auth.signIn(user, pass);
+      alert("Logged in");
+      this.props.userHasAuthenticated(true);
+    } catch (e) {
+      alert(e.message);
     }
-  }
+  };
 
   handleSubmit = async e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       this.signIn(values.user, values.password);
-  });
-}
+    });
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -34,7 +35,7 @@ class LoginPage extends React.Component {
             <FormItem>
               {getFieldDecorator("user", {
                 rules: [
-                  { required: true, message: "Please input your username!" },
+                  { required: true, message: "Please input your username!" }
                 ]
               })(
                 <Input
@@ -77,6 +78,7 @@ class LoginPage extends React.Component {
             </FormItem>
           </Form>
         </div>
+        {/* <Routes /> */}
       </div>
     );
   }

@@ -1,6 +1,8 @@
 node_modules
 .DS_Store
 public/.DS_Store
+.vscode
+.eslintrc
 
 #amplify
 amplify/\#current-cloud-backend
