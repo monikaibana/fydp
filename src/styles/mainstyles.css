@@ -47,7 +47,7 @@
     min-height: 400px;
     min-width: 400px;
     max-width: 600px;
-    padding: 110px 80px 0px;
+    padding: 80px 80px 80px;
     margin-top: 140px;
     align-items: center;
     justify-content: center;
@@ -57,8 +57,3 @@
     border-radius: 15px;
     background-color: #f2f2f2;
 }
-
-.create-patient-button {
-    width: 100%;
-    background-color: #ffffff;
-  }
