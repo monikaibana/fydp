@@ -3,7 +3,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import { Form, Icon, Input, Button, Checkbox, Select, Dropdown, Menu, message } from "antd";
+import { Form, Icon, Input, Button, Select } from "antd";
 
 const { Option } = Select;
 
