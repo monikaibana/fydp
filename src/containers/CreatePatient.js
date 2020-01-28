@@ -6,6 +6,7 @@ import "../styles/mainstyles.css";
 import { Form, Icon, Input, Button, Select } from "antd";
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -88,6 +89,10 @@ render() {
 					    <Option value="Repeat Therapeutic Study">Repeat Therapeutic Study</Option>
 					    <Option value="Study to Assess Other Therapy">Study to Assess Other Therapy</Option>
 					</Select>
+				</Form.Item>
+				<Form.Item>
+					<TextArea placeholder="Notes" autoSize />
+        			<div style={{ margin: '24px 0' }} />
 				</Form.Item>
     			<Form.Item>
     				<Button type="primary">Add Patient</Button>
