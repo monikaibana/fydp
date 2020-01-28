@@ -74,13 +74,13 @@ render() {
 		            )}  
 				</Form.Item>
 				<Form.Item>
-					<Select defaultValue="Gender" style={{ width: 250 }} onChange={handleChange}>
+					<Select defaultValue="Gender" style={{ width: 240 }} onChange={handleChange}>
 						<Option value="Male">Male</Option>
 					    <Option value="Female">Female</Option>
 					</Select>
 				</Form.Item>
 				<Form.Item>
-					<Select defaultValue="Study Type" style={{ width: 250 }} onChange={handleChange}>
+					<Select defaultValue="Study Type" style={{ width: 240 }} onChange={handleChange}>
 						<Option value="Initial Diagnostic study">Initial Diagnostic Study</Option>
 					    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
 					    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
