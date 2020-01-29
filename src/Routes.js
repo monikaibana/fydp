@@ -5,7 +5,6 @@ import Login from "./containers/Login";
 import PatientList from "./containers/PatientList";
 import Home from "./containers/Home";
 import CreatePatient from "./containers/CreatePatient";
-import PatientInfo from "./containers/PatientInfo";
 
 export default function Routes({ appProps }) {
   return (
@@ -22,12 +21,6 @@ export default function Routes({ appProps }) {
         path="/create"
         exact
         component={CreatePatient}
-        appProps={appProps}
-      />
-      <AppliedRoute
-        path="/info"
-        exact
-        component={PatientInfo}
         appProps={appProps}
       />
     </Switch>
