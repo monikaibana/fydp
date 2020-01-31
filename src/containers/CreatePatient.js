@@ -12,22 +12,7 @@ function handleChange(value) {
   console.log(`selected ${value}`);
 }
 
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
-}
-
 class CreatePatientPage extends React.Component {
-
-handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.form.validateFields((err, values) => {
-        if (!err) {
-          alert('Received values of form: ', values);
-        } else {
-          alert(err)
-        }
-      });
-    }
 
 state = {
     loading: false,
@@ -40,6 +25,25 @@ showModal = () => {
 	});
 };
 
+handleCancel = () => {
+	this.setState({ visible: false });
+};
+
+handleCheckbox = () => {
+	this.setState({ checked: true });
+};
+
+handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          alert('Received values of form: ', values);
+        } else {
+          alert(err)
+        }
+      });
+    }
+
 handleOk = () => {
 	this.setState({ loading: true });
 	setTimeout(() => {
@@ -47,8 +51,8 @@ handleOk = () => {
 	}, 3000);
 };
 
-handleCancel = () => {
-	this.setState({ visible: false });
+handleDateChange = (e) => {
+	e.target.value = e.target.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d/]/g,'');
 };
 
 render() {
@@ -66,8 +70,8 @@ render() {
 	          onOk={this.handleOk}
 	          onCancel={this.handleCancel}
 	          footer={[
-	          	<Checkbox onChange={onChange} style={{float: 'left'}} >Add another patient </Checkbox>,
-	            <Button key="back" onClick={this.handleCancel}>
+	          	<Checkbox key="add_another" onChange={this.handleCheckbox} style={{float: 'left'}} >Add another patient </Checkbox>,
+	            <Button key="cancel" onClick={this.handleCancel}>
 	              Cancel
 	            </Button>,
 	            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
@@ -76,7 +80,7 @@ render() {
 	          ]}
 	        >
              	<div className="create-patient-container">
-	             	<Form.Item>
+	             	<Form.Item key="surname" >
 			            {getFieldDecorator("Surname", {
 			                rules: [
 			                  { required: true,
@@ -90,7 +94,7 @@ render() {
 			                />
 			              )}  
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="first_name">
 			            {getFieldDecorator("First Name(s)", {
 			                rules: [
 			                  { required: true,
@@ -104,7 +108,7 @@ render() {
 			                />
 			              )}  
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="pid">
 			            {getFieldDecorator("PID", {
 			                rules: [
 			                  { required: true,
@@ -115,11 +119,11 @@ render() {
 			                <Input
 			                  prefix={<Icon type="number" style={{ fontSize: 13 }} />}
 			                  placeholder="PID"
-			                  maxlength="9"
+			                  maxLength={9}
 			                />
 			              )}
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="dob">
 			            {getFieldDecorator("Date of Birth", {
 			                rules: [
 			                  { required: true,
@@ -128,22 +132,21 @@ render() {
 			                ]
 				             })(
 			                <Input
-			                  type="text" name="theDate" id="birthdate"
 			                  prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
 			                  placeholder="Date of Birth (dd/mm/yyyy)"
-			                  onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
-			                  maxlength="10"
+			                  onChange={this.handleDateChange}
+			                  maxLength={10}
 			                  style={{ width: 240 }}
 			                />
 			            )}  
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="gender">
 						<Select defaultValue="Gender" style={{ width: 240 }} onChange={handleChange}>
 							<Option value="Male">Male</Option>
 						    <Option value="Female">Female</Option>
 						</Select>
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="study_type">
 						<Select defaultValue="Study Type" style={{ width: 240 }} onChange={handleChange}>
 							<Option value="Initial Diagnostic study">Initial Diagnostic Study</Option>
 						    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
@@ -154,7 +157,7 @@ render() {
 						    <Option value="Study to Assess Other Therapy">Study to Assess Other Therapy</Option>
 						</Select>
 					</Form.Item>
-					<Form.Item>
+					<Form.Item key="notes">
 						<TextArea placeholder="Notes" autoSize />
 	        			<div style={{ margin: '24px 0' }} />
 					</Form.Item>
