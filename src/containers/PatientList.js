@@ -1,8 +1,9 @@
 import React from "react";
 import "../styles/mainstyles.css";
 import "antd/dist/antd.css";
+import Sidebar from "../components/Sidebar.js";
 // import { Auth } from "aws-amplify";
-import { Form, Icon, Select, Menu, Table, Tag , Button} from "antd";
+import { Form, Select, Table, Tag} from "antd";
 const { Option } = Select;
 function handleChange(value) {
     console.log(`selected ${value}`);
@@ -101,15 +102,13 @@ function handleChange(value) {
 class PatientListPage extends React.Component {
     render() {
         return (
-
-    <div className="ListingPage">
-      <div className = "Sidebar">
-          <script type="text/javascript" src="../containters/Sidebar.js"></script>
-          Sidebar(PatientList)        
-        </div>
-        <div className="Title">
-         <h2>Patient Listing</h2>
-        </div>
+        <div className="ListingPage">
+          <div className="Sidebar">
+            {Sidebar('PatientList')}
+          </div>
+          <div className="Title">
+            <h2>Patient Listing</h2>
+          </div>
         <div className="Filter">
             <h2>Please pick a status:</h2>
              <Form.Item>

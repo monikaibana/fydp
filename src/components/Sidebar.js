@@ -1,14 +1,14 @@
 import React from "react";
 import "../styles/mainstyles.css";
 import { Icon, Menu, Button} from "antd";
-function Sidebar (page_name) {
-    if (page_name = 'Metrics'){
-        key = 2;
+
+function Sidebar(page_name) {
+    if (page_name === 'Metrics'){
+        var key = 2;
     }
-    else {
+    else{
         key = 1;
     };
-    render () ;{
    return (
        <div className="Sidebar"> 
         <br/>
@@ -31,8 +31,8 @@ function Sidebar (page_name) {
             </Button>
         </div>
 </div> )
-    }
     
-}
+    
+};
 
 export default Sidebar();
