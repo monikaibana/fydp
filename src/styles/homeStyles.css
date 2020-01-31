@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+.background{
+    height: 100vh;
+    width: 100vw;
+    background-color: #fafafa;
+}
+.MedicalPhoto{
+    position: absolute;
+    top: 25px;
+    left: 100px;
+    width: 50vw;
+    height: 85vh;
+    background: url('https://bluebook-public.s3.amazonaws.com/welcomepage.png');
+    background-size: 100% 100%;
+    border-radius: 10px 10px 10px 10px;
+}
+.Introduction{
+    position: absolute;
+    left: 775px;
+    top: 160px;
+    width: 400px;
+    height: 80vh;
+    text-align: center;
+    padding: 10px;
+
+}
+.Introduction h1 {
+    font-family: "Varela Round";
+    color: dodgerblue;
+}
+.Introduction h3 {
+    color: #979797;
+    font-family: "IBM Plex Sans";
+}
