@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/mainstyles.css";
+import "../styles/PatientListStyles.css"
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
 // import { Auth } from "aws-amplify";
-import { Form, Select, Table, Tag } from "antd";
+import { Form, Select, Table, Tag, Input } from "antd";
 const { Option } = Select;
+const {Search} = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
@@ -109,7 +111,7 @@ class PatientListPage extends React.Component {
         <div className="Filter">
           <h2>Please pick a status:</h2>
           <Form.Item>
-            <Select defaultValue="Patient Status" onChange={handleChange}>
+            <Select defaultValue="Patient Status" onChange={handleChange} style={{width: 250}}>
               <Option value="Referral Received/For Triage">
                 Referral Received/For Triage
               </Option>
@@ -153,11 +155,19 @@ class PatientListPage extends React.Component {
             </Form.Item>
           </div>
           <div className="PerPage">items per page.</div>
+          <div className="SearchBar">
+            <Search
+            placeholder="Search"
+            onSearch={value => console.log(value)}
+            style={{ width: 250 }}
+            />
+          </div>
           <div className="Table">
             <Table
               columns={columns}
               dataSource={data}
               pagination={({ position: "bottom" }, { alignment: "centre" })}
+              size={'small'}
             />
             ;
           </div>
