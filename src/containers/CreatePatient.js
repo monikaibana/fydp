@@ -14,6 +14,31 @@ function handleChange(value) {
 
 class CreatePatientPage extends React.Component {
 
+createPatient = async (id, surname, givenName, dob, gender, study_type, notes) => {
+	try {
+	  console.log(id, surname, givenName, dob, gender, study_type, notes)
+	  alert(`Patient ${surname}, ${givenName} added`)
+	} catch (e) {
+	  alert(e.message);
+	}
+};
+
+handleSubmit = async e => {
+	e.preventDefault();
+	this.props.form.validateFields((err, values) => {
+		if (!err) {
+			this.createPatient(values.id, values.surname, values.givenName, values.dob, values.gender, values.study_type, values.notes);
+			// console.log(values.id, values.surname, values.givenName, values.dob, values.gender, values.study_type, values.notes)
+			console.log(values)
+		setTimeout(() => {
+		  this.setState({ loading: false, visible: false });
+		}, 3000);
+	  	} else {
+        	alert(err)
+        }
+	});
+};
+
 state = {
     loading: false,
     visible: false,
@@ -31,24 +56,6 @@ handleCancel = () => {
 
 handleCheckbox = () => {
 	this.setState({ checked: true });
-};
-
-handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.form.validateFields((err, values) => {
-        if (!err) {
-          alert('Received values of form: ', values);
-        } else {
-          alert(err)
-        }
-      });
-    }
-
-handleOk = () => {
-	this.setState({ loading: true });
-	setTimeout(() => {
-	  this.setState({ loading: false, visible: false });
-	}, 3000);
 };
 
 handleDateChange = (e) => {
@@ -74,18 +81,17 @@ render() {
 	            <Button key="cancel" onClick={this.handleCancel}>
 	              Cancel
 	            </Button>,
-	            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+	            <Button key="submit" type="primary" loading={loading} onClick={this.handleSubmit}>
 	              Submit
 	            </Button>,
 	          ]}
 	        >
              	<div className="create-patient-container">
 	             	<Form.Item key="surname" >
-			            {getFieldDecorator("Surname", {
+			            {getFieldDecorator("surname", {
 			                rules: [
 			                  { required: true,
 			                  	message: "Please input the patient's surname" },
-			                  { validator: this.checkPatientSurname }
 			                ]
 			              })(
 			                <Input
@@ -94,26 +100,24 @@ render() {
 			                />
 			              )}  
 					</Form.Item>
-					<Form.Item key="first_name">
-			            {getFieldDecorator("First Name(s)", {
+					<Form.Item key="givenName">
+			            {getFieldDecorator("givenName", {
 			                rules: [
 			                  { required: true,
-			                  	message: "Please input the patient's first name(s)" },
-			                  { validator: this.checkPatientFirstName }
+			                  	message: "Please input the patient's given name(s)" },
 			                ]
 			              })(
 			                <Input
 			                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-			                  placeholder="Patient First Name(s)"
+			                  placeholder="Patient Given Name(s)"
 			                />
 			              )}  
 					</Form.Item>
-					<Form.Item key="pid">
-			            {getFieldDecorator("PID", {
+					<Form.Item key="id">
+			            {getFieldDecorator("id", {
 			                rules: [
 			                  { required: true,
 			                  	message: "Please input the patient's PID" },
-			                  { validator: this.checkPID }
 			                ]
 			              })(
 			                <Input
@@ -124,11 +128,10 @@ render() {
 			              )}
 					</Form.Item>
 					<Form.Item key="dob">
-			            {getFieldDecorator("Date of Birth", {
+			            {getFieldDecorator("dob", {
 			                rules: [
 			                  { required: true,
 			                  	message: "Please input the patient's date of birth" },
-			                  { validator: this.checkDOB }
 			                ]
 				             })(
 			                <Input
@@ -142,22 +145,22 @@ render() {
 					</Form.Item>
 					<Form.Item key="gender">
 						<Select defaultValue="Gender" style={{ width: 240 }} onChange={handleChange}>
-							<Option value="Male">Male</Option>
-						    <Option value="Female">Female</Option>
+							<Option value="M">Male</Option>
+						    <Option value="F">Female</Option>
 						</Select>
 					</Form.Item>
 					<Form.Item key="study_type">
 						<Select defaultValue="Study Type" style={{ width: 240 }} onChange={handleChange}>
-							<Option value="Initial Diagnostic study">Initial Diagnostic Study</Option>
-						    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
-						    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
-						    <Option value="CPAP Study">CPAP Study</Option>
-						    <Option value="BiPAP Study">BiPAP Study</Option>
-						    <Option value="Repeat Therapeutic Study">Repeat Therapeutic Study</Option>
-						    <Option value="Study to Assess Other Therapy">Study to Assess Other Therapy</Option>
+							<Option value="1">Initial Diagnostic Study</Option>
+						    <Option value="2">Repeat Diagnostic Study</Option>
+						    <Option value="3">Repeat Diagnostic Study</Option>
+						    <Option value="4">CPAP Study</Option>
+						    <Option value="5">BiPAP Study</Option>
+						    <Option value="6">Repeat Therapeutic Study</Option>
+						    <Option value="7">Study to Assess Other Therapy</Option>
 						</Select>
 					</Form.Item>
-					<Form.Item key="notes">
+					<Form.Item key="notes" onChange={handleChange}>
 						<TextArea placeholder="Notes" autoSize />
 	        			<div style={{ margin: '24px 0' }} />
 					</Form.Item>
