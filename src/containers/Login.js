@@ -1,10 +1,10 @@
 import React from "react";
 import "../styles/mainstyles.css";
+import logo from "../placeholder.svg";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-// import Routes from "../Routes";
 import "antd/dist/antd.css";
 import Amplify, { Auth } from "aws-amplify";
-import awsconfig from "../aws-exports";
+import awsconfig from "../aws-exports.js";
 Amplify.configure(awsconfig);
 
 const FormItem = Form.Item;
@@ -31,6 +31,8 @@ class LoginPage extends React.Component {
     return (
       <div className="login-page">
         <div className="login-container">
+          <img src={logo} alt="logo"></img>
+          <h1> BlueBook </h1>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               {getFieldDecorator("user", {
