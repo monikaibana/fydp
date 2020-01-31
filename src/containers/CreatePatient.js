@@ -3,13 +3,17 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import { Form, Icon, Input, Button, Select } from "antd";
+import { Form, Icon, Input, Button, Select, Modal, Checkbox } from "antd";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 function handleChange(value) {
   console.log(`selected ${value}`);
+}
+
+function onChange(e) {
+  console.log(`checked = ${e.target.checked}`);
 }
 
 class CreatePatientPage extends React.Component {
@@ -25,79 +29,137 @@ handleSubmit = (e) => {
       });
     }
 
+state = {
+    loading: false,
+    visible: false,
+  };
+
+showModal = () => {
+	this.setState({
+	  visible: true,
+	});
+};
+
+handleOk = () => {
+	this.setState({ loading: true });
+	setTimeout(() => {
+	  this.setState({ loading: false, visible: false });
+	}, 3000);
+};
+
+handleCancel = () => {
+	this.setState({ visible: false });
+};
+
 render() {
 	const { getFieldDecorator } = this.props.form;
+	const { visible, loading } = this.state;
+
     return (
-         <div className="create-patient-page">
-             <div className="create-patient-container">
-             	<h1>Add Patient</h1>
-             	<Form.Item>
-		            {getFieldDecorator("Name", {
-		                rules: [
-		                  { required: true,
-		                  	message: "Please input the patient's name" },
-		                  { validator: this.checkPatientName }
-		                ]
-		              })(
-		                <Input
-		                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-		                  placeholder="Patient Name"
-		                />
-		              )}  
-				</Form.Item>
-				<Form.Item>
-		            {getFieldDecorator("PID", {
-		                rules: [
-		                  { required: true,
-		                  	message: "Please input the patient's PID" },
-		                  { validator: this.checkPID }
-		                ]
-		              })(
-		                <Input
-		                  prefix={<Icon type="number" style={{ fontSize: 13 }} />}
-		                  placeholder="PID"
-		                />
-		              )}
-				</Form.Item>
-				<Form.Item>
-		            {getFieldDecorator("Date of Birth", {
-		                rules: [
-		                  { required: true,
-		                  	message: "Please input the patient's date of birth" },
-		                  { validator: this.checkDOB }
-		                ]
-			             })(
-		                <Input
-		                  prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-		                  placeholder="Date of Birth"
-		                />
-		            )}  
-				</Form.Item>
-				<Form.Item>
-					<Select defaultValue="Gender" style={{ width: 240 }} onChange={handleChange}>
-						<Option value="Male">Male</Option>
-					    <Option value="Female">Female</Option>
-					</Select>
-				</Form.Item>
-				<Form.Item>
-					<Select defaultValue="Study Type" style={{ width: 240 }} onChange={handleChange}>
-						<Option value="Initial Diagnostic study">Initial Diagnostic Study</Option>
-					    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
-					    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
-					    <Option value="CPAP Study">CPAP Study</Option>
-					    <Option value="BiPAP Study">BiPAP Study</Option>
-					    <Option value="Repeat Therapeutic Study">Repeat Therapeutic Study</Option>
-					    <Option value="Study to Assess Other Therapy">Study to Assess Other Therapy</Option>
-					</Select>
-				</Form.Item>
-				<Form.Item>
-					<TextArea placeholder="Notes" autoSize />
-        			<div style={{ margin: '24px 0' }} />
-				</Form.Item>
-    			<Form.Item>
-    				<Button type="primary">Add Patient</Button>
-				</Form.Item>
-             </div>
+         <div className="create-patient-modal">
+			<Button type="primary" onClick={this.showModal} >
+	          Add Patient
+	        </Button>
+	        <Modal
+	          visible={visible}
+	          title="Add Patient"
+	          onOk={this.handleOk}
+	          onCancel={this.handleCancel}
+	          footer={[
+	          	<Checkbox onChange={onChange} style={{float: 'left'}} >Add another patient </Checkbox>,
+	            <Button key="back" onClick={this.handleCancel}>
+	              Cancel
+	            </Button>,
+	            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+	              Submit
+	            </Button>,
+	          ]}
+	        >
+             	<div className="create-patient-container">
+	             	<Form.Item>
+			            {getFieldDecorator("Surname", {
+			                rules: [
+			                  { required: true,
+			                  	message: "Please input the patient's surname" },
+			                  { validator: this.checkPatientSurname }
+			                ]
+			              })(
+			                <Input
+			                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+			                  placeholder="Patient Surname"
+			                />
+			              )}  
+					</Form.Item>
+					<Form.Item>
+			            {getFieldDecorator("First Name(s)", {
+			                rules: [
+			                  { required: true,
+			                  	message: "Please input the patient's first name(s)" },
+			                  { validator: this.checkPatientFirstName }
+			                ]
+			              })(
+			                <Input
+			                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+			                  placeholder="Patient First Name(s)"
+			                />
+			              )}  
+					</Form.Item>
+					<Form.Item>
+			            {getFieldDecorator("PID", {
+			                rules: [
+			                  { required: true,
+			                  	message: "Please input the patient's PID" },
+			                  { validator: this.checkPID }
+			                ]
+			              })(
+			                <Input
+			                  prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+			                  placeholder="PID"
+			                  maxlength="9"
+			                />
+			              )}
+					</Form.Item>
+					<Form.Item>
+			            {getFieldDecorator("Date of Birth", {
+			                rules: [
+			                  { required: true,
+			                  	message: "Please input the patient's date of birth" },
+			                  { validator: this.checkDOB }
+			                ]
+				             })(
+			                <Input
+			                  type="text" name="theDate" id="birthdate"
+			                  prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+			                  placeholder="Date of Birth (dd/mm/yyyy)"
+			                  onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+			                  maxlength="10"
+			                  style={{ width: 240 }}
+			                />
+			            )}  
+					</Form.Item>
+					<Form.Item>
+						<Select defaultValue="Gender" style={{ width: 240 }} onChange={handleChange}>
+							<Option value="Male">Male</Option>
+						    <Option value="Female">Female</Option>
+						</Select>
+					</Form.Item>
+					<Form.Item>
+						<Select defaultValue="Study Type" style={{ width: 240 }} onChange={handleChange}>
+							<Option value="Initial Diagnostic study">Initial Diagnostic Study</Option>
+						    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
+						    <Option value="Repeat Diagnostic Study">Repeat Diagnostic Study</Option>
+						    <Option value="CPAP Study">CPAP Study</Option>
+						    <Option value="BiPAP Study">BiPAP Study</Option>
+						    <Option value="Repeat Therapeutic Study">Repeat Therapeutic Study</Option>
+						    <Option value="Study to Assess Other Therapy">Study to Assess Other Therapy</Option>
+						</Select>
+					</Form.Item>
+					<Form.Item>
+						<TextArea placeholder="Notes" autoSize />
+	        			<div style={{ margin: '24px 0' }} />
+					</Form.Item>
+				</div>
+	        </Modal>
          </div>
     );
 	}
