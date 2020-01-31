@@ -103,28 +103,9 @@ class PatientListPage extends React.Component {
         return (
 
     <div className="ListingPage">
-        <div className="Sidebar"> 
-            <br/>
-            <h1>BlueBook</h1>
-            <Menu
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode = "vertical"
-        >
-          <Menu.Item key="1" align= 'left'>
-            <Icon type="contacts" />
-            Patient Listing
-          </Menu.Item>
-          <Menu.Item key="2" align= 'left'>
-            <Icon type="monitor" />
-            Metrics
-            </Menu.Item>
-            </Menu>
-            <div className="LogoutButton">
-             <Button type="danger" ghost>
-                Logout
-            </Button>
-            </div>
+      <div className = "Sidebar">
+          <script type="text/javascript" src="../containters/Sidebar.js"></script>
+          Sidebar(PatientList)        
         </div>
         <div className="Title">
          <h2>Patient Listing</h2>

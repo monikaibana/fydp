@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/mainstyles.css";
-import logo from "/Users/adnaylor/fydp/src/placeholder.svg"
+import logo from "../src/placeholder.svg"
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 // import Routes from "../Routes";
 import "antd/dist/antd.css";
 import Amplify, { Auth } from "aws-amplify";
-import awsconfig from "../aws-exports";
+import awsconfig from "../src/aws-exports";
 Amplify.configure(awsconfig);
 
 
