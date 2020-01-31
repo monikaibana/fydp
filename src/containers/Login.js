@@ -1,54 +1,43 @@
 import React from "react";
 import "../styles/mainstyles.css";
+import logo from "../placeholder.svg";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
-// import { Auth } from "aws-amplify";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "../aws-exports.js";
+Amplify.configure(awsconfig);
 
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
-
-  checkUsername = (rule, value, callback) => {
-    const form = this.props.form;
-    form.setFields({
-      username: {
-        value: "email"
-      }
-    });
-    form.setFieldsValue("email");
+  signIn = async (user, pass) => {
+    try {
+      await Auth.signIn(user, pass);
+      alert("Logged in");
+      this.props.userHasAuthenticated(true);
+    } catch (e) {
+      alert(e.message);
+    }
   };
 
-  // handleSubmit = async e => {
-  //   e.preventDefault();
-  //   try {
-  //     await Auth.signIn(this.state.username, this.state.password);
-  //     alert("Logged in!!")
-  //   } catch (err) {
-  //     alert(err)
-  //   }
-  // }
-
-    handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.form.validateFields((err, values) => {
-        if (!err) {
-          alert('Received values of form: ', values);
-        } else {
-          alert(err)
-        }
-      });
-    }
+  handleSubmit = async e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      this.signIn(values.user, values.password);
+    });
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="login-page">
         <div className="login-container">
+          <img src={logo} alt="logo"></img>
+          <h1> BlueBook </h1>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
-              {getFieldDecorator("userName", {
+              {getFieldDecorator("user", {
                 rules: [
-                  { required: true, message: "Please input your username!" },
-                  { validator: this.checkUsername }
+                  { required: true, message: "Please input your username!" }
                 ]
               })(
                 <Input
@@ -91,6 +80,7 @@ class LoginPage extends React.Component {
             </FormItem>
           </Form>
         </div>
+        {/* <Routes /> */}
       </div>
     );
   }
