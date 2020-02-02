@@ -4,6 +4,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
 import { Form, Icon, Input, Button, Select, Modal, Checkbox } from "antd";
+import createPatient from "../routes/api-routes";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -12,37 +13,31 @@ function handleChange(value) {
   console.log(`selected ${value}`);
 }
 
-class CreatePatientPage extends React.Component {
-  createPatient = async (
-    id,
-    surname,
-    givenName,
-    dob,
-    gender,
-    study_type,
-    notes
-  ) => {
-    try {
-      console.log(id, surname, givenName, dob, gender, study_type, notes);
-      alert(`Patient ${surname}, ${givenName} added`);
-    } catch (e) {
-      alert(e.message);
+function requestBody(values) {
+  var body = {
+    operation: "create",
+    tableName: "bluebook-patient",
+    payload: {
+      Item: {
+        id: parseInt(values.id),
+        surname: values.surname,
+        givenName: values.givenName,
+        dob: values.dob,
+        gender: values.gender,
+        studyType: parseInt(values.studyType),
+        notes: values.notes
+      }
     }
   };
+  return body;
+}
 
+class CreatePatientPage extends React.Component {
   handleSubmit = async e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.createPatient(
-          values.id,
-          values.surname,
-          values.givenName,
-          values.dob,
-          values.gender,
-          values.study_type,
-          values.notes
-        );
+        createPatient(requestBody(values));
         console.log(values);
         setTimeout(() => {
           this.setState({ loading: false, visible: false });
@@ -203,7 +198,7 @@ class CreatePatientPage extends React.Component {
                 </Select>
               )}
             </Form.Item>
-            <Form.Item key="notes" onChange={handleChange}>
+            <Form.Item key="notes">
               {getFieldDecorator("notes")(
                 <TextArea placeholder="Notes" autoSize />
               )}
