@@ -114,7 +114,7 @@ class CreatePatientPage extends React.Component {
             </Button>
           ]}
         >
-          <div className="create-patient-container">
+          <div>
             <Form.Item key="surname">
               {getFieldDecorator("surname", {
                 rules: [
@@ -195,11 +195,10 @@ class CreatePatientPage extends React.Component {
                   </Option>
                   <Option value="1">Initial Diagnostic Study</Option>
                   <Option value="2">Repeat Diagnostic Study</Option>
-                  <Option value="3">Repeat Diagnostic Study</Option>
-                  <Option value="4">CPAP Study</Option>
-                  <Option value="5">BiPAP Study</Option>
-                  <Option value="6">Repeat Therapeutic Study</Option>
-                  <Option value="7">Study to Assess Other Therapy</Option>
+                  <Option value="3">CPAP Study</Option>
+                  <Option value="4">BiPAP Study</Option>
+                  <Option value="5">Repeat Therapeutic Study</Option>
+                  <Option value="6">Study to Assess Other Therapy</Option>
                 </Select>
               )}
             </Form.Item>
