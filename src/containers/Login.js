@@ -12,10 +12,10 @@ class LoginPage extends React.Component {
   signIn = async (user, pass) => {
     try {
       await Auth.signIn(user, pass);
-      alert("Logged in");
+      console.log("Success");
       this.props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
+      console.log(e.message);
     }
   };
 
@@ -74,6 +74,7 @@ class LoginPage extends React.Component {
                 type="primary"
                 htmlType="submit"
                 className="login-form-button"
+                href="/list"
               >
                 Log in
               </Button>
