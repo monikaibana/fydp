@@ -1,7 +1,7 @@
 var apigClientFactory = require("aws-api-gateway-client").default;
 
 var apigClient = apigClientFactory.newClient({
-  invokeUrl: process.env.REACT_APP_BASEURL,
+  invokeUrl: process.env.REACT_APP_BASE_URL,
   region: "us-east-1",
   accessKey: process.env.REACT_APP_ACCESS_KEY,
   secretKey: process.env.REACT_APP_SECRET_KEY
