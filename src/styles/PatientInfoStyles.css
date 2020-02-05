@@ -1,47 +1,48 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=<Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=<Montserrat&display=swap");
 
-.PatientInfoPage{
-    background: #E5E5E5;
+.PatientInfoPage {
+  background: #fafafa;
+  height: 100vh;
 }
-.BackButton{
-    position: absolute;
-    width: 74px;
-    height: 32px;
-    left: 324px;
-    top: 29px; 
+.BackButton {
+  position: absolute;
+  width: 74px;
+  height: 32px;
+  left: 324px;
+  top: 40px;
 
-    font-family: 'IBM Plex Sans';
-    font-size: 20px;
-    line-height: 32px;
-    text-align: left;
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+  line-height: 32px;
+  text-align: left;
 }
-.PatientName{
-    position: relative;
-    width: 305px;
-    height: 59px;
-    left: 325px;
-    top: -650px;
+.PatientName {
+  position: absolute;
+  width: 305px;
+  height: 59px;
+  left: 325px;
+  top: 90px;
 
-    font-family: Montserrat;
-    font-size: 40px;
-    line-height: 59px;
+  font-family: Montserrat;
+  font-size: 40px;
+  line-height: 59px;
 }
-.StatusInfo{
-    position: relative;
-    left: 340px;
-    top: -650px;
-    text-align: left;
-    font-family: IBM Plex Sans;
+.StatusInfo {
+  position: absolute;
+  left: 340px;
+  top: 170px;
+  text-align: left;
+  font-family: IBM Plex Sans;
 }
-.TimeInStatus{
-    position: relative;
-    left: 275px;
-    top: -80px;
+.TimeInStatus {
+  position: relative;
+  left: 275px;
+  top: -80px;
 }
-.InfoTabs{
-    position: relative;
-    top: -700px;
-    left: 340px;
-    width: 70vw;
+.InfoTabs {
+  position: absolute;
+  top: 250px;
+  left: 340px;
+  width: 70vw;
 }
