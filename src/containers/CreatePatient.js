@@ -41,7 +41,7 @@ class CreatePatientPage extends React.Component {
         console.log(values);
         setTimeout(() => {
           this.setState({ loading: false, visible: false });
-          window.location.href = "/list";
+          window.location.href = "/info";
         }, 3000);
       } else {
         console.log(err);
