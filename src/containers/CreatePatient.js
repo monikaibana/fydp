@@ -41,16 +41,18 @@ class CreatePatientPage extends React.Component {
         console.log(values);
         setTimeout(() => {
           this.setState({ loading: false, visible: false });
+          window.location.href = "/info";
         }, 3000);
       } else {
-        alert(err);
+        console.log(err);
       }
     });
   };
 
   state = {
     loading: false,
-    visible: false
+    // visible: false
+    visible: true
   };
 
   showModal = () => {
@@ -80,9 +82,9 @@ class CreatePatientPage extends React.Component {
 
     return (
       <div className="create-patient-modal">
-        <Button type="primary" onClick={this.showModal}>
+        {/* <Button type="primary" onClick={this.showModal}>
           Add Patient
-        </Button>
+        </Button> */}
         <Modal
           visible={visible}
           title="Add Patient"

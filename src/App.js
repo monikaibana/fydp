@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import Routes from "./Routes";
 import "./styles/mainstyles.css";
 
@@ -13,18 +11,6 @@ function App(props) {
 
   return (
     <div className="login-page">
-      {isAuthenticated ? (
-        <div />
-      ) : (
-        <>
-          <h3 style={{ color: "white" }}>Welcome to BlueBook!</h3>
-          <div className="login-button-container">
-            <Link to="/login">
-              <Button>Login</Button>
-            </Link>
-          </div>
-        </>
-      )}
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
     </div>
   );

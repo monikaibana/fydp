@@ -24,12 +24,12 @@ export default function Sidebar(props) {
         </Menu.Item>
       </Menu>
       <div className="CreatePatientButton">
-        <Button type="primary" icon="plus">
+        <Button type="primary" icon="plus" href="/create">
           Add patient
         </Button>
       </div>
       <div className="LogoutButton">
-        <Button type="primary" icon="poweroff" ghost>
+        <Button type="primary" icon="poweroff" ghost href="/">
           Logout
         </Button>
       </div>
