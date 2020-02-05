@@ -13,6 +13,10 @@ function handleChange(value) {
   console.log(`selected ${value}`);
 }
 
+function formatDate(value) {
+  return value.replace(/^(\d\d)\/(\d\d)\/(\d\d\d\d)$/g, "$3-$2-$1");
+}
+
 function requestBody(values) {
   var body = {
     operation: "create",
@@ -22,7 +26,7 @@ function requestBody(values) {
         id: parseInt(values.id),
         surname: values.surname,
         givenName: values.givenName,
-        dob: values.dob,
+        dob: formatDate(values.dob),
         gender: values.gender,
         studyType: parseInt(values.studyType),
         notes: values.notes
