@@ -3,11 +3,23 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import { Form, Icon, Input, Button, Select, Modal, Checkbox } from "antd";
+import "../styles/CreatePatientStyles.css";
+import { Form, Icon, Input, Button, Select, Card } from "antd";
 import createPatient from "../routes/api-routes";
+import Sidebar from "../components/Sidebar.js";
 
 const { Option } = Select;
 const { TextArea } = Input;
+const Tabs = [
+  {
+    key: "patientInformation",
+    tab: "Patient Information"
+  },]
+
+const tablist = {
+  /* this is where we edit the content for the tabs*/
+  patientInformation: <p>Patient info content</p>,
+};
 
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -53,18 +65,6 @@ class CreatePatientPage extends React.Component {
     });
   };
 
-  state = {
-    loading: false,
-    // visible: false
-    visible: true
-  };
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
-
   handleCancel = () => {
     this.setState({ visible: false });
   };
@@ -82,40 +82,27 @@ class CreatePatientPage extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { visible, loading } = this.state;
 
     return (
-      <div className="create-patient-modal">
+      <div className="PatientInfoPage">
         {/* <Button type="primary" onClick={this.showModal}>
           Add Patient
         </Button> */}
-        <Modal
-          visible={visible}
-          title="Add Patient"
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Checkbox
-              key="add_another"
-              onChange={this.handleCheckbox}
-              style={{ float: "left" }}
-            >
-              Add another patient{" "}
-            </Checkbox>,
-            <Button key="cancel" onClick={this.handleCancel}>
-              Cancel
-            </Button>,
-            <Button
-              key="submit"
-              type="primary"
-              loading={loading}
-              onClick={this.handleSubmit}
-            >
-              Submit
-            </Button>
-          ]}
-        >
-          <div>
+        <div className="Sidebar">
+          <Sidebar value={"PatientList"} />
+        </div>
+        <div className="BackButton">
+          <Icon type="left" /> Back
+        </div>
+        <div className="PatientName">
+        	Add Patient
+        </div>
+        <div className="InfoTabs">
+          <Card
+            style={{ width: "100%" }}
+            tabList={Tabs}
+          >
+          <div className="CreatePatientForm">
             <Form.Item key="surname">
               {getFieldDecorator("surname", {
                 rules: [
@@ -173,13 +160,13 @@ class CreatePatientPage extends React.Component {
                   placeholder="Date of Birth (dd/mm/yyyy)"
                   onChange={this.handleDateChange}
                   maxLength={10}
-                  style={{ width: 240 }}
+                  style={{ width: 300 }}
                 />
               )}
             </Form.Item>
             <Form.Item key="gender">
               {getFieldDecorator("gender", { initialValue: "Gender" })(
-                <Select style={{ width: 240 }} onChange={handleChange}>
+                <Select style={{ width: 300 }} onChange={handleChange}>
                   <Option value="Gender" hidden>
                     Gender
                   </Option>
@@ -190,7 +177,7 @@ class CreatePatientPage extends React.Component {
             </Form.Item>
             <Form.Item key="study_type">
               {getFieldDecorator("studyType", { initialValue: "0" })(
-                <Select style={{ width: 240 }} onChange={handleChange}>
+                <Select style={{ width: 300 }} onChange={handleChange}>
                   <Option value="0" hidden>
                     Study Type
                   </Option>
@@ -209,9 +196,13 @@ class CreatePatientPage extends React.Component {
               )}
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
-          </div>
-        </Modal>
-      </div>
+            <Form.Item>
+      			<Button type="primary" >Submit</Button>
+      		</Form.Item>
+      		</div>
+      	</Card>
+        </div>
+       </div>
     );
   }
 }
