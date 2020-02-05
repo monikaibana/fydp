@@ -14,8 +14,12 @@ class LoginPage extends React.Component {
       await Auth.signIn(user, pass);
       console.log("Success");
       this.props.userHasAuthenticated(true);
+      window.location.href = "/list";
     } catch (e) {
       console.log(e.message);
+      alert(
+        "Incorrect username or password. Please check credentials and try again."
+      );
     }
   };
 
@@ -74,7 +78,6 @@ class LoginPage extends React.Component {
                 type="primary"
                 htmlType="submit"
                 className="login-form-button"
-                href="/list"
               >
                 Log in
               </Button>

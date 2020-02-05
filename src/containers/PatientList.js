@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/mainstyles.css";
-import "../styles/PatientListStyles.css"
+import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Tag, Input } from "antd";
 const { Option } = Select;
-const {Search} = Input;
+const { Search } = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
@@ -18,14 +18,9 @@ const columns = [
     render: text => <a>{text}</a>
   },
   {
-    title: "Date Of Birth",
-    dataIndex: "DOB",
-    key: "Date Of Birth"
-  },
-  {
-    title: "Gender",
-    dataIndex: "Gender",
-    key: "Gender"
+    title: "PID",
+    dataIndex: "PID",
+    key: "PID"
   },
   {
     title: "Time In Status",
@@ -60,7 +55,8 @@ const columns = [
   {
     title: "Link to Patient File",
     dataIndex: "Link",
-    key: "Link to Patient File"
+    key: "Link to Patient File",
+    render: text => <a>{text}</a>
   }
 ];
 
@@ -69,31 +65,28 @@ const data = [
   {
     key: "1",
     Name: "John Brown",
-    DOB: "1965-03-08",
-    Gender: "Male",
-    TIS: "3:45",
+    PID: "112049586",
+    TIS: "17 days",
     tags: ["Urgent", "IDS"],
-    Notes: "words words words",
+    Notes: "",
     Link: "Link"
   },
   {
     key: "2",
     Name: "Jenna Brown",
-    DOB: "1978-07-21",
-    Gender: "Female",
-    TIS: "19:40",
+    PID: "112049599",
+    TIS: "7 days",
     tags: ["Routine", "RDS"],
-    Notes: "words words words",
+    Notes: "",
     Link: "Link"
   },
   {
     key: "3",
     Name: "John Brown",
-    DOB: "1965-03-08",
-    Gender: "Male",
-    TIS: "3:45",
+    TIS: "0 days",
+    PID: "112049631",
     tags: ["Urgent", "IDS"],
-    Notes: "words words words",
+    Notes: "Occupation involves driving",
     Link: "Link"
   }
 ];
@@ -111,7 +104,11 @@ class PatientListPage extends React.Component {
         <div className="Filter">
           <h2>Please pick a status:</h2>
           <Form.Item>
-            <Select defaultValue="Patient Status" onChange={handleChange} style={{width: 250}}>
+            <Select
+              defaultValue="Patient Status"
+              onChange={handleChange}
+              style={{ width: 250 }}
+            >
               <Option value="Referral Received/For Triage">
                 Referral Received/For Triage
               </Option>
@@ -157,9 +154,9 @@ class PatientListPage extends React.Component {
           <div className="PerPage">items per page.</div>
           <div className="SearchBar">
             <Search
-            placeholder="Search"
-            onSearch={value => console.log(value)}
-            style={{ width: 250 }}
+              placeholder="Search"
+              onSearch={value => console.log(value)}
+              style={{ width: 250 }}
             />
           </div>
           <div className="Table">
@@ -167,7 +164,7 @@ class PatientListPage extends React.Component {
               columns={columns}
               dataSource={data}
               pagination={({ position: "bottom" }, { alignment: "centre" })}
-              size={'small'}
+              size={"small"}
             />
             ;
           </div>
