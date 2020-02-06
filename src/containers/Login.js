@@ -12,10 +12,14 @@ class LoginPage extends React.Component {
   signIn = async (user, pass) => {
     try {
       await Auth.signIn(user, pass);
-      alert("Logged in");
+      console.log("Success");
       this.props.userHasAuthenticated(true);
+      window.location.href = "/list";
     } catch (e) {
-      alert(e.message);
+      console.log(e.message);
+      alert(
+        "Incorrect username or password. Please check credentials and try again."
+      );
     }
   };
 

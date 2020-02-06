@@ -1,142 +1,113 @@
-@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
-.ListingPage{
-    background: #FAFAFA;
-    height: 100vh;
-  }
-  
-  .Sidebar {
-    position: "absolute";
-    width: 275px;
-    height: 100vh;
-    left: 0px;
-    top: 0px;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 0px 30px 30px 0px;
-  }
-  .Sidebar h1 {
-    font-family: "Varela Round";
-    font-style: "normal";
-    font-weight: "normal";
-    font-size: 36px;
-    line-height: 43px;
-    letter-spacing: -0.05em;
-    color: #2196F3;
-  }
-  .LogoutButton {
-    position: relative;
-    top: 350px;
-  }
-  
-  .Filter {
-    text-align: left;
-    position: absolute;
-    left: 300px;
-    top: 150px;
-  }
-  .Filter h2 {
-    font-family: "IBM Plex Sans";
-    font-style: "normal";
-    font-weight: "normal";
-    font-size: 14px;
-    line-height: 20px;
-  
-  
-  
-    align-items: center;
-  
-    color: #000000;
-  }
-  .Title {
-    position: absolute;
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
+.ListingPage {
+  background: #fafafa;
+  height: 100vh;
+}
+
+.Filter {
+  text-align: left;
+  position: absolute;
+  left: 300px;
+  top: 150px;
+}
+.Filter h2 {
+  font-family: "IBM Plex Sans";
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 14px;
+  line-height: 20px;
+
+  align-items: center;
+
+  color: #000000;
+}
+.Title {
+  position: absolute;
   width: 351px;
   height: 59px;
   left: 323px;
   top: 61px;
-  }
-  .Title h2{
-    font-family: "Montserrat";
+}
+.Title h2 {
+  font-family: "Montserrat";
   font-style: "normal";
   font-weight: "normal";
   font-size: 48px;
   line-height: 59px;
   color: #000000;
-  }
-  .ListedPatients {
-    position: absolute;
-    left: 575px;
-    top: 180px;
-  }
-  .NumberOfPatients {
-    position: relative;
-    left: 0px;
-    top: 5px;
-    font-family: "IBM Plex Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-  
-    display: flex;
-    align-items: center;
-  
-    color: #000000;
-  }
-  .Display{
-    position: absolute;
-    left: 300px;
-    top: 5px;
-    width: 150px;
-  
-    font-family: "IBM Plex Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-  
-  
-    /*display: flex;*/
-    align-items: center;
-  
-    color: #000000;
-  }
-  .NumberOfItems {
-    position: absolute;
+}
+.ListedPatients {
+  position: absolute;
+  left: 575px;
+  top: 180px;
+}
+.NumberOfPatients {
+  position: relative;
+  left: 0px;
+  top: 5px;
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+.Display {
+  position: absolute;
+  left: 300px;
+  top: 5px;
+  width: 150px;
+
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  /*display: flex;*/
+  align-items: center;
+
+  color: #000000;
+}
+.NumberOfItems {
+  position: absolute;
   width: 57px;
   height: 37px;
   left: 405px;
   top: -5px;
-  
-  }
-  .PerPage {
-    position: absolute;
-    width: 100px;
-    left: 465px;
-    top: 5px;
-  
-  font-family: IBM Plex Sans;
+}
+.PerPage {
+  position: absolute;
+  width: 100px;
+  left: 465px;
+  top: 5px;
+
+  font-family: "IBM Plex Sans";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
   display: flex;
   align-items: center;
-  
+
   color: #000000;
-  }
-  .SearchBar{
-      position: absolute;
-      top: 40px;
-      left: -275px;
-  }
-  .Table {
-    position: absolute;
-    top: 80px;
-    left: -275px;
-    background-color: #FFFFFF;
-    border-radius: 2px 2px 2px 2px;
-    width: 70vw;
-    
-  }
+}
+.SearchBar {
+  position: absolute;
+  top: 40px;
+  left: -275px;
+}
+.Table {
+  position: absolute;
+  top: 80px;
+  left: -275px;
+  background-color: #ffffff;
+  border-radius: 2px 2px 2px 2px;
+  width: 70vw;
+}

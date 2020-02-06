@@ -23,8 +23,13 @@ export default function Sidebar(props) {
           Metrics
         </Menu.Item>
       </Menu>
+      <div className="CreatePatientButton">
+        <Button type="primary" icon="plus" href="/create">
+          Add patient
+        </Button>
+      </div>
       <div className="LogoutButton">
-        <Button type="danger" ghost>
+        <Button type="primary" icon="poweroff" ghost href="/">
           Logout
         </Button>
       </div>
