@@ -166,7 +166,6 @@ class PatientListPage extends React.Component {
               pagination={({ position: "bottom" }, { alignment: "centre" })}
               size={"small"}
             />
-            ;
           </div>
         </div>
       </div>
