@@ -5,9 +5,6 @@ backend:
       commands:
         - "# Execute Amplify CLI with the helper script"
         - amplifyPush --simple
-        - REACT_APP_BASE_URL = $REACT_APP_BASE_URL
-        - REACT_APP_ACCESS_KEY = $REACT_APP_ACCESS_KEY
-        - REACT_APP_SECRET_KEY = $REACT_APP_SECRET_KEY
 frontend:
   phases:
     preBuild:
@@ -15,6 +12,9 @@ frontend:
         - npm ci
     build:
       commands:
+        - REACT_APP_BASE_URL = $REACT_APP_BASE_URL
+        - REACT_APP_ACCESS_KEY = $REACT_APP_ACCESS_KEY
+        - REACT_APP_SECRET_KEY = $REACT_APP_SECRET_KEY
         - npm run build
   artifacts:
     baseDirectory: build
