@@ -1,4 +1,9 @@
 version: 0.1
+env:
+  variables:
+    - REACT_APP_BASE_URL:$REACT_APP_BASE_URL
+    - REACT_APP_ACCESS_KEY:$REACT_APP_ACCESS_KEY
+    - REACT_APP_SECRET_KEY:$REACT_APP_SECRET_KEY
 backend:
   phases:
     build:
@@ -12,9 +17,6 @@ frontend:
         - npm ci
     build:
       commands:
-        - REACT_APP_BASE_URL:$REACT_APP_BASE_URL
-        - REACT_APP_ACCESS_KEY:$REACT_APP_ACCESS_KEY
-        - REACT_APP_SECRET_KEY:$REACT_APP_SECRET_KEY
         - npm run build
   artifacts:
     baseDirectory: build
