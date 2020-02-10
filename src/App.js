@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
-import { BrowserRouter as Router } from "react-router-dom";
 import "./styles/mainstyles.css";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App(props) {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -11,7 +11,7 @@ function App(props) {
   // }
 
   return (
-    <Router basename={process.env.REACT_APP_PUBLIC_URL}>
+    <Router>
       <div className="login-page">
         <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
       </div>
