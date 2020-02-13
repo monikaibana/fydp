@@ -9,8 +9,8 @@
   position: absolute;
   width: 74px;
   height: 32px;
-  left: 324px;
-  top: 40px;
+  left: 325px;
+  top: 15px;
 
   font-family: "IBM Plex Sans";
   font-size: 20px;
@@ -22,18 +22,18 @@
   width: 305px;
   height: 59px;
   left: 325px;
-  top: 90px;
+  top: 50px;
 
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 40px;
   line-height: 59px;
 }
 .StatusInfo {
   position: absolute;
   left: 340px;
-  top: 170px;
+  top: 115px;
   text-align: left;
-  font-family: IBM Plex Sans;
+  font-family: "IBM Plex Sans";
 }
 .TimeInStatus {
   position: relative;
@@ -42,7 +42,38 @@
 }
 .InfoTabs {
   position: absolute;
-  top: 250px;
+  top: 200px;
   left: 340px;
   width: 70vw;
+}
+.interpretationDetails{
+  text-align: left;
+  height: 300px;
+  background-color: #ffffff;
+}
+.interpretationDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  line-height: 18px;
+}
+.InterpretationInfo{
+  position: absolute;
+  left: 75px;
+  top: 100px;
+  width: 300px;
+  border-right: 1px solid #D9D9D9
+}
+.Interpretation{
+ position: absolute;
+ left: 450px;
+ top: 100px;
+}
+.StudyLink p{
+  color: dodgerblue;
+}
+.save-button{
+  position: absolute;
+  bottom: -50px;
+  left: 825px;
+
 }
