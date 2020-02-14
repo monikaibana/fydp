@@ -16,6 +16,7 @@
   font-size: 20px;
   line-height: 32px;
   text-align: left;
+  color: dodgerblue;
 }
 .PatientName {
   position: absolute;
@@ -48,7 +49,7 @@
 }
 .interpretationDetails{
   text-align: left;
-  height: 300px;
+  height: 340px;
   background-color: #ffffff;
 }
 .interpretationDetails h2{

@@ -1,123 +1,19 @@
 // Placeholder file for Patient Information Page
 
 import React from "react";
-import { Card, Icon, Select, Form ,Input, Button} from "antd";
+import { Tabs, Icon, Select, Form, Input, Button } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
 
 const { Option } = Select;
-const {TextArea} = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
-const Tabs = [
-  {
-    key: "patientInformation",
-    tab: "Patient Information"
-  },
-  {
-    key: "studyInformation",
-    tab: "Study Information"
-  },
-  {
-    key: "studyResults",
-    tab: "Study Results"
-  },
-  {
-    key: "interpretationDetails",
-    tab: "Interpretation Details"
-  }
-];
-
-const tablist = {
-  /* this is where we edit the content for the tabs*/
-  patientInformation: <p>Patient info content</p>,
-  studyInformation: <p>study info content</p>,
-  studyResults: <p>study result content</p>,
-  interpretationDetails:
-  <div className="interpretationDetails">
-  <div className="InterpretationInfo">
-    <div className="InterpretingDoctor">
-      <h2>Interpreting Doctor <br/></h2>
-      <Form.Item>
-        <Select
-          defaultValue="Select A Doctor"
-          onChange={handleChange}
-          style={{ width: 250 }}
-        >
-          <Option value="Raymond Gottschalk">
-            Raymond Gottschalk
-          </Option>
-        </Select>
-      </Form.Item>
-    </div>
-    <div className="InterpretationDate">
-      <h2>Interpretation Date <br/></h2>
-      <Form.Item>
-        <Input
-          prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-          placeholder="Interpretation Date (dd/mm/yyyy)"
-          maxLength={10}
-          style={{ width: 250 }}
-        />
-      </Form.Item>
-    </div>
-    <div className="StudyLink">
-      <h2>Link To Study <br/></h2>
-      <p> Link </p>
-    </div>
-  </div>
-  <div className="Interpretation">
-    <div className="Rating">
-      <h2>Rating <br/> </h2>
-      <Form.Item>
-        <Select
-          defaultValue="Select A Rating"
-          onChange={handleChange}
-          style={{ width: 250 }}
-        >
-          <Option value="1">
-            1
-          </Option>
-          <Option value="2">
-            2
-          </Option>
-          <Option value="3">
-            3
-          </Option>
-          <Option value="4">
-            4
-          </Option>
-          <Option value="5">
-            5
-          </Option>
-        </Select>
-      </Form.Item>
-    </div>
-    <div className="reportSendDate">
-      <h2>Date Report Sent <br/> </h2>
-      <Form.Item>
-        <Input
-          prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-          placeholder="Sent Date (dd/mm/yyyy)"
-          maxLength={10}
-          style={{ width: 250 }}
-        />
-      </Form.Item>
-    </div>
-    <div className="Comments">
-      <h2> Comments <br/> </h2>
-      <Form.Item>
-        <TextArea
-          style={{ fontSize: 13 }, {width: 400}}
-          placeholder="Comments"
-          autoSize={{ minRows: 2, maxRows: 6 }}
-        />
-      </Form.Item>
-    </div>
-  </div>
-  </div>
-};
+const { TabPane } = Tabs;
+const {TextArea} = Input;
+function callback(key) {
+  console.log(key);
+}
 
 class PatientInfoPage extends React.Component {
   state = {
@@ -133,12 +29,9 @@ class PatientInfoPage extends React.Component {
     return (
       <div className="PatientInfoPage">
         <Sidebar value={"PatientInfo"} />
-        <div className="BackButton">
-          <a href="javascript:history.back()">
-           <Icon type="left" />
-            Back
-          </a>
-        </div>
+        <Button type="link" className="BackButton" href="javascript:history.back()">
+          <Icon type="left" /> Back
+        </Button>
         <div className="PatientName">Patient Name</div>
         <div className="StatusInfo">
           <div className="PatientStatus">
@@ -185,25 +78,110 @@ class PatientInfoPage extends React.Component {
           </div>
         </div>
         <div className="InfoTabs">
-          <Card
-            style={{ width: "100%" }}
-            tabList={Tabs}
-            activeTabKey={this.state.noTitleKey}
-            onTabChange={key => {
-              this.onTabChange(key, "noTitleKey");
-            }}
-          >
-            {tablist[this.state.noTitleKey]}
-          </Card>
+          <Tabs onChange={callback} type="card">
+            <TabPane tab="Patient Information" key="1">
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab="Study Information" key="2">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="Study Results" key="3">
+              Content of Tab Pane 3
+            </TabPane>
+            <TabPane tab="Interpretation Details" key="4" className="interpretationDetails">
+                <div className="InterpretationInfo">
+                  <div className="InterpretingDoctor">
+                    <h2>Interpreting Doctor <br/></h2>
+                    <Form.Item>
+                      <Select
+                        defaultValue="Select A Doctor"
+                        onChange={handleChange}
+                        style={{ width: 250 }}
+                      >
+                        <Option value="Raymond Gottschalk">
+                          Raymond Gottschalk
+                        </Option>
+                      </Select>
+                    </Form.Item>
+                  </div>
+                  <div className="InterpretationDate">
+                    <h2>Interpretation Date <br/></h2>
+                    <Form.Item>
+                      <Input
+                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                        placeholder="Interpretation Date (dd/mm/yyyy)"
+                        maxLength={10}
+                        style={{ width: 250 }}
+                      />
+                    </Form.Item>
+                  </div>
+                  <div className="StudyLink">
+                    <h2>Link To Study <br/></h2>
+                    <p> Link </p>
+                  </div>
+                </div>
+                <div className="Interpretation">
+                  <div className="Rating">
+                    <h2>Rating <br/> </h2>
+                    <Form.Item>
+                      <Select
+                        defaultValue="Select A Rating"
+                        onChange={handleChange}
+                        style={{ width: 250 }}
+                      >
+                        <Option value="1">
+                          1
+                        </Option>
+                        <Option value="2">
+                          2
+                        </Option>
+                        <Option value="3">
+                          3
+                        </Option>
+                        <Option value="4">
+                          4
+                        </Option>
+                        <Option value="5">
+                          5
+                        </Option>
+                      </Select>
+                    </Form.Item>
+                  </div>
+                  <div className="reportSendDate">
+                    <h2>Date Report Sent <br/> </h2>
+                    <Form.Item>
+                      <Input
+                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                        placeholder="Sent Date (dd/mm/yyyy)"
+                        maxLength={10}
+                        style={{ width: 250 }}
+                      />
+                    </Form.Item>
+                  </div>
+                  <div className="Comments">
+                    <h2> Comments <br/> </h2>
+                    <Form.Item>
+                      <TextArea
+                        style={{ fontSize: 13 }, {width: 400}}
+                        placeholder="Comments"
+                        autoSize={{ minRows: 2, maxRows: 6 }}
+                      />
+                    </Form.Item>
+                  </div>
+                </div>
+            </TabPane>
+            <TabPane tab="Post-Study Details" key="5">
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
           <Button
-          type="primary"
-          htmlType="submit"
-          className="save-button"
-        >
-          Save
-        </Button>
+            type="primary"
+            htmlType="submit"
+            className="save-button"
+          >
+            Save
+          </Button>
         </div>
-        
       </div>
     );
   }
