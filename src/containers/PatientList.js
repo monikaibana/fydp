@@ -117,7 +117,7 @@ class PatientListPage extends React.Component {
         <div className="Sidebar">
           <Sidebar value={"PatientList"} />
         </div>
-        <div className="Title">
+        <div className="PageTitle">
           <h2>Patient Listing</h2>
         </div>
         <div className="Filter">
