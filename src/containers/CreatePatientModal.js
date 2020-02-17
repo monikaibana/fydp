@@ -79,6 +79,7 @@ class CreatePatientModal extends React.Component {
 
   handleCancel = () => {
     this.setState({ visible: false });
+    this.props.parentCallback(false);
   };
 
   handleCheckbox = () => {

@@ -6,15 +6,12 @@ import CreatePatientModal from "../containers/CreatePatientModal";
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-    // const page_name = props.value;
-    // if (page_name === "Metrics") {
-    //   var key = 2;
-    // } else {
-    //   key = 1;
-    // }
   }
   state = {
     isModalVisible: false
+  };
+  callbackFunction = () => {
+    this.setState({ isModalVisible: false });
   };
   render() {
     const page_name = this.props.value;
@@ -51,7 +48,9 @@ class Sidebar extends React.Component {
             Logout
           </Button>
         </div>
-        {this.state.isModalVisible ? <CreatePatientModal /> : null}
+        {this.state.isModalVisible ? (
+          <CreatePatientModal parentCallback={this.callbackFunction} />
+        ) : null}
       </div>
     );
   }
