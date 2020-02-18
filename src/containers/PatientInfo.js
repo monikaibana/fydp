@@ -233,21 +233,6 @@ class PatientInfoPage extends React.Component {
                     )}
                   </Form.Item>
                 </div>
-                <div className="acq">
-                  <h2>
-                    ACQ <br />
-                  </h2>
-                  <Form.Item key="acq">
-                    {getFieldDecorator("acq")(
-                      <Input
-                        prefix={<Icon type="number" style={{ fontSize: 13 }} />}
-                        placeholder="ACQ"
-                        maxLength={9}
-                        style={{ width: 300 }}
-                      />
-                    )}
-                  </Form.Item>
-                </div>
                 <div className="location">
                   <h2>
                     Location <br />
@@ -265,6 +250,21 @@ class PatientInfoPage extends React.Component {
                         <Option value="5">Bed 5</Option>
                         <Option value="6">Bed 6</Option>
                       </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="acq">
+                  <h2>
+                    ACQ <br />
+                  </h2>
+                  <Form.Item key="acq">
+                    {getFieldDecorator("acq")(
+                      <Input
+                        prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+                        placeholder="ACQ"
+                        maxLength={9}
+                        style={{ width: 300 }}
+                      />
                     )}
                   </Form.Item>
                 </div>
