@@ -215,20 +215,15 @@ class CreatePatientModal extends React.Component {
               )}
             </Form.Item>
             <Form.Item label="Gender" key="gender">
-              {getFieldDecorator(
-                "gender",
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: "Please input the patient's gender"
-                    }
-                  ]
-                },
-                {
-                  initialValue: "Gender"
-                }
-              )(
+              {getFieldDecorator("gender", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please input the patient's gender"
+                  }
+                ],
+                initialValue: "Gender"
+              })(
                 <Select style={{ width: 240 }} onChange={handleChange}>
                   <Option value="Gender" hidden>
                     Gender
