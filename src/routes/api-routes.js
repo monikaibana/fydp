@@ -18,6 +18,24 @@ export default function createPatient(body) {
       console.log("Patient saved.");
     })
     .catch(function(result) {
-      alert("Error with saving patient, please try again.");
+      console.log(result);
+      alert("Error with saving patient, please try again later.");
+    });
+}
+
+export function getPatientList(body, callback) {
+  var params = {};
+  var pathTemplate = "";
+  var method = "POST";
+  var additionalParams = {};
+  apigClient
+    .invokeApi(params, pathTemplate, method, additionalParams, body)
+    .then(function(result) {
+      console.log("Patient list retrieved.");
+      return callback(result.data);
+    })
+    .catch(function(result) {
+      console.log(result);
+      alert("Error with retrieving patient list, please try again later.");
     });
 }

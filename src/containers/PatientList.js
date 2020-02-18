@@ -3,6 +3,7 @@ import "../styles/mainstyles.css";
 import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
+import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Tag, Input } from "antd";
 const { Option } = Select;
@@ -10,6 +11,18 @@ const { Search } = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
+
+function requestBody() {
+  var body = {
+    operation: "list",
+    tableName: "bluebook-patient",
+    payload: {
+      tableName: "bluebook-patient"
+    }
+  };
+  return body;
+}
+
 const columns = [
   {
     title: "Name",
@@ -92,13 +105,19 @@ const data = [
 ];
 
 class PatientListPage extends React.Component {
+  componentDidMount() {
+    getPatientList(requestBody(), function(response) {
+      console.log(response);
+    });
+  }
+
   render() {
     return (
       <div className="ListingPage">
         <div className="Sidebar">
           <Sidebar value={"PatientList"} />
         </div>
-        <div className="Title">
+        <div className="PageTitle">
           <h2>Patient Listing</h2>
         </div>
         <div className="Filter">

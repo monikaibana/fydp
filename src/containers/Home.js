@@ -4,10 +4,6 @@ import "../styles/homeStyles.css";
 import { Button } from "antd";
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="homepage">

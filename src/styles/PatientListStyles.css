@@ -23,13 +23,13 @@
 
   color: #000000;
 }
-.Title {
+.PageTitle {
   position: absolute;
   left: 300px;
   top: 61px;
   text-align: left;
 }
-.Title h2 {
+.PageTitle h2 {
   font-family: "Montserrat";
   font-style: "normal";
   font-weight: "normal";
