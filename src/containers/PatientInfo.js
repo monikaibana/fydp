@@ -96,7 +96,7 @@ class PatientInfoPage extends React.Component {
         <div className="InfoTabs">
           <Tabs onChange={callback} type="card">
             <TabPane tab="Patient Information" key="1" className="patientDetails">
-              <div className="InterpretationInfo">
+              <div className="PatientInfo">
                 <div className="patientName">
                   <h2>
                     Patient Name <br />
@@ -189,12 +189,7 @@ class PatientInfoPage extends React.Component {
                         <Option value="0" hidden>
                           Triage Tag
                         </Option>
-                        <Option value="1">Initial Diagnostic Study</Option>
-                        <Option value="2">Repeat Diagnostic Study</Option>
-                        <Option value="3">CPAP Study</Option>
-                        <Option value="4">BiPAP Study</Option>
-                        <Option value="5">Repeat Therapeutic Study</Option>
-                        <Option value="6">Study to Assess Other Therapy</Option>
+                        <Option value="1">Urgent</Option>
                       </Select>
                     )}
                   </Form.Item>
@@ -213,15 +208,102 @@ class PatientInfoPage extends React.Component {
                   </Form.Item>
                     <div className="StudyLink">
                     <h2>
-                      Link To Study <br />
+                      Link To Referral File <br />
                     </h2>
                     <p> filename.pdf </p>
                   </div>
                 </div>
               </div>
             </TabPane>
-            <TabPane tab="Study Information" key="2">
-              Content of Tab Pane 2
+            <TabPane tab="Study Information" key="2" className="studyDetails">
+              <div className="studyInfo">
+                <div className="studyDate">
+                  <h2>
+                    Date of Study <br />
+                  </h2>
+                  <Form.Item key="study_date">
+                    {getFieldDecorator("study_date")(
+                      <Input
+                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                      placeholder="Study Date (dd/mm/yyyy)"
+                      onChange={this.handleDateChange}
+                      maxLength={10}
+                      style={{ width: 300 }}
+                    />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="acq">
+                  <h2>
+                    ACQ <br />
+                  </h2>
+                  <Form.Item key="acq">
+                    {getFieldDecorator("acq")(
+                      <Input
+                        prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+                        placeholder="ACQ"
+                        maxLength={9}
+                        style={{ width: 300 }}
+                      />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="location">
+                  <h2>
+                    Location <br />
+                  </h2>
+                  <Form.Item key="location">
+                    {getFieldDecorator("location", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Bed number
+                        </Option>
+                        <Option value="1">Bed 1</Option>
+                        <Option value="2">Bed 2</Option>
+                        <Option value="3">Bed 3</Option>
+                        <Option value="4">Bed 4</Option>
+                        <Option value="5">Bed 5</Option>
+                        <Option value="6">Bed 6</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="studyType">
+                  <h2>
+                    Study Type <br />{" "}
+                  </h2>
+                  <Form.Item key="study_type">
+                    {getFieldDecorator("studyType", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Study Type
+                        </Option>
+                        <Option value="1">Initial Diagnostic Study</Option>
+                        <Option value="2">Repeat Diagnostic Study</Option>
+                        <Option value="3">CPAP Study</Option>
+                        <Option value="4">BiPAP Study</Option>
+                        <Option value="5">Repeat Therapeutic Study</Option>
+                        <Option value="6">Study to Assess Other Therapy</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="techName">
+                  <h2>
+                    Acquisition Tech Name <br />
+                  </h2>
+                  <Form.Item key="techName">
+                    {getFieldDecorator("location", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Tech Name
+                        </Option>
+                        <Option value="1">Johnny</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+              </div>
             </TabPane>
             <TabPane tab="Study Results" key="3">
               Content of Tab Pane 3
