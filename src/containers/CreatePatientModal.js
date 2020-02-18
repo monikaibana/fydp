@@ -1,7 +1,17 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import { Form, Icon, Input, Button, Select, Modal, Checkbox, Upload, message } from "antd";
+import {
+  Form,
+  Icon,
+  Input,
+  Button,
+  Select,
+  Modal,
+  Checkbox,
+  Upload,
+  message
+} from "antd";
 import createPatient from "../routes/api-routes";
 const { Option } = Select;
 const { TextArea } = Input;
@@ -10,21 +20,21 @@ function handleChange(value) {
 }
 
 const props = {
-  name: 'file',
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  name: "file",
+  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
   headers: {
-    authorization: 'authorization-text',
+    authorization: "authorization-text"
   },
   onChange(info) {
-    if (info.file.status !== 'attaching file') {
+    if (info.file.status !== "attaching file") {
       console.log(info.file, info.fileList);
     }
-    if (info.file.status === 'done') {
+    if (info.file.status === "done") {
       message.success(`${info.file.name} file attached successfully`);
-    } else if (info.file.status === 'error') {
+    } else if (info.file.status === "error") {
       message.error(`${info.file.name} file attachment failed.`);
     }
-  },
+  }
 };
 
 function formatDate(value) {
@@ -75,8 +85,7 @@ class CreatePatientModal extends React.Component {
         createPatient(requestBody(values));
         console.log(values);
         setTimeout(() => {
-          //   this.setState({ loading: false, visible: false });
-          //   window.location.href = "/info";
+          this.props.parentCallback(false);
         }, 3000);
       } else {
         console.log(err);
@@ -206,16 +215,20 @@ class CreatePatientModal extends React.Component {
               )}
             </Form.Item>
             <Form.Item label="Gender" key="gender">
-              {getFieldDecorator("gender", {
-              		rules: [
-              			{
-              				required: true,
-              				message: "Please input the patient's gender"
-              			}
-              		]
-              	},
-              	 {
-              	initialValue: "Gender" })(
+              {getFieldDecorator(
+                "gender",
+                {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Please input the patient's gender"
+                    }
+                  ]
+                },
+                {
+                  initialValue: "Gender"
+                }
+              )(
                 <Select style={{ width: 240 }} onChange={handleChange}>
                   <Option value="Gender" hidden>
                     Gender
@@ -232,12 +245,12 @@ class CreatePatientModal extends React.Component {
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
             <Form.Item key="attached_referral">
-            <Upload {...props}>
-			    <Button>
-			      <Icon type="upload" /> Click to Attach a Referral
-			    </Button>
-		  	</Upload>
-		  	</Form.Item>
+              <Upload {...props}>
+                <Button>
+                  <Icon type="upload" /> Click to Attach a Referral
+                </Button>
+              </Upload>
+            </Form.Item>
           </div>
         </Modal>
       </div>
