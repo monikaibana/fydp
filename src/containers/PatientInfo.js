@@ -131,14 +131,15 @@ class PatientInfoPage extends React.Component {
                     Interpretation Date <br />
                   </h2>
                   <Form.Item>
-                    {getFieldDecorator(
-                    <Input
-                    prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                    placeholder="Interpretation Date (dd/mm/yyyy)"
-                    onChange={this.handleDateChange}
-                    maxLength={10}
-                    style={{ width: 300 }}
-                    />)}
+                    {getFieldDecorator("interp_date")(
+                      <Input
+                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                        placeholder="Interpretation Date (dd/mm/yyyy)"
+                        onChange={this.handleDateChange}
+                        maxLength={10}
+                        style={{ width: 300 }}
+                      />
+                    )}
                   </Form.Item>
                 </div>
                 <div className="StudyLink">
@@ -172,13 +173,15 @@ class PatientInfoPage extends React.Component {
                     Date Report Sent <br />{" "}
                   </h2>
                   <Form.Item>
-                    <Input
-                    prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                    placeholder="Sent Date (dd/mm/yyyy)"
-                    onChange={this.handleDateChange}
-                    maxLength={10}
-                    style={{ width: 300 }}
-                    />
+                    {getFieldDecorator("sent_date")(
+                      <Input
+                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                        placeholder="Sent Date (dd/mm/yyyy)"
+                        onChange={this.handleDateChange}
+                        maxLength={10}
+                        style={{ width: 300 }}
+                      />
+                    )}
                   </Form.Item>
                 </div>
                 <div className="Comments">
@@ -209,4 +212,4 @@ class PatientInfoPage extends React.Component {
   }
 }
 
-export default PatientInfoPage;
+export default Form.create()(PatientInfoPage);
