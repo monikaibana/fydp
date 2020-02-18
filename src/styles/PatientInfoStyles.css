@@ -22,7 +22,7 @@
   position: absolute;
   width: 305px;
   height: 59px;
-  left: 325px;
+  left: 335px;
   top: 50px;
 
   font-family: "Montserrat";
@@ -59,9 +59,9 @@
 }
 .InterpretationInfo{
   position: absolute;
-  left: 75px;
+  left: 50px;
   top: 100px;
-  width: 300px;
+  width: 350px;
   border-right: 1px solid #D9D9D9
 }
 .Interpretation{
@@ -76,5 +76,19 @@
   position: absolute;
   bottom: -50px;
   left: 825px;
-
+}
+.patientDetails{
+  text-align: left;
+  height: 450px;
+  background-color: #ffffff;
+}
+.patientDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  line-height: 18px;
+}
+.Triage{
+ position: absolute;
+ left: 450px;
+ top: 100px;
 }
