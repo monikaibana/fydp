@@ -23,16 +23,16 @@ export default function createPatient(body) {
     });
 }
 
-export function getPatientList(body, callback) {
+export function getPatientList(body) {
   var params = {};
   var pathTemplate = "";
   var method = "POST";
   var additionalParams = {};
-  apigClient
+  return apigClient
     .invokeApi(params, pathTemplate, method, additionalParams, body)
     .then(function(result) {
       console.log("Patient list retrieved.");
-      return callback(result.data);
+      return result.data;
     })
     .catch(function(result) {
       console.log(result);

@@ -105,10 +105,16 @@ const data = [
 ];
 
 class PatientListPage extends React.Component {
-  componentDidMount() {
-    getPatientList(requestBody(), function(response) {
-      console.log(response);
-    });
+  state = { db_data: [] };
+
+  async componentDidMount() {
+    try {
+      var objvalues = await getPatientList(requestBody());
+      this.setState({ db_data: objvalues });
+      console.log(this.state.db_data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
