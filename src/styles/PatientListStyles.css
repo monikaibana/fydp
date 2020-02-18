@@ -25,10 +25,9 @@
 }
 .Title {
   position: absolute;
-  width: 351px;
-  height: 59px;
-  left: 323px;
+  left: 300px;
   top: 61px;
+  text-align: left;
 }
 .Title h2 {
   font-family: "Montserrat";
@@ -37,6 +36,7 @@
   font-size: 48px;
   line-height: 59px;
   color: #000000;
+  text-align: left;
 }
 .ListedPatients {
   position: absolute;

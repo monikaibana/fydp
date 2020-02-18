@@ -14,6 +14,7 @@ function callback(key) {
 }
 
 class PatientInfoPage extends React.Component {
+  
   state = {
     key: "Patient_Information"
   };
@@ -23,11 +24,20 @@ class PatientInfoPage extends React.Component {
     this.setState({ [type]: key });
   };
 
+  handleDateChange = e => {
+    e.target.value = e.target.value
+      .replace(/^(\d\d)(\d)$/g, "$1/$2")
+      .replace(/^(\d\d\/\d\d)(\d+)$/g, "$1/$2")
+      .replace(/[^\d/]/g, "");
+  };
+
   goBack() {
     this.props.history.goBack();
-  }
+  };
 
   render() {
+    const {getFieldDecorator} = this.props.form;
+
     return (
       <div className="PatientInfoPage">
         <Sidebar value={"PatientInfo"} />
@@ -121,12 +131,14 @@ class PatientInfoPage extends React.Component {
                     Interpretation Date <br />
                   </h2>
                   <Form.Item>
+                    {getFieldDecorator(
                     <Input
-                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                      placeholder="Interpretation Date (dd/mm/yyyy)"
-                      maxLength={10}
-                      style={{ width: 250 }}
-                    />
+                    prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                    placeholder="Interpretation Date (dd/mm/yyyy)"
+                    onChange={this.handleDateChange}
+                    maxLength={10}
+                    style={{ width: 300 }}
+                    />)}
                   </Form.Item>
                 </div>
                 <div className="StudyLink">
@@ -161,10 +173,11 @@ class PatientInfoPage extends React.Component {
                   </h2>
                   <Form.Item>
                     <Input
-                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                      placeholder="Sent Date (dd/mm/yyyy)"
-                      maxLength={10}
-                      style={{ width: 250 }}
+                    prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                    placeholder="Sent Date (dd/mm/yyyy)"
+                    onChange={this.handleDateChange}
+                    maxLength={10}
+                    style={{ width: 300 }}
                     />
                   </Form.Item>
                 </div>
