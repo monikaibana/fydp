@@ -1,13 +1,31 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import { Form, Icon, Input, Button, Select, Modal, Checkbox } from "antd";
+import { Form, Icon, Input, Button, Select, Modal, Checkbox, Upload, message } from "antd";
 import createPatient from "../routes/api-routes";
 const { Option } = Select;
 const { TextArea } = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
+
+const props = {
+  name: 'file',
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'attaching file') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file attached successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file attachment failed.`);
+    }
+  },
+};
 
 function formatDate(value) {
   return value.replace(/^(\d\d)\/(\d\d)\/(\d\d\d\d)$/g, "$3-$2-$1");
@@ -126,7 +144,7 @@ class CreatePatientModal extends React.Component {
           ]}
         >
           <div className="create-patient-container">
-            <Form.Item key="surname">
+            <Form.Item label="Patient Surname" key="surname">
               {getFieldDecorator("surname", {
                 rules: [
                   {
@@ -141,7 +159,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="givenName">
+            <Form.Item label="Patient Given Name(s)" key="givenName">
               {getFieldDecorator("givenName", {
                 rules: [
                   {
@@ -156,7 +174,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="id">
+            <Form.Item label="PID" key="id">
               {getFieldDecorator("id", {
                 rules: [
                   { required: true, message: "Please input the patient's PID" }
@@ -169,7 +187,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="dob">
+            <Form.Item label="Date of Birth" key="dob">
               {getFieldDecorator("dob", {
                 rules: [
                   {
@@ -187,8 +205,17 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="gender">
-              {getFieldDecorator("gender", { initialValue: "Gender" })(
+            <Form.Item label="Gender" key="gender">
+              {getFieldDecorator("gender", {
+              		rules: [
+              			{
+              				required: true,
+              				message: "Please input the patient's gender"
+              			}
+              		]
+              	},
+              	 {
+              	initialValue: "Gender" })(
                 <Select style={{ width: 240 }} onChange={handleChange}>
                   <Option value="Gender" hidden>
                     Gender
@@ -198,28 +225,19 @@ class CreatePatientModal extends React.Component {
                 </Select>
               )}
             </Form.Item>
-            <Form.Item key="study_type">
-              {getFieldDecorator("studyType", { initialValue: "0" })(
-                <Select style={{ width: 240 }} onChange={handleChange}>
-                  <Option value="0" hidden>
-                    Study Type
-                  </Option>
-                  <Option value="1">Initial Diagnostic Study</Option>
-                  <Option value="2">Repeat Diagnostic Study</Option>
-                  <Option value="3">Repeat Diagnostic Study</Option>
-                  <Option value="4">CPAP Study</Option>
-                  <Option value="5">BiPAP Study</Option>
-                  <Option value="6">Repeat Therapeutic Study</Option>
-                  <Option value="7">Study to Assess Other Therapy</Option>
-                </Select>
-              )}
-            </Form.Item>
-            <Form.Item key="notes" onChange={handleChange}>
+            <Form.Item label="Notes" key="notes" onChange={handleChange}>
               {getFieldDecorator("notes")(
                 <TextArea placeholder="Notes" autoSize />
               )}
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
+            <Form.Item key="attached_referral">
+            <Upload {...props}>
+			    <Button>
+			      <Icon type="upload" /> Click to Attach a Referral
+			    </Button>
+		  	</Upload>
+		  	</Form.Item>
           </div>
         </Modal>
       </div>
