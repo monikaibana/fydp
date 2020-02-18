@@ -187,7 +187,7 @@ class PatientListPage extends React.Component {
           <div className="Table">
             <Table
               columns={columns}
-              dataSource={data}
+              dataSource={this.componentDidMount}
               pagination={({ position: "bottom" }, { alignment: "centre" })}
               size={"small"}
             />
