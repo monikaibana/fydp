@@ -52,7 +52,6 @@ function requestBody(values) {
         givenName: values.givenName,
         dob: formatDate(values.dob),
         gender: values.gender,
-        studyType: parseInt(values.studyType),
         notes: values.notes
       }
     }
