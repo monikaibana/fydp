@@ -98,14 +98,9 @@
 
   color: #000000;
 }
-.SearchBar {
-  position: absolute;
-  top: 40px;
-  left: -275px;
-}
 .Table {
   position: absolute;
-  top: 80px;
+  top: 50px;
   left: -275px;
   background-color: #ffffff;
   border-radius: 2px 2px 2px 2px;
