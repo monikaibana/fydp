@@ -29,6 +29,7 @@ function handleSizeChange(value) {
 }
 
 
+
 class PatientListPage extends React.Component {
   state = { db_data: [] };
 
@@ -99,31 +100,58 @@ class PatientListPage extends React.Component {
 
   
   render() {
-    var dataSource = this.state.db_data["Items"];
-    const pageSize = this.state.pageSize
+    //var dataSource = this.state.db_data["Items"];
+    var StudyType = [];
+    for (var i = 0; i < this.state.db_data.Count; i++) {
+      if (this.state.db_data["Items"][i].studyType == 1) {
+        StudyType[i]= "IDS"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 2) {
+        StudyType[i]= "RDS-R"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 3) {
+        StudyType[i]= "RDS-X"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 4) {
+        StudyType[i]= "CPAP Study"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 5) {
+        StudyType[i]= "BiPAP Study"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 6) {
+        StudyType[i]= "Repeat Therapeutic Study"
+      }
+      else if (this.state.db_data["Items"][i].studyType == 7) {
+        StudyType[i]= "Study to Assess Other Therapy"
+      };
+    };
+    var dataSource = [];
+    for (var i = 0; i < this.state.db_data.Count; i++) {
+      dataSource[i] = {
+        name: this.state.db_data["Items"][i].surname + ", " + this.state.db_data["Items"][i].givenName,
+        id: this.state.db_data["Items"][i].id,
+        TIS: "7 days", // leave this for now
+        studyType: StudyType[i],
+        triageTag: "triage tag", //left for now
+        notes: this.state.db_data["Items"][i].notes,
+        Link: "Link" // left for now
+      };
+    }
 
     const columns = [
       {
-        title: "First Name",
-        dataIndex: "givenName",
-        key: "givenName",
-        sorter: (a, b) => a.givenName.localeCompare(b.givenName),
-        ...this.getColumnSearchProps('givenName'),
-        width: 130
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        sorter: (a, b) => a.name.localeCompare(b.name),
+        ...this.getColumnSearchProps('name'),
       },
-      {
-        title: "Surname",
-      dataIndex: "surname",
-      key: "surname",
-      sorter: (a, b) => a.surname.localeCompare(b.surname),
-      ...this.getColumnSearchProps('surname') },
       {
         title: "PID",
         dataIndex: "id",
         key: "id",
         sorter: (a, b) => a.id - b.id,
         ...this.getColumnSearchProps('id'),
-        width: 100
       },
       {
         title: "Time In Status",
@@ -135,6 +163,13 @@ class PatientListPage extends React.Component {
         key: "studyType",
         dataIndex: "studyType",
         sorter: (a, b) => a.studyType - b.studyType,
+        
+      },
+      {
+        title: "Triage Tag",
+        key: "triageTag",
+        dataIndex: "triageTag",
+        sorter: (a, b) => a.triageTag - b.triageTag
       },
       {
         title: "Notes",
