@@ -293,7 +293,7 @@ class PatientInfoPage extends React.Component {
                     Acquisition Tech Name <br />
                   </h2>
                   <Form.Item key="techName">
-                    {getFieldDecorator("location", { initialValue: "0" })(
+                    {getFieldDecorator("techName", { initialValue: "0" })(
                       <Select style={{ width: 300 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Tech Name
