@@ -118,6 +118,18 @@ class PatientListPage extends React.Component {
   }
 
   render() {
+    var dataSource = [];
+    for (var i = 0; i < this.state.db_data.Count; i++) {
+      dataSource[i] = {
+        key: i,
+        Name: this.state.db_data["Items"][i].givenName, // concat the given name and surname
+        PID: "112049599", // get the actual id number
+        TIS: "7 days", // leave this for now
+        tags: ["Routine", "RDS"],
+        Notes: "", // get actual notes
+        Link: "Link"
+      };
+    }
     return (
       <div className="ListingPage">
         <div className="Sidebar">
@@ -187,7 +199,7 @@ class PatientListPage extends React.Component {
           <div className="Table">
             <Table
               columns={columns}
-              dataSource={this.componentDidMount}
+              dataSource={dataSource}
               pagination={({ position: "bottom" }, { alignment: "centre" })}
               size={"small"}
             />
