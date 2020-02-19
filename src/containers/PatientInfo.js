@@ -131,7 +131,7 @@ class PatientInfoPage extends React.Component {
                     Patient DOB <br />
                   </h2>
                   <Form.Item key="dob">
-                    {getFieldDecorator("id")(
+                    {getFieldDecorator("dob")(
                       <Input
                       prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
                       placeholder="Date of Birth (dd/mm/yyyy)"
