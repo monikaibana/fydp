@@ -95,11 +95,215 @@ class PatientInfoPage extends React.Component {
         </div>
         <div className="InfoTabs">
           <Tabs onChange={callback} type="card">
-            <TabPane tab="Patient Information" key="1">
-              Content of Tab Pane 1
+            <TabPane tab="Patient Information" key="1" className="patientDetails">
+              <div className="PatientInfo">
+                <div className="patientName">
+                  <h2>
+                    Patient Name <br />
+                  </h2>
+                  <Form.Item key="patientName">
+                    {getFieldDecorator("patientName")(
+                      <Input
+                        prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                        placeholder="Patient Name(s)"
+                        style={{ width: 300 }}
+                      />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="pid">
+                  <h2>
+                    PID <br />
+                  </h2>
+                  <Form.Item key="id">
+                    {getFieldDecorator("id")(
+                      <Input
+                        prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+                        placeholder="PID"
+                        maxLength={9}
+                        style={{ width: 300 }}
+                      />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="dob">
+                  <h2>
+                    Patient DOB <br />
+                  </h2>
+                  <Form.Item key="dob">
+                    {getFieldDecorator("dob")(
+                      <Input
+                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                      placeholder="Date of Birth (dd/mm/yyyy)"
+                      onChange={this.handleDateChange}
+                      maxLength={10}
+                      style={{ width: 300 }}
+                    />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="Gender">
+                  <h2>
+                    Gender <br />{" "}
+                  </h2>
+                  <Form.Item>
+                    <Select
+                      defaultValue="Gender"
+                      onChange={handleChange}
+                      style={{ width: 300 }}
+                    >
+                      <Option value="M">Male</Option>
+                      <Option value="F">Female</Option>
+                    </Select>
+                  </Form.Item>
+                </div>
+              </div>
+              <div className="Interpretation">
+                <div className="studyType">
+                  <h2>
+                    Study Type <br />{" "}
+                  </h2>
+                  <Form.Item key="study_type">
+                    {getFieldDecorator("studyType", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Study Type
+                        </Option>
+                        <Option value="1">Initial Diagnostic Study</Option>
+                        <Option value="2">Repeat Diagnostic Study</Option>
+                        <Option value="3">CPAP Study</Option>
+                        <Option value="4">BiPAP Study</Option>
+                        <Option value="5">Repeat Therapeutic Study</Option>
+                        <Option value="6">Study to Assess Other Therapy</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="triageTag">
+                  <h2>
+                    Triage Tag <br />{" "}
+                  </h2>
+                  <Form.Item key="study_type">
+                    {getFieldDecorator("triageTag", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Triage Tag
+                        </Option>
+                        <Option value="1">Urgent</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="Comments">
+                  <h2>
+                    {" "}
+                    Notes <br />{" "}
+                  </h2>
+                  <Form.Item>
+                    <TextArea
+                      style={({ fontSize: 13 }, { width: 300 })}
+                      placeholder="Notes"
+                      autoSize={{ minRows: 2, maxRows: 6 }}
+                    />
+                  </Form.Item>
+                    <div className="StudyLink">
+                    <h2>
+                      Link To Referral File <br />
+                    </h2>
+                    <p> filename.pdf </p>
+                  </div>
+                </div>
+              </div>
             </TabPane>
-            <TabPane tab="Study Information" key="2">
-              Content of Tab Pane 2
+            <TabPane tab="Study Information" key="2" className="studyDetails">
+              <div className="studyInfo">
+                <div className="studyDate">
+                  <h2>
+                    Date of Study <br />
+                  </h2>
+                  <Form.Item key="study_date">
+                    {getFieldDecorator("study_date")(
+                      <Input
+                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                      placeholder="Study Date (dd/mm/yyyy)"
+                      onChange={this.handleDateChange}
+                      maxLength={10}
+                      style={{ width: 300 }}
+                    />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="location">
+                  <h2>
+                    Location <br />
+                  </h2>
+                  <Form.Item key="location">
+                    {getFieldDecorator("location", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Bed number
+                        </Option>
+                        <Option value="1">Bed 1</Option>
+                        <Option value="2">Bed 2</Option>
+                        <Option value="3">Bed 3</Option>
+                        <Option value="4">Bed 4</Option>
+                        <Option value="5">Bed 5</Option>
+                        <Option value="6">Bed 6</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="acq">
+                  <h2>
+                    ACQ <br />
+                  </h2>
+                  <Form.Item key="acq">
+                    {getFieldDecorator("acq")(
+                      <Input
+                        prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+                        placeholder="ACQ"
+                        maxLength={9}
+                        style={{ width: 300 }}
+                      />
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="studyType">
+                  <h2>
+                    Study Type <br />{" "}
+                  </h2>
+                  <Form.Item key="study_type">
+                    {getFieldDecorator("studyType", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Study Type
+                        </Option>
+                        <Option value="1">Initial Diagnostic Study</Option>
+                        <Option value="2">Repeat Diagnostic Study</Option>
+                        <Option value="3">CPAP Study</Option>
+                        <Option value="4">BiPAP Study</Option>
+                        <Option value="5">Repeat Therapeutic Study</Option>
+                        <Option value="6">Study to Assess Other Therapy</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="techName">
+                  <h2>
+                    Acquisition Tech Name <br />
+                  </h2>
+                  <Form.Item key="techName">
+                    {getFieldDecorator("techName", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Tech Name
+                        </Option>
+                        <Option value="1">Johnny</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+              </div>
             </TabPane>
             <TabPane tab="Study Results" key="3">
               Content of Tab Pane 3
@@ -200,7 +404,7 @@ class PatientInfoPage extends React.Component {
               </div>
             </TabPane>
             <TabPane tab="Post-Study Details" key="5">
-              Content of Tab Pane 3
+              Content of Tab Pane 5
             </TabPane>
           </Tabs>
           <Button type="primary" htmlType="submit" className="save-button">
