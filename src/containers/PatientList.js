@@ -123,14 +123,18 @@ class PatientListPage extends React.Component {
       }
       else if (this.state.db_data["Items"][i].studyType == 7) {
         StudyType[i]= "Study to Assess Other Therapy"
-      };
+      }
+      else {
+        StudyType[i]="Undefined"
+      }
+
     };
     var dataSource = [];
     for (var i = 0; i < this.state.db_data.Count; i++) {
       dataSource[i] = {
         name: this.state.db_data["Items"][i].surname + ", " + this.state.db_data["Items"][i].givenName,
         id: this.state.db_data["Items"][i].id,
-        TIS: "7 days", // leave this for now
+        TIS: i + " days", // leave this for now
         studyType: StudyType[i],
         triageTag: "triage tag", //left for now
         notes: this.state.db_data["Items"][i].notes,
@@ -156,13 +160,14 @@ class PatientListPage extends React.Component {
       {
         title: "Time In Status",
         key: "TIS",
-        dataIndex: "TIS"
+        dataIndex: "TIS",
+        sorter: (a, b) => a.TIS.localeCompare(b.TIS),
       },
       {
         title: "Study Type",
         key: "studyType",
         dataIndex: "studyType",
-        sorter: (a, b) => a.studyType - b.studyType,
+        sorter: (a, b) => a.studyType.localeCompare(b.studyType),
         
       },
       {
