@@ -12,7 +12,7 @@ function App(props) {
 
   return (
     <Router>
-      <div className="login-page">
+      <div className="app">
         <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
       </div>
     </Router>
