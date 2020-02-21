@@ -53,44 +53,11 @@ class PatientInfoPage extends React.Component {
           <div className="PatientStatus">
             Status
             <br />
-            <Form.Item>
-              <Select
-                defaultValue="Patient Status"
-                onChange={handleChange}
-                style={{ width: 250 }}
-              >
-                <Option value="Referral Received/For Triage">
-                  Referral Received/For Triage
-                </Option>
-                <Option value="Triaged">Triaged</Option>
-                <Option value="Consultation Booked">Consultation Booked</Option>
-                <Option value="Consultation Complete">
-                  Consultation Complete
-                </Option>
-                <Option value="Study Booked">Study Booked</Option>
-                <Option value="Study Data Collected">
-                  Study Data Collected
-                </Option>
-                <Option value="Study Scored">Study Scored</Option>
-                <Option value="Results Interpreted by Physician">
-                  Results Interpreted by Physician
-                </Option>
-                <Option value="Study Follow-up booked">
-                  Study Follow-up booked
-                </Option>
-                <Option value="Follow-up complete">Follow-up Complete</Option>
-                <Option value="Treatment Follow-up Booked">
-                  Treatment Follow-up Booked
-                </Option>
-                <Option value="Treatment Follow-up Complete">
-                  Treatment Follow-up Complete
-                </Option>
-              </Select>
-            </Form.Item>
+            <b>Patient Status</b>
           </div>
           <div className="TimeInStatus">
             Time in Status
-            <br />3 Days
+            <br /> <b>3 Days</b>
           </div>
         </div>
         <div className="InfoTabs">
@@ -407,9 +374,54 @@ class PatientInfoPage extends React.Component {
               Content of Tab Pane 5
             </TabPane>
           </Tabs>
-          <Button type="primary" htmlType="submit" className="save-button">
+          <div className="bottomButtons">
+          <Button type='danger' ghost htmlType="delete" className="archive-button">
+            Archive Patient
+          </Button>
+            <div className="changeStatus">
+            Change Status to: &nbsp;
+            </div>
+            <Form.Item className="statusUpdate">
+              <Select
+                defaultValue="Referral Received"
+                onChange={handleChange}
+                style={{width: 250}}
+              >
+                <Option value="Referral Received">
+                  Referral Received
+                </Option>
+                <Option value="Triaged">Triaged</Option>
+                <Option value="Consultation Booked">Consultation Booked</Option>
+                <Option value="Consultation Complete">
+                  Consultation Complete
+                </Option>
+                <Option value="Study Booked">Study Booked</Option>
+                <Option value="Study Data Collected">
+                  Study Data Collected
+                </Option>
+                <Option value="Study Scored">Study Scored</Option>
+                <Option value="Results Interpreted by Physician">
+                  Results Interpreted by Physician
+                </Option>
+                <Option value="Study Follow-up booked">
+                  Study Follow-up booked
+                </Option>
+                <Option value="Follow-up complete">Follow-up Complete</Option>
+                <Option value="Treatment Follow-up Booked">
+                  Treatment Follow-up Booked
+                </Option>
+                <Option value="Treatment Follow-up Complete">
+                  Treatment Follow-up Complete
+                </Option>
+              </Select>
+            </Form.Item>
+          <Button type="primary" htmlType="submit" className="save-button" style={{width: 75}}>
             Save
           </Button>
+          <Button type='normal' htmlType="cancel" className="cancel-button" style={{width: 75}}>
+            Cancel
+          </Button>
+          </div>
         </div>
       </div>
     );
