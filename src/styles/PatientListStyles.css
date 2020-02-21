@@ -10,7 +10,7 @@
   text-align: left;
   position: absolute;
   left: 300px;
-  top: 150px;
+  top: 90px;
 }
 .Filter h2 {
   font-family: "IBM Plex Sans";
@@ -28,7 +28,7 @@
   width: 351px;
   height: 59px;
   left: 295px;
-  top: 61px;
+  top: 25px;
 }
 .PageTitle h2 {
   font-family: "Montserrat";
@@ -41,7 +41,7 @@
 .ListedPatients {
   position: absolute;
   left: 575px;
-  top: 180px;
+  top: 120px;
 }
 .NumberOfPatients {
   position: relative;

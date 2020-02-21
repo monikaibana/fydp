@@ -259,7 +259,7 @@ class PatientListPage extends React.Component {
               columns={columns}
               dataSource={dataSource}
               pagination={({ position: "bottom", alignment: "center" })}
-              scroll={{ y: 325 }}
+              scroll={{ y: 415 }}
               size={"small"}
               pagination={{showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100']}}
             />
