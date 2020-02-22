@@ -1,7 +1,8 @@
 import React from "react";
-import { Tabs, Icon, Select, Form, Input, Button } from "antd";
+import { Tabs, Icon, Select, Form, Input, Button, DatePicker, Checkbox } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
+import moment from 'moment';
 
 const { Option } = Select;
 function handleChange(value) {
@@ -12,6 +13,13 @@ const { TextArea } = Input;
 function callback(key) {
   console.log(key);
 }
+
+const dateFormat = 'YYYY/MM/DD';
+
+function onCheck(e) {
+  console.log(`checked = ${e.target.checked}`);
+}
+
 
 class PatientInfoPage extends React.Component {
   
@@ -34,6 +42,7 @@ class PatientInfoPage extends React.Component {
   goBack() {
     this.props.history.goBack();
   };
+  
 
   render() {
     const {getFieldDecorator} = this.props.form;
@@ -371,7 +380,13 @@ class PatientInfoPage extends React.Component {
               </div>
             </TabPane>
             <TabPane tab="Post-Study Details" key="5">
-              Content of Tab Pane 5
+              <div className="postStudyDetails">
+                <div className="reportSendDate">
+                  Date Report Sent <br/>
+                  <DatePicker format={dateFormat} style={{width: 200}}/> <br/><br/>
+                  <Checkbox onChange={onCheck}>Study Billed</Checkbox>
+                </div>
+              </div>
             </TabPane>
           </Tabs>
           <div className="bottomButtons">

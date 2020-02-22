@@ -146,3 +146,14 @@
   top: 40px;
   left: 810px;
 }
+
+.postStudyDetails{
+  background-color: #ffffff;
+  height: 150px
+}
+
+.reportSendDate{
+  position: absolute;
+  left: 30px;
+  top: 75px;
+}
