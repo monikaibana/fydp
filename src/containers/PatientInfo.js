@@ -134,7 +134,7 @@ class PatientInfoPage extends React.Component {
                   </Form.Item>
                 </div>
               </div>
-              <div className="Interpretation">
+              <div className="Triaging">
                 <div className="studyType">
                   <h2>
                     Study Type <br />{" "}
@@ -182,7 +182,7 @@ class PatientInfoPage extends React.Component {
                       autoSize={{ minRows: 2, maxRows: 6 }}
                     />
                   </Form.Item>
-                    <div className="StudyLink">
+                    <div className="referralLink">
                     <h2>
                       Link To Referral File <br />
                     </h2>
@@ -289,7 +289,33 @@ class PatientInfoPage extends React.Component {
               key="4"
               className="interpretationDetails"
             >
-              <div className="InterpretationInfo">
+                <div className="studyDets">
+                  <div className="AHI">
+                    <h2>
+                      AHI
+                    </h2>
+                    <b>25</b>
+                  </div>
+                  <div className="REMAHI">
+                    <h2>
+                      REM AHI
+                    </h2>
+                    <b>12</b>
+                  </div>
+                  <div className="studyScore">
+                    <h2>
+                      Sleep Study Score
+                    </h2>
+                    <b>4</b>
+                  </div>
+                  <div className="StudyLink">
+                    <h2>
+                      Link To Study <br />
+                    </h2>
+                    <p> Link </p>
+                  </div>
+                </div>
+                <div className="Interpretation">
                 <div className="InterpretingDoctor">
                   <h2>
                     Interpreting Doctor <br />
@@ -322,14 +348,6 @@ class PatientInfoPage extends React.Component {
                     )}
                   </Form.Item>
                 </div>
-                <div className="StudyLink">
-                  <h2>
-                    Link To Study <br />
-                  </h2>
-                  <p> Link </p>
-                </div>
-              </div>
-              <div className="Interpretation">
                 <div className="Rating">
                   <h2>
                     Rating <br />{" "}
@@ -348,26 +366,10 @@ class PatientInfoPage extends React.Component {
                     </Select>
                   </Form.Item>
                 </div>
-                <div className="reportSendDate">
-                  <h2>
-                    Date Report Sent <br />{" "}
-                  </h2>
-                  <Form.Item>
-                    {getFieldDecorator("sent_date")(
-                      <Input
-                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                        placeholder="Sent Date (dd/mm/yyyy)"
-                        onChange={this.handleDateChange}
-                        maxLength={10}
-                        style={{ width: 300 }}
-                      />
-                    )}
-                  </Form.Item>
-                </div>
+                <Checkbox className= "urgentAction" onChange={onCheck}>Urgent Action Required</Checkbox>
                 <div className="Comments">
-                  <h2>
-                    {" "}
-                    Comments <br />{" "}
+                  <h2> <br/>
+                    Special Comments <br />
                   </h2>
                   <Form.Item>
                     <TextArea
