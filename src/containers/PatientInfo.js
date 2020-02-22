@@ -378,9 +378,9 @@ class PatientInfoPage extends React.Component {
                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                       }
                     >
-                      <Option value="jack">Dr. Goodman</Option>
-                      <Option value="lucy">Dr. Gooderman</Option>
-                      <Option value="tom">Dr. Goodestman</Option>
+                      <Option value="Dr. Goodman">Dr. Goodman</Option>
+                      <Option value="Dr. Gooderman">Dr. Gooderman</Option>
+                      <Option value="Dr. Goodestman">Dr. Goodestman</Option>
                     </Select>,
                     )}
                   </Form.Item>
