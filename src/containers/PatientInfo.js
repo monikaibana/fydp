@@ -20,6 +20,17 @@ function onCheck(e) {
   console.log(`checked = ${e.target.checked}`);
 }
 
+function onBlur() {
+  console.log('blur');
+}
+
+function onFocus() {
+  console.log('focus');
+}
+
+function onSearch(val) {
+  console.log('search:', val);
+}
 
 class PatientInfoPage extends React.Component {
   
@@ -354,7 +365,23 @@ class PatientInfoPage extends React.Component {
                   Referring Physician
                   <Form.Item key="referringPhysician">
                     {getFieldDecorator("referringPhysician")(
-                      <Input style={{width:300}} placeholder="ReferringPhysician"/>
+                      <Select
+                      showSearch
+                      style={{ width: 300 }}
+                      placeholder="Referring Physician"
+                      optionFilterProp="children"
+                      onChange={handleChange}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      onSearch={onSearch}
+                      filterOption={(input, option) =>
+                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      <Option value="jack">Dr. Goodman</Option>
+                      <Option value="lucy">Dr. Gooderman</Option>
+                      <Option value="tom">Dr. Goodestman</Option>
+                    </Select>,
                     )}
                   </Form.Item>
                 </div>
