@@ -14,7 +14,7 @@ function callback(key) {
   console.log(key);
 }
 
-const dateFormat = 'YYYY/MM/DD';
+const dateFormat = 'DD/MM/YYYY';
 
 function onCheck(e) {
   console.log(`checked = ${e.target.checked}`);
@@ -170,7 +170,7 @@ class PatientInfoPage extends React.Component {
                     )}
                   </Form.Item>
                 </div>
-                <div className="Comments">
+                <div className="Notes">
                   <h2>
                     {" "}
                     Notes <br />{" "}
@@ -281,8 +281,88 @@ class PatientInfoPage extends React.Component {
                 </div>
               </div>
             </TabPane>
-            <TabPane tab="Study Results" key="3">
-              Content of Tab Pane 3
+            <TabPane 
+            tab="Study Results" 
+            key="3"
+            className="studyResults"
+            >
+              <div className="scoring">
+                <div className="scorer">
+                  Scorer
+                  <Form.Item key="scorer">
+                  {getFieldDecorator("scorer", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Scorer Name
+                        </Option>
+                        <Option value="1">Johnny</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="scoreDate">
+                  Scored Date <br/>
+                  <DatePicker key="scoreDate" format={dateFormat} style={{width: 300}} defaultValue={moment()}/> <br/><br/>
+                </div>
+                <div className="ahi">
+                  AHI
+                  <Form.Item key="AHI">
+                    {getFieldDecorator("AHI")(
+                      <Input style={{width:300}} maxLength="2" placeholder="AHI"/>
+                    )}
+                  </Form.Item>
+                  REM AHI
+                  <Form.Item key="REMAHI">
+                    {getFieldDecorator("REMAHI")(
+                      <Input style={{width:300}} maxLength="2" placeholder="REM AHI"/>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className= "score">
+                  Sleep Study Score
+                  <Form.Item key="studyScore">
+                  {getFieldDecorator("studyScore", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Score
+                        </Option>
+                        <Option value="1">1</Option>
+                        <Option value="2">2</Option>
+                        <Option value="3">3</Option>
+                        <Option value="4">4</Option>
+                        <Option value="5">5</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+              </div>
+              <div className="additionalInfo">
+                <div className="studyTag">
+                  Study Tag
+                  <Form.Item key="studyTag">
+                    {getFieldDecorator("studyTag", {initialValue: "0"})(
+                      <Select style={{width:300}} onChange={handleChange}>
+                        <Option value="0">None</Option>
+                        <Option value="1">Tag 1</Option>
+                        <Option value="2">Tag 2</Option>
+                        <Option value="3">Tag 3</Option>
+                      </Select>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="referringPhysician">
+                  Referring Physician
+                  <Form.Item key="referringPhysician">
+                    {getFieldDecorator("referringPhysician")(
+                      <Input style={{width:300}} placeholder="ReferringPhysician"/>
+                    )}
+                  </Form.Item>
+                </div>
+                <div className="link">
+                  Link to Study
+                  <p>Link</p>
+                </div>
+              </div>
             </TabPane>
             <TabPane
               tab="Interpretation Details"
@@ -336,21 +416,11 @@ class PatientInfoPage extends React.Component {
                   <h2>
                     Interpretation Date <br />
                   </h2>
-                  <Form.Item>
-                    {getFieldDecorator("interp_date")(
-                      <Input
-                        prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                        placeholder="Interpretation Date (dd/mm/yyyy)"
-                        onChange={this.handleDateChange}
-                        maxLength={10}
-                        style={{ width: 300 }}
-                      />
-                    )}
-                  </Form.Item>
+                  <DatePicker key="interpretationDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/>
                 </div>
                 <div className="Rating">
                   <h2>
-                    Rating <br />{" "}
+                     Rating <br />{" "}
                   </h2>
                   <Form.Item>
                     <Select
@@ -385,7 +455,7 @@ class PatientInfoPage extends React.Component {
               <div className="postStudyDetails">
                 <div className="reportSendDate">
                   Date Report Sent <br/>
-                  <DatePicker format={dateFormat} style={{width: 200}}/> <br/><br/>
+                  <DatePicker key="reportSendDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/><br/>
                   <Checkbox onChange={onCheck}>Study Billed</Checkbox>
                 </div>
               </div>
