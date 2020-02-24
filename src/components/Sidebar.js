@@ -29,11 +29,15 @@ class Sidebar extends React.Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      this.state.redirect=false;
+      this.setState({
+      redirect: false
+      })
       return <Redirect to="/list"/>
     }
     if (this.state.redirectHome) {
-      this.state.redirectHome=false;
+      this.setState({
+      redirectHome: false
+      })
       return <Redirect to="/list"/>
     }
   }
