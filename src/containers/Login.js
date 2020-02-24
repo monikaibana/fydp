@@ -7,11 +7,29 @@ import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../aws-exports.js";
 Amplify.configure(awsconfig);
 
+async function SignIn(username, password) {
+  try {
+    const user = await Auth.signIn(username, password);
+    if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
+      // Confirm the temporary password as the confirmed password
+      const loggedUser = await Auth.completeNewPassword(
+        user, // the Cognito User Object
+        password // the "new" password
+      );
+    } else {
+      // The user directly signs in
+      console.log(user);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
   signIn = async (user, pass) => {
     try {
-      await Auth.signIn(user, pass);
+      SignIn(user, pass);
       console.log("Success");
       this.props.userHasAuthenticated(true);
       window.location.href = "/list";
