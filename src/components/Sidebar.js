@@ -8,20 +8,32 @@ class Sidebar extends React.Component {
   state = {
     isModalVisible: false
   };
-  callbackFunction = () => {
-    this.setState({ isModalVisible: false });
-  };
-
   state = {
     redirect: false
   }
+  state = {
+    redirectHome: false
+  }
+  callbackFunction = () => {
+    this.setState({ isModalVisible: false });
+  };
   setRedirect = () => {
     this.setState({
       redirect: true
     })
   }
+  setRedirectHome = () => {
+    this.setState({
+      redirectHome: true
+    })
+  }
   renderRedirect = () => {
     if (this.state.redirect) {
+      this.state.redirect=false;
+      return <Redirect to="/list"/>
+    }
+    if (this.state.redirectHome) {
+      this.state.redirectHome=false;
       return <Redirect to="/list"/>
     }
   }
@@ -37,7 +49,11 @@ class Sidebar extends React.Component {
       <div className="Sidebar">
       {this.renderRedirect()}
         <br />
-        <h1>BlueBook</h1>
+        <div className="SidebarHeaderButton">
+          <Button onClick={this.setRedirectHome}>
+            BlueBook
+          </Button>
+        </div>
         <Menu defaultSelectedKeys={[key]} mode="vertical" onClick={this.setRedirect}>
           <Menu.Item key="1" align="left">
             <Icon type="contacts" />
