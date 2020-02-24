@@ -16,9 +16,9 @@ class Sidebar extends React.Component {
   render() {
     const page_name = this.props.value;
     if (page_name === "Metrics") {
-      var key = 2;
+      var key = '2';
     } else {
-      key = 1;
+      key = '1';
     }
     return (
       <div className="Sidebar">
