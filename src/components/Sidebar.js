@@ -2,29 +2,43 @@ import React from "react";
 import "../styles/mainstyles.css";
 import { Icon, Menu, Button } from "antd";
 import CreatePatientModal from "../containers/CreatePatientModal";
+import { Redirect } from "react-router-dom"
 
 class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     isModalVisible: false
   };
   callbackFunction = () => {
     this.setState({ isModalVisible: false });
   };
+
+  state = {
+    redirect: false
+  }
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/list"/>
+    }
+  }
+
   render() {
     const page_name = this.props.value;
     if (page_name === "Metrics") {
-      var key = '2';
+      var key = "2";
     } else {
-      key = '1';
+      key = "1";
     }
     return (
       <div className="Sidebar">
+      {this.renderRedirect()}
         <br />
         <h1>BlueBook</h1>
-        <Menu defaultSelectedKeys={[key]} mode="vertical">
+        <Menu defaultSelectedKeys={[key]} mode="vertical" onClick={this.setRedirect}>
           <Menu.Item key="1" align="left">
             <Icon type="contacts" />
             Patient Listing
