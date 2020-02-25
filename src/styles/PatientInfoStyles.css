@@ -3,7 +3,7 @@
 
 .PatientInfoPage {
   background: #fafafa;
-  height: 100vh;
+  height: 120vh;
 }
 .BackButton {
   position: absolute;
@@ -39,17 +39,17 @@
 .TimeInStatus {
   position: relative;
   left: 275px;
-  top: -80px;
+  top: -45px;
 }
 .InfoTabs {
   position: absolute;
-  top: 200px;
+  top: 175px;
   left: 340px;
   width: 70vw;
 }
 .interpretationDetails{
   text-align: left;
-  height: 340px;
+  height: 450px;
   background-color: #ffffff;
 }
 .interpretationDetails h2{
@@ -57,25 +57,26 @@
   font-size: 16px;
   line-height: 18px;
 }
-.InterpretationInfo{
-  position: absolute;
-  left: 50px;
-  top: 100px;
-  width: 350px;
-  border-right: 1px solid #D9D9D9
-}
 .Interpretation{
  position: absolute;
- left: 450px;
- top: 100px;
+ left: 300px;
+ top: 75px;
+}
+.StudyLink {
+  position: absolute;
+  left: 15px;
+  top: 270px;
 }
 .StudyLink p{
   color: dodgerblue;
 }
+.referralLink p{
+  color: dodgerblue;
+}
 .save-button{
   position: absolute;
-  bottom: -50px;
-  left: 825px;
+  top: 0px;
+  left: 810px;
 }
 .PatientInfo{
   position: absolute;
@@ -114,4 +115,108 @@
  position: absolute;
  left: 450px;
  top: 100px;
+}
+.bottomButtons{
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  width: 70vw;
+  background-color: #fafafa;
+}
+.archive-button{
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+
+.changeStatus{
+  position: absolute;
+  top: 3px;
+  left: 425px;
+  height: 25px;
+}
+
+.statusUpdate{
+  position: absolute;
+  top: -5px;
+  left: 550px;
+}
+
+.cancel-button{
+  position: absolute;
+  top: 40px;
+  left: 810px;
+}
+
+.postStudyDetails{
+  background-color: #ffffff;
+  height: 150px
+}
+
+.reportSendDate{
+  position: absolute;
+  left: 30px;
+  top: 75px;
+}
+.studyDets{
+  position: absolute;
+  left: 50px;
+  top: 75px;
+  width: 200px;
+  height: 350px;
+  border-right: 1px solid #D9D9D9;
+}
+.AHI{
+  position: absolute;
+  top: 0px;
+  left: 15px;
+}
+
+.REMAHI{
+  position: absolute;
+  top:90px;
+  left: 15px;
+}
+
+.studyScore{
+  position: absolute;
+  top: 180px;
+  left: 15px;
+}
+
+.Triaging{
+  position: absolute;
+  top: 100px;
+  left: 450px;
+}
+.Rating{
+  position: absolute;
+  top: 180px;
+}
+.urgentAction{
+  position: absolute;
+  top: 270px;
+}
+.Comments{
+  position: absolute;
+  top: 300px
+}
+.studyResults{
+  background-color: #ffffff;
+  height: 450px;
+}
+.scoring{
+  position: absolute;
+  top: 75px;
+  left: 50px;
+  width: 350px;
+  border-right: 1px solid #D9D9D9;
+}
+.additionalInfo{
+  position: absolute;
+  top: 75px;
+  left: 450px;
+}
+.link p{
+  color: dodgerblue;
 }
