@@ -90,6 +90,20 @@
   letter-spacing: -0.05em;
   color: #2196f3;
 }
+
+.SidebarHeaderButton button {
+  border: none;
+  background-color: inherit;
+  font-family: "Varela Round";
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 36px;
+  line-height: 43px;
+  height: 70px;
+  letter-spacing: -0.05em;
+  color: #2196f3;
+}
+
 .LogoutButton {
   position: relative;
   top: 350px;

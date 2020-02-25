@@ -16,11 +16,6 @@ const Tabs = [
     tab: "Patient Information"
   },]
 
-const tablist = {
-  /* this is where we edit the content for the tabs*/
-  patientInformation: <p>Patient info content</p>,
-};
-
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
