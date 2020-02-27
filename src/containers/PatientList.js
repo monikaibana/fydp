@@ -138,7 +138,8 @@ class PatientListPage extends React.Component {
         studyType: StudyType[i],
         triageTag: "triage tag", //left for now
         notes: this.state.db_data["Items"][i].notes,
-        Link: "Link" // left for now
+        Link: "Link", // left for now
+        key: this.state.db_data["Items"][i].id
       };
     }
 
@@ -262,6 +263,20 @@ class PatientListPage extends React.Component {
               scroll={{ y: 415 }}
               size={"small"}
               pagination={{showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100']}}
+              onRow={(record, rowIndex) => {
+                return {
+                  onClick: event => {}, // click row
+                  onDoubleClick: event => {console.log('1')}, // double click row
+                  onContextMenu: event => {console.log('2')}, // right button click row
+                  onMouseEnter: event => {console.log('3')}, // mouse enter row
+                  onMouseLeave: event => {console.log('4')}, // mouse leave row
+                };
+              }}
+              onHeaderRow={column => {
+                return {
+                  onClick: () => {console.log('5')}, // click header row
+                };
+              }}
             />
           </div>
         </div>
