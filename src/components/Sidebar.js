@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/mainstyles.css";
 import { Icon, Menu, Button } from "antd";
 import CreatePatientModal from "../containers/CreatePatientModal";
-import { Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 class Sidebar extends React.Component {
   state = {
@@ -10,37 +11,46 @@ class Sidebar extends React.Component {
   };
   state = {
     redirect: false
-  }
+  };
   state = {
     redirectHome: false
-  }
+  };
   callbackFunction = () => {
     this.setState({ isModalVisible: false });
   };
   setRedirect = () => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
   setRedirectHome = () => {
     this.setState({
       redirectHome: true
-    })
-  }
+    });
+  };
   renderRedirect = () => {
     if (this.state.redirect) {
       this.setState({
-      redirect: false
-      })
-      return <Redirect to="/list"/>
+        redirect: false
+      });
+      return <Redirect to="/list" />;
     }
     if (this.state.redirectHome) {
       this.setState({
-      redirectHome: false
-      })
-      return <Redirect to="/list"/>
+        redirectHome: false
+      });
+      return <Redirect to="/list" />;
     }
-  }
+  };
+
+  signOut = async () => {
+    await Auth.signOut()
+      .then(data => {
+        console.log(data);
+        window.location.href = "/";
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     const page_name = this.props.value;
@@ -51,14 +61,16 @@ class Sidebar extends React.Component {
     }
     return (
       <div className="Sidebar">
-      {this.renderRedirect()}
+        {this.renderRedirect()}
         <br />
         <div className="SidebarHeaderButton">
-          <Button onClick={this.setRedirectHome}>
-            BlueBook
-          </Button>
+          <Button onClick={this.setRedirectHome}>BlueBook</Button>
         </div>
-        <Menu defaultSelectedKeys={[key]} mode="vertical" onClick={this.setRedirect}>
+        <Menu
+          defaultSelectedKeys={[key]}
+          mode="vertical"
+          onClick={this.setRedirect}
+        >
           <Menu.Item key="1" align="left">
             <Icon type="contacts" />
             Patient Listing
@@ -78,7 +90,7 @@ class Sidebar extends React.Component {
           </Button>
         </div>
         <div className="LogoutButton">
-          <Button type="primary" icon="poweroff" ghost href="/">
+          <Button type="primary" icon="poweroff" onClick={this.signOut} ghost>
             Logout
           </Button>
         </div>

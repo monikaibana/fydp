@@ -5,9 +5,8 @@ import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
-import { Form, Select, Table, Input , Button, Icon} from "antd";
+import { Form, Select, Table, Input, Button, Icon } from "antd";
 const { Option } = Select;
-const { Search } = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
@@ -22,13 +21,6 @@ function requestBody() {
   };
   return body;
 }
-function handleSizeChange(value) {
-  const pageSize= {value};
-  this.state(pageSize);
-  console.log(`selected ${value}`);
-}
-
-
 
 class PatientListPage extends React.Component {
   state = { db_data: [] };
@@ -42,9 +34,14 @@ class PatientListPage extends React.Component {
       console.log(err);
     }
   }
-  
+
   getColumnSearchProps = dataIndex => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters
+    }) => (
       <div style={{ padding: 8 }}>
         <Input
           ref={node => {
@@ -52,9 +49,13 @@ class PatientListPage extends React.Component {
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ width: 188, marginBottom: 8, display: 'block' }}
+          onChange={e =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() =>
+            this.handleSearch(selectedKeys, confirm, dataIndex)
+          }
+          style={{ width: 188, marginBottom: 8, display: "block" }}
         />
         <Button
           type="primary"
@@ -65,13 +66,17 @@ class PatientListPage extends React.Component {
         >
           Search
         </Button>
-        <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+        <Button
+          onClick={() => this.handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
           Reset
         </Button>
       </div>
     ),
     filterIcon: filtered => (
-      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -82,62 +87,55 @@ class PatientListPage extends React.Component {
       if (visible) {
         setTimeout(() => this.searchInput.select());
       }
-    },
+    }
   });
 
   handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     this.setState({
       searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
+      searchedColumn: dataIndex
     });
   };
 
   handleReset = clearFilters => {
     clearFilters();
-    this.setState({ searchText: '' });
+    this.setState({ searchText: "" });
   };
 
-  
   render() {
-    //var dataSource = this.state.db_data["Items"];
     var StudyType = [];
     for (var i = 0; i < this.state.db_data.Count; i++) {
-      if (this.state.db_data["Items"][i].studyType == 1) {
-        StudyType[i]= "IDS"
+      if (this.state.db_data["Items"][i].studyType === 1) {
+        StudyType[i] = "IDS";
+      } else if (this.state.db_data["Items"][i].studyType === 2) {
+        StudyType[i] = "RDS-R";
+      } else if (this.state.db_data["Items"][i].studyType === 3) {
+        StudyType[i] = "RDS-X";
+      } else if (this.state.db_data["Items"][i].studyType === 4) {
+        StudyType[i] = "CPAP Study";
+      } else if (this.state.db_data["Items"][i].studyType === 5) {
+        StudyType[i] = "BiPAP Study";
+      } else if (this.state.db_data["Items"][i].studyType === 6) {
+        StudyType[i] = "Repeat Therapeutic Study";
+      } else if (this.state.db_data["Items"][i].studyType === 7) {
+        StudyType[i] = "Study to Assess Other Therapy";
+      } else {
+        StudyType[i] = "Undefined";
       }
-      else if (this.state.db_data["Items"][i].studyType == 2) {
-        StudyType[i]= "RDS-R"
-      }
-      else if (this.state.db_data["Items"][i].studyType == 3) {
-        StudyType[i]= "RDS-X"
-      }
-      else if (this.state.db_data["Items"][i].studyType == 4) {
-        StudyType[i]= "CPAP Study"
-      }
-      else if (this.state.db_data["Items"][i].studyType == 5) {
-        StudyType[i]= "BiPAP Study"
-      }
-      else if (this.state.db_data["Items"][i].studyType == 6) {
-        StudyType[i]= "Repeat Therapeutic Study"
-      }
-      else if (this.state.db_data["Items"][i].studyType == 7) {
-        StudyType[i]= "Study to Assess Other Therapy"
-      }
-      else {
-        StudyType[i]="Undefined"
-      }
-
-    };
+    }
     var dataSource = [];
-    for (var i = 0; i < this.state.db_data.Count; i++) {
-      dataSource[i] = {
-        name: this.state.db_data["Items"][i].surname + ", " + this.state.db_data["Items"][i].givenName,
-        id: this.state.db_data["Items"][i].id,
-        TIS: i + " days", // leave this for now
-        studyType: StudyType[i],
+    for (var j = 0; j < this.state.db_data.Count; j++) {
+      dataSource[j] = {
+        name:
+          this.state.db_data["Items"][j].surname +
+          ", " +
+          this.state.db_data["Items"][j].givenName,
+        id: this.state.db_data["Items"][j].id,
+        TIS: j + " days", // leave this for now
+        studyType: StudyType[j],
         triageTag: "triage tag", //left for now
-        notes: this.state.db_data["Items"][i].notes,
+        notes: this.state.db_data["Items"][j].notes,
         Link: "Link" // left for now
       };
     }
@@ -148,27 +146,26 @@ class PatientListPage extends React.Component {
         dataIndex: "name",
         key: "name",
         sorter: (a, b) => a.name.localeCompare(b.name),
-        ...this.getColumnSearchProps('name'),
+        ...this.getColumnSearchProps("name")
       },
       {
         title: "PID",
         dataIndex: "id",
         key: "id",
         sorter: (a, b) => a.id - b.id,
-        ...this.getColumnSearchProps('id'),
+        ...this.getColumnSearchProps("id")
       },
       {
         title: "Time In Status",
         key: "TIS",
         dataIndex: "TIS",
-        sorter: (a, b) => a.TIS.localeCompare(b.TIS),
+        sorter: (a, b) => a.TIS.localeCompare(b.TIS)
       },
       {
         title: "Study Type",
         key: "studyType",
         dataIndex: "studyType",
-        sorter: (a, b) => a.studyType.localeCompare(b.studyType),
-        
+        sorter: (a, b) => a.studyType.localeCompare(b.studyType)
       },
       {
         title: "Triage Tag",
@@ -187,61 +184,69 @@ class PatientListPage extends React.Component {
         title: "Patient File",
         dataIndex: "Link",
         key: "Link",
-        render: text => <a>{text}</a>
+        render: text => <p>{text}</p>
       }
     ];
 
     return (
-      <div className="ListingPage">
-        <div className="Sidebar">
-          <Sidebar value={"PatientList"} />
-        </div>
-        <div className="PageTitle">
-          <h2>Patient Listing</h2>
-        </div>
-        <div className="Filter">
-          <h2>Please pick a status:</h2>
-          <Form.Item>
-            <Select
-              defaultValue="All Statuses"
-              onChange={handleChange}
-              style={{ width: 250 }}
-            >
-              <Option value="All Statuses">
-                All Statuses
-              </Option>
-              <Option value="Referral Received/For Triage">
-                Referral Received/For Triage
-              </Option>
-              <Option value="Triaged">Triaged</Option>
-              <Option value="Consultation Booked">Consultation Booked</Option>
-              <Option value="Consultation Complete">
-                Consultation Complete
-              </Option>
-              <Option value="Study Booked">Study Booked</Option>
-              <Option value="Study Data Collected">Study Data Collected</Option>
-              <Option value="Study Scored">Study Scored</Option>
-              <Option value="Results Interpreted by Physician">
-                Results Interpreted by Physician
-              </Option>
-              <Option value="Study Follow-up booked">
-                Study Follow-up booked
-              </Option>
-              <Option value="Follow-up complete">Follow-up Complete</Option>
-              <Option value="Treatment Follow-up Booked">
-                Treatment Follow-up Booked
-              </Option>
-              <Option value="Treatment Follow-up Complete">
-                Treatment Follow-up Complete
-              </Option>
-            </Select>
-          </Form.Item>
-        </div>
-        <div className="ListedPatients">
-          <div className="NumberOfPatients">
-            <b> {this.state.db_data.Count} </b> &nbsp; Patients in this status
-          </div>
-          {/*
+      <>
+        {this.props.isAuthenticated ? (
+          <>
+            <div className="ListingPage">
+              <div className="Sidebar">
+                <Sidebar value={"PatientList"} />
+              </div>
+              <div className="PageTitle">
+                <h2>Patient Listing</h2>
+              </div>
+              <div className="Filter">
+                <h2>Please pick a status:</h2>
+                <Form.Item>
+                  <Select
+                    defaultValue="All Statuses"
+                    onChange={handleChange}
+                    style={{ width: 250 }}
+                  >
+                    <Option value="All Statuses">All Statuses</Option>
+                    <Option value="Referral Received/For Triage">
+                      Referral Received/For Triage
+                    </Option>
+                    <Option value="Triaged">Triaged</Option>
+                    <Option value="Consultation Booked">
+                      Consultation Booked
+                    </Option>
+                    <Option value="Consultation Complete">
+                      Consultation Complete
+                    </Option>
+                    <Option value="Study Booked">Study Booked</Option>
+                    <Option value="Study Data Collected">
+                      Study Data Collected
+                    </Option>
+                    <Option value="Study Scored">Study Scored</Option>
+                    <Option value="Results Interpreted by Physician">
+                      Results Interpreted by Physician
+                    </Option>
+                    <Option value="Study Follow-up booked">
+                      Study Follow-up booked
+                    </Option>
+                    <Option value="Follow-up complete">
+                      Follow-up Complete
+                    </Option>
+                    <Option value="Treatment Follow-up Booked">
+                      Treatment Follow-up Booked
+                    </Option>
+                    <Option value="Treatment Follow-up Complete">
+                      Treatment Follow-up Complete
+                    </Option>
+                  </Select>
+                </Form.Item>
+              </div>
+              <div className="ListedPatients">
+                <div className="NumberOfPatients">
+                  <b> {this.state.db_data.Count} </b> &nbsp; Patients in this
+                  status
+                </div>
+                {/*
           <div className="Display">Display</div>
           <div className="NumberOfItems">
             <Form.Item>
@@ -254,18 +259,27 @@ class PatientListPage extends React.Component {
             </Form.Item>
           </div>
           <div className="PerPage">items per page.</div> */}
-          <div className="Table">
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              pagination={({ position: "bottom", alignment: "center" })}
-              scroll={{ y: 415 }}
-              size={"small"}
-              pagination={{showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100']}}
-            />
-          </div>
-        </div>
-      </div>
+                <div className="Table">
+                  <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    scroll={{ y: 415 }}
+                    size={"small"}
+                    pagination={{
+                      position: "bottom",
+                      alignment: "center",
+                      showSizeChanger: true,
+                      pageSizeOptions: ["10", "25", "50", "100"]
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <p>Access Denied</p>
+        )}
+      </>
     );
   }
 }
