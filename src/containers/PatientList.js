@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Input , Button, Icon} from "antd";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const { Option } = Select;
 function handleChange(value) {
