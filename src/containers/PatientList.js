@@ -6,6 +6,8 @@ import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Input , Button, Icon} from "antd";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 const { Option } = Select;
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -21,8 +23,11 @@ function requestBody() {
   };
   return body;
 }
-
-
+function setId(id) {
+    id = id.toString();
+    console.log(id);
+    window.location.replace(`/info/${id}`)
+  }
 
 class PatientListPage extends React.Component {
   state = { db_data: [] };
@@ -250,20 +255,21 @@ class PatientListPage extends React.Component {
           </div>
           <div className="PerPage">items per page.</div> */}
           <div className="Table">
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              pagination={({ position: "bottom", alignment: "center", showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100'] })}
-              scroll={{ y: 415 }}
-              size={"small"}
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: event => {console.log(record.id)}, // click row
-                  //onMouseEnter: event => {console.log('3')}, // mouse enter row
-                  //onMouseLeave: event => {console.log('4')}, // mouse leave row
-                };
-              }}
-            />
+            <Router>
+                <Table
+                  columns={columns}
+                  dataSource={dataSource}
+                  pagination={({ position: "bottom", alignment: "center", showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100'] })}
+                  scroll={{ y: 415 }}
+                  size={"small"}
+                  onRow={(record, rowIndex) => {
+                    return {
+                      onClick: event => {setId(record.id)}, // click row to open patient's info page with info/[PID] as url
+                    };
+                  }}
+                />
+              <Route path="/:id"/>
+            </Router>
           </div>
         </div>
       </div>
