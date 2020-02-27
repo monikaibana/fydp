@@ -265,16 +265,9 @@ class PatientListPage extends React.Component {
               pagination={{showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100']}}
               onRow={(record, rowIndex) => {
                 return {
-                  onClick: event => {}, // click row
-                  onDoubleClick: event => {console.log('1')}, // double click row
-                  onContextMenu: event => {console.log('2')}, // right button click row
-                  onMouseEnter: event => {console.log('3')}, // mouse enter row
-                  onMouseLeave: event => {console.log('4')}, // mouse leave row
-                };
-              }}
-              onHeaderRow={column => {
-                return {
-                  onClick: () => {console.log('5')}, // click header row
+                  onClick: event => {console.log(record.id)}, // click row
+                  //onMouseEnter: event => {console.log('3')}, // mouse enter row
+                  //onMouseLeave: event => {console.log('4')}, // mouse leave row
                 };
               }}
             />
