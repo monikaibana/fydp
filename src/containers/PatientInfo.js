@@ -11,7 +11,6 @@ import {
 } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
-import moment from "moment";
 import { getPatientInfo } from "../routes/api-routes";
 
 const { Option } = Select;
@@ -680,7 +679,7 @@ class PatientInfoPage extends React.Component {
           </Tabs>
           {/* ––––––––––––––––––––––––––––––––––––––––––– Buttons ––––––––––––––––––––––––––––––––––––––––––––––– */}
           <div className="bottomButtons">
-            <Button type='danger' ghost htmlType="delete" className="archive-button">
+            <Button type='danger' ghost className="archive-button">
               Archive Patient
             </Button>
             <div className="changeStatus">
@@ -723,7 +722,7 @@ class PatientInfoPage extends React.Component {
           <Button type="primary" htmlType="submit" className="save-button" style={{width: 75}}>
             Save
           </Button>
-          <Button type='normal' htmlType="cancel" className="cancel-button" style={{width: 75}}>
+          <Button type='normal' className="cancel-button" style={{width: 75}}>
             Cancel
           </Button>
           </div>
