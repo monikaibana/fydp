@@ -39,3 +39,22 @@ export function getPatientList(body) {
       alert("Error with retrieving patient list, please try again later.");
     });
 }
+
+export function getPatientInfo(body) {
+  var params = {};
+  var pathTemplate = "";
+  var method = "POST";
+  var additionalParams = {};
+  return apigClient
+    .invokeApi(params, pathTemplate, method, additionalParams, body)
+    .then(function(result) {
+      console.log("Patient information retrieved.");
+      return result.data;
+    })
+    .catch(function(result) {
+      console.log(result);
+      alert(
+        "Error with retrieving patient information, please try again later."
+      );
+    });
+}
