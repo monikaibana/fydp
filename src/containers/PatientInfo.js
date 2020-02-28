@@ -148,14 +148,24 @@ class PatientInfoPage extends React.Component {
                     Patient Gender <br />{" "}
                   </h2>
                   <Form.Item key="gender">
-                    <Select
-                      defaultValue="Gender"
-                      onChange={handleChange}
-                      style={{ width: 250 }}
-                    >
-                      <Option value="M">Male</Option>
-                      <Option value="F">Female</Option>
-                    </Select>
+                    {getFieldDecorator("gender")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Gender"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="M">Male</Option>
+                        <Option value="F">Female</Option>
+                      </Select>
+                    )}
                   </Form.Item>
                 </div>
               </div>
@@ -165,11 +175,20 @@ class PatientInfoPage extends React.Component {
                     Triage Result <br />{" "}
                   </h2>
                   <Form.Item key="triage_type">
-                    {getFieldDecorator("triageType", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Study Type
-                        </Option>
+                    {getFieldDecorator("triageType")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Triage Type"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">IDS</Option>
                         <Option value="2">Consult - R</Option>
                         <Option value="3">Consult - X</Option>
@@ -183,11 +202,20 @@ class PatientInfoPage extends React.Component {
                     Triage Tag <br />{" "}
                   </h2>
                   <Form.Item key="study_type">
-                    {getFieldDecorator("triageTag", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Triage Tag
-                        </Option>
+                    {getFieldDecorator("studyType")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Triage Tag"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">Urgent</Option>
                         <Option value="2">ASAP</Option>
                         <Option value="3">HP CL</Option>
@@ -249,12 +277,23 @@ class PatientInfoPage extends React.Component {
                     Acquisition Tech Name <br />
                   </h2>
                   <Form.Item key="techName">
-                    {getFieldDecorator("techName", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Tech Name
-                        </Option>
+                    {getFieldDecorator("techName")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Tech Name"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">Johnny</Option>
+                        <Option value="2">James</Option>
+                        <Option value="3">Jimmy</Option>
                       </Select>
                     )}
                   </Form.Item>
@@ -264,11 +303,20 @@ class PatientInfoPage extends React.Component {
                     Location <br />
                   </h2>
                   <Form.Item key="location">
-                    {getFieldDecorator("location", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Bed number
-                        </Option>
+                    {getFieldDecorator("location")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Bed Number"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">Bed 1</Option>
                         <Option value="2">Bed 2</Option>
                         <Option value="3">Bed 3</Option>
@@ -299,11 +347,20 @@ class PatientInfoPage extends React.Component {
                     Study Type <br />{" "}
                   </h2>
                   <Form.Item key="atudy_type">
-                    {getFieldDecorator("StudyType", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Study Type
-                        </Option>
+                    {getFieldDecorator("StudyType")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Study Type"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">IDS</Option>
                         <Option value="2">RDS - R</Option>
                         <Option value="3">RDS - X</Option>
@@ -325,10 +382,23 @@ class PatientInfoPage extends React.Component {
                       Scorer <br/>
                   </h2>
                   <Form.Item key="scorer">
-                    {getFieldDecorator("scorer", { initialValue: "0" })(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0" hidden>Scorer Name</Option>
+                    {getFieldDecorator("scorer")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Scorer"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">Johnny</Option>
+                        <Option value="2">James</Option>
+                        <Option value="3">Jimmy</Option>
                       </Select>
                     )}
                   </Form.Item>
@@ -366,9 +436,20 @@ class PatientInfoPage extends React.Component {
                     Sleep Study Score <br/>
                   </h2>
                   <Form.Item key="studyScore">
-                  {getFieldDecorator("studyScore", { initialValue: "0" })(
-                    <Select style={{ width: 250 }} onChange={handleChange}>
-                      <Option value="0" hidden>Score</Option>
+                  {getFieldDecorator("studyScore")(
+                    <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Study Score"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                       <Option value="1">1</Option>
                       <Option value="2">2</Option>
                       <Option value="3">3</Option>
@@ -385,9 +466,20 @@ class PatientInfoPage extends React.Component {
                     Study Tag <br/>
                   </h2>
                   <Form.Item key="studyTag">
-                    {getFieldDecorator("studyTag", {initialValue: "0"})(
-                      <Select style={{ width: 250 }} onChange={handleChange}>
-                        <Option value="0">None</Option>
+                    {getFieldDecorator("studyTag")(
+                      <Select
+                        showSearch
+                        style={{ width: 250 }}
+                        placeholder="Study Tag"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
                         <Option value="1">Tag 1</Option>
                         <Option value="2">Tag 2</Option>
                         <Option value="3">Tag 3</Option>
@@ -464,9 +556,17 @@ class PatientInfoPage extends React.Component {
                     </h2>
                     <Form.Item>
                       <Select
-                        defaultValue="Select A Doctor"
-                        onChange={handleChange}
-                        style={{ width: 250 }}
+                      showSearch
+                      style={{ width: 250 }}
+                      placeholder="Interpreting Doctor"
+                      optionFilterProp="children"
+                      onChange={handleChange}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      onSearch={onSearch}
+                      filterOption={(input, option) =>
+                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
                       >
                         <Option value="Raymond Gottschalk">Raymond Gottschalk</Option>
                       </Select>
@@ -486,9 +586,17 @@ class PatientInfoPage extends React.Component {
                     </h2>
                     <Form.Item>
                       <Select
-                        defaultValue="Select A Rating"
-                        onChange={handleChange}
-                        style={{ width: 250 }}
+                      showSearch
+                      style={{ width: 250 }}
+                      placeholder="Doctor Rating"
+                      optionFilterProp="children"
+                      onChange={handleChange}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      onSearch={onSearch}
+                      filterOption={(input, option) =>
+                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
                       >
                         <Option value="1">1</Option>
                         <Option value="2">2</Option>
