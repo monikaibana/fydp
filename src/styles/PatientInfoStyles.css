@@ -1,22 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=<Montserrat&display=swap");
 
+{/* –––––– Patient Info Page ––––––– */}
 .PatientInfoPage {
   background: #fafafa;
   height: 120vh;
-}
-.BackButton {
-  position: absolute;
-  width: 90px;
-  height: 32px;
-  left: 325px;
-  top: 15px;
-
-  font-family: "IBM Plex Sans";
-  font-size: 20px;
-  line-height: 32px;
-  text-align: left;
-  color: dodgerblue;
 }
 .PatientName {
   position: absolute;
@@ -24,10 +12,53 @@
   height: 59px;
   left: 335px;
   top: 50px;
-
   font-family: "Montserrat";
+  color: #000000;
   font-size: 40px;
   line-height: 59px;
+}
+.BackButton {
+  position: absolute;
+  width: 90px;
+  height: 32px;
+  left: 325px;
+  top: 15px;
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+  line-height: 32px;
+  text-align: left;
+  color: dodgerblue;
+}
+.link p{
+  color: dodgerblue;
+}
+.bottomButtons{
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  width: 70vw;
+  background-color: #fafafa;
+}
+.save-button{
+  position: absolute;
+  top: 0px;
+  left: 810px;
+}
+.cancel-button{
+  position: absolute;
+  top: 40px;
+  left: 810px;
+}
+.archive-button{
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+.changeStatus{
+  position: absolute;
+  top: 3px;
+  left: 425px;
+  height: 25px;
 }
 .StatusInfo {
   position: absolute;
@@ -35,6 +66,11 @@
   top: 115px;
   text-align: left;
   font-family: "IBM Plex Sans";
+}
+.StatusUpdate{
+  position: absolute;
+  top: -5px;
+  left: 550px;
 }
 .TimeInStatus {
   position: relative;
@@ -47,176 +83,160 @@
   left: 340px;
   width: 70vw;
 }
-.interpretationDetails{
+
+{/* –––––– Tab 1 ––––––– */}
+.PatientDetails{
   text-align: left;
-  height: 450px;
+  height: 500px;
   background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
 }
-.interpretationDetails h2{
+.PatientDetails h2{
   font-family: "IBM Plex Sans";
-  font-size: 16px;
-  line-height: 18px;
-}
-.Interpretation{
- position: absolute;
- left: 300px;
- top: 75px;
-}
-.StudyLink {
-  position: absolute;
-  left: 15px;
-  top: 270px;
-}
-.StudyLink p{
-  color: dodgerblue;
-}
-.referralLink p{
-  color: dodgerblue;
-}
-.save-button{
-  position: absolute;
-  top: 0px;
-  left: 810px;
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
 }
 .PatientInfo{
   position: absolute;
-  left: 50px;
-  top: 100px;
+  left: 48px;
   width: 350px;
+  top: 85px;
   border-right: 1px solid #D9D9D9
 }
-.patientDetails{
-  text-align: left;
-  height: 450px;
-  background-color: #ffffff;
-}
-.patientDetails h2{
-  font-family: "IBM Plex Sans";
-  font-size: 16px;
-  line-height: 18px;
-}
-.studyDetails{
-  text-align: left;
-  height: 530px;
-  background-color: #ffffff;
-}
-.studyDetails h2{
-  font-family: "IBM Plex Sans";
-  font-size: 16px;
-  line-height: 18px;
-}
-.studyInfo{
-  position: absolute;
-  left: 50px;
-  top: 100px;
-  width: 350px;
-}
-.Triage{
- position: absolute;
- left: 450px;
- top: 100px;
-}
-.bottomButtons{
-  position: absolute;
-  bottom: -10px;
-  left: 0px;
-  width: 70vw;
-  background-color: #fafafa;
-}
-.archive-button{
-  position: absolute;
-  left: 10px;
-  top: 0px;
-}
-
-.changeStatus{
-  position: absolute;
-  top: 3px;
-  left: 425px;
-  height: 25px;
-}
-
-.statusUpdate{
-  position: absolute;
-  top: -5px;
-  left: 550px;
-}
-
-.cancel-button{
-  position: absolute;
-  top: 40px;
-  left: 810px;
-}
-
-.postStudyDetails{
-  background-color: #ffffff;
-  height: 150px
-}
-
-.reportSendDate{
-  position: absolute;
-  left: 30px;
-  top: 75px;
-}
-.studyDets{
-  position: absolute;
-  left: 50px;
-  top: 75px;
-  width: 200px;
-  height: 350px;
-  border-right: 1px solid #D9D9D9;
-}
-.AHI{
-  position: absolute;
-  top: 0px;
-  left: 15px;
-}
-
-.REMAHI{
-  position: absolute;
-  top:90px;
-  left: 15px;
-}
-
-.studyScore{
-  position: absolute;
-  top: 180px;
-  left: 15px;
-}
-
 .Triaging{
   position: absolute;
-  top: 100px;
+  top: 85px;
   left: 450px;
 }
-.Rating{
-  position: absolute;
-  top: 180px;
+.ReferralLink p{
+  color: dodgerblue;
+  line-height: 16px;
 }
-.urgentAction{
-  position: absolute;
-  top: 270px;
-}
-.Comments{
-  position: absolute;
-  top: 300px
-}
-.studyResults{
+
+{/* –––––– Tab 2 ––––––– */}
+.StudyDetails{
+  text-align: left;
+  height: 500px;
   background-color: #ffffff;
-  height: 450px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
 }
-.scoring{
+.StudyDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
+}
+.ApptInfo{
   position: absolute;
-  top: 75px;
-  left: 50px;
+  left: 48px;
   width: 350px;
+  top: 85px;
   border-right: 1px solid #D9D9D9;
 }
-.additionalInfo{
+.StudyInfo{
   position: absolute;
-  top: 75px;
+  top: 85px;
   left: 450px;
 }
-.link p{
+
+{/* –––––– Tab 3 ––––––– */}
+.StudyResults{
+  text-align: left;
+  height: 500px;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
+}
+.StudyResults h2{
+  font-family: "IBM Plex Sans";
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
+}
+.Scoring{
+  position: absolute;
+  left: 48px;
+  width: 350px;
+  top: 85px;
+  border-right: 1px solid #D9D9D9;
+}
+.AdditionalInfo{
+  position: absolute;
+  top: 85px;
+  left: 450px;
+}
+.StudyLink p{
   color: dodgerblue;
+  line-height: 16px;
+}
+
+{/* –––––– Tab 4 ––––––– */}
+.InterpretationDetails{
+  text-align: left;
+  height: 500px;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
+}
+.InterpretationDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
+}
+.StudyDets{
+  position: absolute;
+  left: 48px;
+  width: 350px;
+  top: 85px;
+  border-right: 1px solid #D9D9D9;
+  line-height: 32px;
+}
+.InterpStudyLink p{
+  color: dodgerblue;
+  line-height: 16px;
+}
+.Interpretation{
+  position: absolute;
+  top: 85px;
+  left: 450px;
+}
+
+{/* –––––– Tab 5 ––––––– */}
+.PostStudyDetails{
+  text-align: left;
+  height: 200px;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
+}
+.PostStudyDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
+}
+.ReportSendDate{
+  position: absolute;
+  left: 48px;
+  width: 350px;
+  top: 85px;
 }

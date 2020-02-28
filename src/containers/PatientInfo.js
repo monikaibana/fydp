@@ -2,7 +2,6 @@ import React from "react";
 import { Tabs, Icon, Select, Form, Input, Button, DatePicker, Checkbox } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
-import moment from 'moment';
 
 const { Option } = Select;
 function handleChange(value) {
@@ -14,22 +13,22 @@ function callback(key) {
   console.log(key);
 }
 
-const dateFormat = 'DD/MM/YYYY';
+const dateFormat = "DD/MM/YYYY";
 
 function onCheck(e) {
   console.log(`checked = ${e.target.checked}`);
 }
 
 function onBlur() {
-  console.log('blur');
+  console.log("blur");
 }
 
 function onFocus() {
-  console.log('focus');
+  console.log("focus");
 }
 
 function onSearch(val) {
-  console.log('search:', val);
+  console.log("search:", val);
 }
 
 class PatientInfoPage extends React.Component {
@@ -69,36 +68,51 @@ class PatientInfoPage extends React.Component {
           <Icon type="left" /> Back
         </Button>
         <div className="PatientName">Patient Name</div>
-        <div className="StatusInfo">
-          <div className="PatientStatus">
-            Status
-            <br />
-            <b>Patient Status</b>
+          <div className="StatusInfo">
+            <div>
+              Status
+              <br />
+              <b>Patient Status</b>
+            </div>
+            <div className="TimeInStatus">
+              Time in Status
+              <br /> <b>3 Days</b>
+            </div>
           </div>
-          <div className="TimeInStatus">
-            Time in Status
-            <br /> <b>3 Days</b>
-          </div>
-        </div>
         <div className="InfoTabs">
           <Tabs onChange={callback} type="card">
-            <TabPane tab="Patient Information" key="1" className="patientDetails">
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+            <TabPane tab="Patient Information" key="1" className="PatientDetails">
               <div className="PatientInfo">
-                <div className="patientName">
+                <div>
                   <h2>
-                    Patient Name <br />
+                    Patient Surname <br />
                   </h2>
-                  <Form.Item key="patientName">
-                    {getFieldDecorator("patientName")(
+                  <Form.Item key="patientSurname">
+                    {getFieldDecorator("PatientSurname")(
                       <Input
                         prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                        placeholder="Patient Name(s)"
-                        style={{ width: 300 }}
+                        placeholder="Patient Surname"
+                        style={{ width: 250 }}
                       />
                     )}
                   </Form.Item>
                 </div>
-                <div className="pid">
+                <div>
+                  <h2>
+                    Patient Given Name(s) <br />
+                  </h2>
+                  <Form.Item key="patientGivenName">
+                    {getFieldDecorator("patientGivenName")(
+                      <Input
+                        prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                        placeholder="Patient Given Name(s)"
+                        style={{ width: 250 }}
+                      />
+                    )}
+                  </Form.Item>
+                </div>
+                <div>
                   <h2>
                     PID <br />
                   </h2>
@@ -108,12 +122,12 @@ class PatientInfoPage extends React.Component {
                         prefix={<Icon type="number" style={{ fontSize: 13 }} />}
                         placeholder="PID"
                         maxLength={9}
-                        style={{ width: 300 }}
+                        style={{ width: 250 }}
                       />
                     )}
                   </Form.Item>
                 </div>
-                <div className="dob">
+                <div>
                   <h2>
                     Patient DOB <br />
                   </h2>
@@ -124,20 +138,20 @@ class PatientInfoPage extends React.Component {
                       placeholder="Date of Birth (dd/mm/yyyy)"
                       onChange={this.handleDateChange}
                       maxLength={10}
-                      style={{ width: 300 }}
+                      style={{ width: 250 }}
                     />
                     )}
                   </Form.Item>
                 </div>
-                <div className="Gender">
+                <div>
                   <h2>
-                    Gender <br />{" "}
+                    Patient Gender <br />{" "}
                   </h2>
-                  <Form.Item>
+                  <Form.Item key="gender">
                     <Select
                       defaultValue="Gender"
                       onChange={handleChange}
-                      style={{ width: 300 }}
+                      style={{ width: 250 }}
                     >
                       <Option value="M">Male</Option>
                       <Option value="F">Female</Option>
@@ -146,37 +160,39 @@ class PatientInfoPage extends React.Component {
                 </div>
               </div>
               <div className="Triaging">
-                <div className="studyType">
+                <div>
                   <h2>
-                    Study Type <br />{" "}
+                    Triage Result <br />{" "}
                   </h2>
-                  <Form.Item key="study_type">
-                    {getFieldDecorator("studyType", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
+                  <Form.Item key="triage_type">
+                    {getFieldDecorator("triageType", { initialValue: "0" })(
+                      <Select style={{ width: 250 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Study Type
                         </Option>
-                        <Option value="1">Initial Diagnostic Study</Option>
-                        <Option value="2">Repeat Diagnostic Study</Option>
-                        <Option value="3">CPAP Study</Option>
-                        <Option value="4">BiPAP Study</Option>
-                        <Option value="5">Repeat Therapeutic Study</Option>
-                        <Option value="6">Study to Assess Other Therapy</Option>
+                        <Option value="1">IDS</Option>
+                        <Option value="2">Consult - R</Option>
+                        <Option value="3">Consult - X</Option>
+                        <Option value="4">Consult - General</Option>
                       </Select>
                     )}
                   </Form.Item>
                 </div>
-                <div className="triageTag">
+                <div>
                   <h2>
                     Triage Tag <br />{" "}
                   </h2>
                   <Form.Item key="study_type">
                     {getFieldDecorator("triageTag", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
+                      <Select style={{ width: 250 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Triage Tag
                         </Option>
                         <Option value="1">Urgent</Option>
+                        <Option value="2">ASAP</Option>
+                        <Option value="3">HP CL</Option>
+                        <Option value="4">HP</Option>
+                        <Option value="5">Routine</Option>
                       </Select>
                     )}
                   </Form.Item>
@@ -188,45 +204,68 @@ class PatientInfoPage extends React.Component {
                   </h2>
                   <Form.Item>
                     <TextArea
-                      style={({ fontSize: 13 }, { width: 300 })}
+                      style={({ fontSize: 13 }, { width: 450 })}
                       placeholder="Notes"
                       autoSize={{ minRows: 2, maxRows: 6 }}
                     />
                   </Form.Item>
-                    <div className="referralLink">
-                    <h2>
-                      Link To Referral File <br />
-                    </h2>
-                    <p> filename.pdf </p>
-                  </div>
+                </div>
+                <div className="ReferralLink">
+                  <h2>
+                    Link To Referral File <br />
+                  </h2>
+                  <p> filename.pdf </p>
                 </div>
               </div>
             </TabPane>
-            <TabPane tab="Study Information" key="2" className="studyDetails">
-              <div className="studyInfo">
-                <div className="studyDate">
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 2 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+            <TabPane tab="Appointment Information" key="2" className="StudyDetails">
+              <div className="ApptInfo">
+                <div>
                   <h2>
-                    Date of Study <br />
+                    Date of Appointment <br />
                   </h2>
-                  <Form.Item key="study_date">
-                    {getFieldDecorator("study_date")(
-                      <Input
-                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                      placeholder="Study Date (dd/mm/yyyy)"
-                      onChange={this.handleDateChange}
-                      maxLength={10}
-                      style={{ width: 300 }}
-                    />
+                  <Form.Item key="appt_date">
+                    <DatePicker key="apptDate" format={dateFormat} style={{width: 250}}/> <br/>
+                  </Form.Item>
+                </div>
+                <div>
+                  <Form.Item key="appt_booked">
+                    <Checkbox key="apptBooked"> Next Appointment Booked</Checkbox>
+                  </Form.Item>
+                </div>
+                <div>
+                  <h2>
+                    Date of Next Appointment <br />
+                  </h2>
+                  <Form.Item key="next_appt_date">
+                    <DatePicker key="nextApptDate" format={dateFormat} style={{width: 250}}/> <br/>
+                  </Form.Item>
+                </div>
+              </div>
+              <div className="StudyInfo">
+                <div className="techName">
+                  <h2>
+                    Acquisition Tech Name <br />
+                  </h2>
+                  <Form.Item key="techName">
+                    {getFieldDecorator("techName", { initialValue: "0" })(
+                      <Select style={{ width: 250 }} onChange={handleChange}>
+                        <Option value="0" hidden>
+                          Tech Name
+                        </Option>
+                        <Option value="1">Johnny</Option>
+                      </Select>
                     )}
                   </Form.Item>
                 </div>
-                <div className="location">
+                <div>
                   <h2>
                     Location <br />
                   </h2>
                   <Form.Item key="location">
                     {getFieldDecorator("location", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
+                      <Select style={{ width: 250 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Bed number
                         </Option>
@@ -240,7 +279,7 @@ class PatientInfoPage extends React.Component {
                     )}
                   </Form.Item>
                 </div>
-                <div className="acq">
+                <div>
                   <h2>
                     ACQ <br />
                   </h2>
@@ -250,109 +289,104 @@ class PatientInfoPage extends React.Component {
                         prefix={<Icon type="number" style={{ fontSize: 13 }} />}
                         placeholder="ACQ"
                         maxLength={9}
-                        style={{ width: 300 }}
+                        style={{ width: 250 }}
                       />
                     )}
                   </Form.Item>
                 </div>
-                <div className="studyType">
+                <div>
                   <h2>
                     Study Type <br />{" "}
                   </h2>
-                  <Form.Item key="study_type">
-                    {getFieldDecorator("studyType", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
+                  <Form.Item key="atudy_type">
+                    {getFieldDecorator("StudyType", { initialValue: "0" })(
+                      <Select style={{ width: 250 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Study Type
                         </Option>
-                        <Option value="1">Initial Diagnostic Study</Option>
-                        <Option value="2">Repeat Diagnostic Study</Option>
-                        <Option value="3">CPAP Study</Option>
-                        <Option value="4">BiPAP Study</Option>
-                        <Option value="5">Repeat Therapeutic Study</Option>
-                        <Option value="6">Study to Assess Other Therapy</Option>
-                      </Select>
-                    )}
-                  </Form.Item>
-                </div>
-                <div className="techName">
-                  <h2>
-                    Acquisition Tech Name <br />
-                  </h2>
-                  <Form.Item key="techName">
-                    {getFieldDecorator("techName", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Tech Name
-                        </Option>
-                        <Option value="1">Johnny</Option>
+                        <Option value="1">IDS</Option>
+                        <Option value="2">RDS - R</Option>
+                        <Option value="3">RDS - X</Option>
+                        <Option value="4">CPAP</Option>
+                        <Option value="5">BiPAP</Option>
+                        <Option value="6">Repeat Therapeutic Study</Option>
+                        <Option value="7">Study to assess other therapy</Option>
                       </Select>
                     )}
                   </Form.Item>
                 </div>
               </div>
             </TabPane>
-            <TabPane 
-            tab="Study Results" 
-            key="3"
-            className="studyResults"
-            >
-              <div className="scoring">
-                <div className="scorer">
-                  Scorer
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 3 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+            <TabPane tab="Study Results" key="3" className="StudyResults">
+              <div className="Scoring">
+                <div>
+                  <h2>
+                      Scorer <br/>
+                  </h2>
                   <Form.Item key="scorer">
-                  {getFieldDecorator("scorer", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Scorer Name
-                        </Option>
+                    {getFieldDecorator("scorer", { initialValue: "0" })(
+                      <Select style={{ width: 250 }} onChange={handleChange}>
+                        <Option value="0" hidden>Scorer Name</Option>
                         <Option value="1">Johnny</Option>
                       </Select>
                     )}
                   </Form.Item>
                 </div>
-                <div className="scoreDate">
-                  Scored Date <br/>
-                  <DatePicker key="scoreDate" format={dateFormat} style={{width: 300}} defaultValue={moment()}/> <br/><br/>
+                <div>
+                  <h2>
+                    Scored Date <br/>
+                  </h2>
+                  <Form.Item key="scoreDate">
+                    <DatePicker format={dateFormat} style={{ width: 250 }}/>
+                  </Form.Item>
                 </div>
-                <div className="ahi">
-                  AHI
-                  <Form.Item key="AHI">
+                <div>
+                  <h2>
+                    AHI <br/>
+                  </h2>
+                  <Form.Item key="ahi">
                     {getFieldDecorator("AHI")(
-                      <Input style={{width:300}} maxLength="2" placeholder="AHI"/>
+                      <Input style={{ width: 250 }} maxLength={2} placeholder="AHI"/>
                     )}
                   </Form.Item>
-                  REM AHI
+                </div>
+                <div>
+                  <h2>
+                    REM AHI <br/>
+                  </h2>
                   <Form.Item key="REMAHI">
                     {getFieldDecorator("REMAHI")(
-                      <Input style={{width:300}} maxLength="2" placeholder="REM AHI"/>
+                      <Input style={{ width: 250 }} maxLength={2} placeholder="REM AHI"/>
                     )}
                   </Form.Item>
                 </div>
-                <div className= "score">
-                  Sleep Study Score
+                <div>
+                  <h2>
+                    Sleep Study Score <br/>
+                  </h2>
                   <Form.Item key="studyScore">
                   {getFieldDecorator("studyScore", { initialValue: "0" })(
-                      <Select style={{ width: 300 }} onChange={handleChange}>
-                        <Option value="0" hidden>
-                          Score
-                        </Option>
-                        <Option value="1">1</Option>
-                        <Option value="2">2</Option>
-                        <Option value="3">3</Option>
-                        <Option value="4">4</Option>
-                        <Option value="5">5</Option>
-                      </Select>
+                    <Select style={{ width: 250 }} onChange={handleChange}>
+                      <Option value="0" hidden>Score</Option>
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
+                      <Option value="5">5</Option>
+                    </Select>
                     )}
                   </Form.Item>
                 </div>
               </div>
-              <div className="additionalInfo">
-                <div className="studyTag">
-                  Study Tag
+              <div className="AdditionalInfo">
+                <div>
+                  <h2>
+                    Study Tag <br/>
+                  </h2>
                   <Form.Item key="studyTag">
                     {getFieldDecorator("studyTag", {initialValue: "0"})(
-                      <Select style={{width:300}} onChange={handleChange}>
+                      <Select style={{ width: 250 }} onChange={handleChange}>
                         <Option value="0">None</Option>
                         <Option value="1">Tag 1</Option>
                         <Option value="2">Tag 2</Option>
@@ -361,13 +395,15 @@ class PatientInfoPage extends React.Component {
                     )}
                   </Form.Item>
                 </div>
-                <div className="referringPhysician">
-                  Referring Physician
+                <div>
+                  <h2>
+                    Referring Physician <br/>
+                  </h2>
                   <Form.Item key="referringPhysician">
                     {getFieldDecorator("referringPhysician")(
                       <Select
                       showSearch
-                      style={{ width: 300 }}
+                      style={{ width: 250 }}
                       placeholder="Referring Physician"
                       optionFilterProp="children"
                       onChange={handleChange}
@@ -377,125 +413,136 @@ class PatientInfoPage extends React.Component {
                       filterOption={(input, option) =>
                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                       }
-                    >
-                      <Option value="Dr. Goodman">Dr. Goodman</Option>
-                      <Option value="Dr. Gooderman">Dr. Gooderman</Option>
-                      <Option value="Dr. Goodestman">Dr. Goodestman</Option>
-                    </Select>,
+                      >
+                        <Option value="Dr. Goodman">Dr. Goodman</Option>
+                        <Option value="Dr. Gooderman">Dr. Gooderman</Option>
+                        <Option value="Dr. Goodestman">Dr. Goodestman</Option>
+                      </Select>,
                     )}
                   </Form.Item>
                 </div>
-                <div className="link">
-                  Link to Study
-                  <p>Link</p>
+                <div className="StudyLink">
+                  <h2>
+                    Link to Study <br/>
+                  </h2>
+                  <p>LinkToStudy.pdf</p>
                 </div>
               </div>
             </TabPane>
-            <TabPane
-              tab="Interpretation Details"
-              key="4"
-              className="interpretationDetails"
-            >
-                <div className="studyDets">
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 4 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+            <TabPane tab="Interpretation Details" key="4" className="InterpretationDetails">
+                <div className="StudyDets">
                   <div className="AHI">
                     <h2>
-                      AHI
+                      AHI <br/>
                     </h2>
-                    <b>25</b>
+                    <b>25</b><br/><br/>
                   </div>
                   <div className="REMAHI">
                     <h2>
-                      REM AHI
+                      REM AHI  <br/>
                     </h2>
-                    <b>12</b>
+                    <b>12</b><br/><br/>
                   </div>
-                  <div className="studyScore">
+                  <div className="StudyScore">
                     <h2>
-                      Sleep Study Score
+                      Sleep Study Score  <br/>
                     </h2>
-                    <b>4</b>
+                    <b>4</b><br/><br/>
                   </div>
-                  <div className="StudyLink">
+                  <div className="InterpStudyLink">
                     <h2>
-                      Link To Study <br />
+                      Link to Study <br />
                     </h2>
-                    <p> Link </p>
+                    <p>LinkToStudy.pdf</p>
                   </div>
                 </div>
                 <div className="Interpretation">
-                <div className="InterpretingDoctor">
-                  <h2>
-                    Interpreting Doctor <br />
-                  </h2>
-                  <Form.Item>
-                    <Select
-                      defaultValue="Select A Doctor"
-                      onChange={handleChange}
-                      style={{ width: 250 }}
-                    >
-                      <Option value="Raymond Gottschalk">
-                        Raymond Gottschalk
-                      </Option>
-                    </Select>
-                  </Form.Item>
+                  <div>
+                    <h2>
+                      Interpreting Doctor <br />
+                    </h2>
+                    <Form.Item>
+                      <Select
+                        defaultValue="Select A Doctor"
+                        onChange={handleChange}
+                        style={{ width: 250 }}
+                      >
+                        <Option value="Raymond Gottschalk">Raymond Gottschalk</Option>
+                      </Select>
+                    </Form.Item>
+                  </div>
+                  <div>
+                    <h2>
+                      Interpretation Date <br />
+                    </h2>
+                    <Form.Item>
+                      <DatePicker key="interpretationDate" format={dateFormat} style={{width: 250}}/> <br/>
+                    </Form.Item>
+                  </div>
+                  <div>
+                    <h2>
+                       Doctor Rating <br />{" "}
+                    </h2>
+                    <Form.Item>
+                      <Select
+                        defaultValue="Select A Rating"
+                        onChange={handleChange}
+                        style={{ width: 250 }}
+                      >
+                        <Option value="1">1</Option>
+                        <Option value="2">2</Option>
+                        <Option value="3">3</Option>
+                        <Option value="4">4</Option>
+                        <Option value="5">5</Option>
+                      </Select>
+                    </Form.Item> 
+                  </div>
+                  <div>
+                    <Form.Item>
+                      <Checkbox className= "urgentAction" onChange={onCheck}>Urgent Action Required</Checkbox>
+                    </Form.Item>
+                  </div>
+                  <div className="Comments">
+                    <h2>
+                      {" "} Special Comments <br />{" "}
+                    </h2>
+                    <Form.Item>
+                      <TextArea
+                        style={({ fontSize: 13 }, { width: 450 })}
+                        placeholder="Notes"
+                        autoSize={{ minRows: 2, maxRows: 6 }}
+                      />
+                    </Form.Item>
+                  </div>
                 </div>
-                <div className="InterpretationDate">
-                  <h2>
-                    Interpretation Date <br />
-                  </h2>
-                  <DatePicker key="interpretationDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/>
-                </div>
-                <div className="Rating">
-                  <h2>
-                     Rating <br />{" "}
-                  </h2>
-                  <Form.Item>
-                    <Select
-                      defaultValue="Select A Rating"
-                      onChange={handleChange}
-                      style={{ width: 250 }}
-                    >
-                      <Option value="1">1</Option>
-                      <Option value="2">2</Option>
-                      <Option value="3">3</Option>
-                      <Option value="4">4</Option>
-                      <Option value="5">5</Option>
-                    </Select>
-                  </Form.Item>
-                </div>
-                <Checkbox className= "urgentAction" onChange={onCheck}>Urgent Action Required</Checkbox>
-                <div className="Comments">
-                  <h2> <br/>
-                    Special Comments <br />
-                  </h2>
-                  <Form.Item>
-                    <TextArea
-                      style={({ fontSize: 13 }, { width: 400 })}
-                      placeholder="Comments"
-                      autoSize={{ minRows: 2, maxRows: 6 }}
-                    />
-                  </Form.Item>
-                </div>
-              </div>
             </TabPane>
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 5 ––––––––––––––––––––––––––––––––––––––––––––––– */}
             <TabPane tab="Post-Study Details" key="5">
-              <div className="postStudyDetails">
-                <div className="reportSendDate">
-                  Date Report Sent <br/>
-                  <DatePicker key="reportSendDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/><br/>
-                  <Checkbox onChange={onCheck}>Study Billed</Checkbox>
+              <div className="PostStudyDetails">
+                <div className="ReportSendDate">
+                  <h2>
+                    Date Report Sent <br/>
+                  </h2>
+                  <Form.Item>
+                    <DatePicker key="reportSendDate" format={dateFormat} style={{ width: 250 }}/>
+                  </Form.Item> 
+                  <Form.Item>
+                    <Checkbox onChange={onCheck}>Study Billed</Checkbox>
+                  </Form.Item>
                 </div>
               </div>
             </TabPane>
           </Tabs>
+          {/* ––––––––––––––––––––––––––––––––––––––––––– Buttons ––––––––––––––––––––––––––––––––––––––––––––––– */}
           <div className="bottomButtons">
-          <Button type='danger' ghost htmlType="delete" className="archive-button">
-            Archive Patient
-          </Button>
+            <Button type='danger' ghost htmlType="delete" className="archive-button">
+              Archive Patient
+            </Button>
             <div className="changeStatus">
-            Change Status to: &nbsp;
+              Change Status to: &nbsp;
             </div>
-            <Form.Item className="statusUpdate">
+            <Form.Item className="StatusUpdate">
               <Select
                 defaultValue="Referral Received"
                 onChange={handleChange}
