@@ -26,7 +26,7 @@ function requestBody() {
 function setId(id) {
     id = id.toString();
     console.log(id);
-    window.location.replace(`/info/${id}`)
+    window.location.assign(`/info/${id}`)
   }
 
 class PatientListPage extends React.Component {
