@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
+
+.Title {
+  position: absolute;
+  width: 351px;
+  height: 59px;
+  left: 300px;
+  top: 61px;
+}
+.CreatePatientForm {
+  width: 300px;
+}

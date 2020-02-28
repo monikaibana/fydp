@@ -3,46 +3,220 @@
 
 .PatientInfoPage {
   background: #fafafa;
-  height: 100vh;
+  height: 120vh;
 }
 .BackButton {
   position: absolute;
-  width: 74px;
+  width: 90px;
   height: 32px;
-  left: 324px;
-  top: 40px;
+  left: 325px;
+  top: 15px;
 
   font-family: "IBM Plex Sans";
   font-size: 20px;
   line-height: 32px;
   text-align: left;
+  color: dodgerblue;
 }
 .PatientName {
   position: absolute;
   width: 305px;
   height: 59px;
-  left: 325px;
-  top: 90px;
+  left: 335px;
+  top: 50px;
 
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 40px;
   line-height: 59px;
 }
 .StatusInfo {
   position: absolute;
   left: 340px;
-  top: 170px;
+  top: 115px;
   text-align: left;
-  font-family: IBM Plex Sans;
+  font-family: "IBM Plex Sans";
 }
 .TimeInStatus {
   position: relative;
   left: 275px;
-  top: -80px;
+  top: -45px;
 }
 .InfoTabs {
   position: absolute;
-  top: 250px;
+  top: 175px;
   left: 340px;
   width: 70vw;
+}
+.interpretationDetails{
+  text-align: left;
+  height: 450px;
+  background-color: #ffffff;
+}
+.interpretationDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  line-height: 18px;
+}
+.Interpretation{
+ position: absolute;
+ left: 300px;
+ top: 75px;
+}
+.StudyLink {
+  position: absolute;
+  left: 15px;
+  top: 270px;
+}
+.StudyLink p{
+  color: dodgerblue;
+}
+.referralLink p{
+  color: dodgerblue;
+}
+.save-button{
+  position: absolute;
+  top: 0px;
+  left: 810px;
+}
+.PatientInfo{
+  position: absolute;
+  left: 50px;
+  top: 100px;
+  width: 350px;
+  border-right: 1px solid #D9D9D9
+}
+.patientDetails{
+  text-align: left;
+  height: 450px;
+  background-color: #ffffff;
+}
+.patientDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  line-height: 18px;
+}
+.studyDetails{
+  text-align: left;
+  height: 530px;
+  background-color: #ffffff;
+}
+.studyDetails h2{
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  line-height: 18px;
+}
+.studyInfo{
+  position: absolute;
+  left: 50px;
+  top: 100px;
+  width: 350px;
+}
+.Triage{
+ position: absolute;
+ left: 450px;
+ top: 100px;
+}
+.bottomButtons{
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  width: 70vw;
+  background-color: #fafafa;
+}
+.archive-button{
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+
+.changeStatus{
+  position: absolute;
+  top: 3px;
+  left: 425px;
+  height: 25px;
+}
+
+.statusUpdate{
+  position: absolute;
+  top: -5px;
+  left: 550px;
+}
+
+.cancel-button{
+  position: absolute;
+  top: 40px;
+  left: 810px;
+}
+
+.postStudyDetails{
+  background-color: #ffffff;
+  height: 150px
+}
+
+.reportSendDate{
+  position: absolute;
+  left: 30px;
+  top: 75px;
+}
+.studyDets{
+  position: absolute;
+  left: 50px;
+  top: 75px;
+  width: 200px;
+  height: 350px;
+  border-right: 1px solid #D9D9D9;
+}
+.AHI{
+  position: absolute;
+  top: 0px;
+  left: 15px;
+}
+
+.REMAHI{
+  position: absolute;
+  top:90px;
+  left: 15px;
+}
+
+.studyScore{
+  position: absolute;
+  top: 180px;
+  left: 15px;
+}
+
+.Triaging{
+  position: absolute;
+  top: 100px;
+  left: 450px;
+}
+.Rating{
+  position: absolute;
+  top: 180px;
+}
+.urgentAction{
+  position: absolute;
+  top: 270px;
+}
+.Comments{
+  position: absolute;
+  top: 300px
+}
+.studyResults{
+  background-color: #ffffff;
+  height: 450px;
+}
+.scoring{
+  position: absolute;
+  top: 75px;
+  left: 50px;
+  width: 350px;
+  border-right: 1px solid #D9D9D9;
+}
+.additionalInfo{
+  position: absolute;
+  top: 75px;
+  left: 450px;
+}
+.link p{
+  color: dodgerblue;
 }

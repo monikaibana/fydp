@@ -1,24 +1,41 @@
-// Create a Patient Page
-
 import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
-import "../styles/CreatePatientStyles.css";
-import { Form, Icon, Input, Button, Select, Card } from "antd";
+import {
+  Form,
+  Icon,
+  Input,
+  Button,
+  Select,
+  Modal,
+  Checkbox,
+  Upload,
+  message
+} from "antd";
 import createPatient from "../routes/api-routes";
-import Sidebar from "../components/Sidebar.js";
-
 const { Option } = Select;
 const { TextArea } = Input;
-const Tabs = [
-  {
-    key: "patientInformation",
-    tab: "Patient Information"
-  },]
-
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
+
+const props = {
+  name: "file",
+  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+  headers: {
+    authorization: "authorization-text"
+  },
+  onChange(info) {
+    if (info.file.status !== "attaching file") {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === "done") {
+      message.success(`${info.file.name} file attached successfully`);
+    } else if (info.file.status === "error") {
+      message.error(`${info.file.name} file attachment failed.`);
+    }
+  }
+};
 
 function formatDate(value) {
   return value.replace(/^(\d\d)\/(\d\d)\/(\d\d\d\d)$/g, "$3-$2-$1");
@@ -35,7 +52,6 @@ function requestBody(values) {
         givenName: values.givenName,
         dob: formatDate(values.dob),
         gender: values.gender,
-        studyType: parseInt(values.studyType),
         notes: values.notes
       }
     }
@@ -43,7 +59,24 @@ function requestBody(values) {
   return body;
 }
 
-class CreatePatientPage extends React.Component {
+class CreatePatientModal extends React.Component {
+  createPatient = async (
+    id,
+    surname,
+    givenName,
+    dob,
+    gender,
+    study_type,
+    notes
+  ) => {
+    try {
+      console.log(id, surname, givenName, dob, gender, study_type, notes);
+      alert(`Patient ${surname}, ${givenName} added`);
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -51,8 +84,7 @@ class CreatePatientPage extends React.Component {
         createPatient(requestBody(values));
         console.log(values);
         setTimeout(() => {
-          this.setState({ loading: false, visible: false });
-          window.location.href = "/info";
+          this.props.parentCallback(false);
         }, 3000);
       } else {
         console.log(err);
@@ -60,8 +92,20 @@ class CreatePatientPage extends React.Component {
     });
   };
 
+  state = {
+    loading: false,
+    visible: true
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
   handleCancel = () => {
     this.setState({ visible: false });
+    this.props.parentCallback(false);
   };
 
   handleCheckbox = () => {
@@ -77,28 +121,38 @@ class CreatePatientPage extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { visible, loading } = this.state;
 
     return (
-      <div className="PatientInfoPage">
-        {/* <Button type="primary" onClick={this.showModal}>
-          Add Patient
-        </Button> */}
-        <div className="Sidebar">
-          <Sidebar value={"PatientList"} />
-        </div>
-        <div className="BackButton">
-          <Icon type="left" /> Back
-        </div>
-        <div className="PatientName">
-        	Add Patient
-        </div>
-        <div className="InfoTabs">
-          <Card
-            style={{ width: "100%" }}
-            tabList={Tabs}
-          >
-          <div className="CreatePatientForm">
-            <Form.Item key="surname">
+      <div className="create-patient-modal">
+        <Modal
+          visible={visible}
+          title="Add Patient"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Checkbox
+              key="add_another"
+              onChange={this.handleCheckbox}
+              style={{ float: "left" }}
+            >
+              Add another patient{" "}
+            </Checkbox>,
+            <Button key="cancel" onClick={this.handleCancel}>
+              Cancel
+            </Button>,
+            <Button
+              key="submit"
+              type="primary"
+              loading={loading}
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </Button>
+          ]}
+        >
+          <div className="create-patient-container">
+            <Form.Item label="Patient Surname" key="surname">
               {getFieldDecorator("surname", {
                 rules: [
                   {
@@ -113,7 +167,7 @@ class CreatePatientPage extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="givenName">
+            <Form.Item label="Patient Given Name(s)" key="givenName">
               {getFieldDecorator("givenName", {
                 rules: [
                   {
@@ -128,7 +182,7 @@ class CreatePatientPage extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="id">
+            <Form.Item label="PID" key="id">
               {getFieldDecorator("id", {
                 rules: [
                   { required: true, message: "Please input the patient's PID" }
@@ -141,7 +195,7 @@ class CreatePatientPage extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item key="dob">
+            <Form.Item label="Date of Birth" key="dob">
               {getFieldDecorator("dob", {
                 rules: [
                   {
@@ -155,13 +209,21 @@ class CreatePatientPage extends React.Component {
                   placeholder="Date of Birth (dd/mm/yyyy)"
                   onChange={this.handleDateChange}
                   maxLength={10}
-                  style={{ width: 300 }}
+                  style={{ width: 240 }}
                 />
               )}
             </Form.Item>
-            <Form.Item key="gender">
-              {getFieldDecorator("gender", { initialValue: "Gender" })(
-                <Select style={{ width: 300 }} onChange={handleChange}>
+            <Form.Item label="Gender" key="gender">
+              {getFieldDecorator("gender", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please input the patient's gender"
+                  }
+                ],
+                initialValue: "Gender"
+              })(
+                <Select style={{ width: 240 }} onChange={handleChange}>
                   <Option value="Gender" hidden>
                     Gender
                   </Option>
@@ -170,36 +232,23 @@ class CreatePatientPage extends React.Component {
                 </Select>
               )}
             </Form.Item>
-            <Form.Item key="study_type">
-              {getFieldDecorator("studyType", { initialValue: "0" })(
-                <Select style={{ width: 300 }} onChange={handleChange}>
-                  <Option value="0" hidden>
-                    Study Type
-                  </Option>
-                  <Option value="1">Initial Diagnostic Study</Option>
-                  <Option value="2">Repeat Diagnostic Study</Option>
-                  <Option value="3">CPAP Study</Option>
-                  <Option value="4">BiPAP Study</Option>
-                  <Option value="5">Repeat Therapeutic Study</Option>
-                  <Option value="6">Study to Assess Other Therapy</Option>
-                </Select>
-              )}
-            </Form.Item>
-            <Form.Item key="notes">
+            <Form.Item label="Notes" key="notes" onChange={handleChange}>
               {getFieldDecorator("notes")(
                 <TextArea placeholder="Notes" autoSize />
               )}
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
-            <Form.Item>
-      			<Button type="primary" >Submit</Button>
-      		</Form.Item>
-      		</div>
-      	</Card>
-        </div>
-       </div>
+            <Form.Item key="attached_referral">
+              <Upload {...props}>
+                <Button>
+                  <Icon type="upload" /> Click to Attach a Referral
+                </Button>
+              </Upload>
+            </Form.Item>
+          </div>
+        </Modal>
+      </div>
     );
   }
 }
-
-export default Form.create()(CreatePatientPage);
+export default Form.create()(CreatePatientModal);
