@@ -43,31 +43,11 @@
 }
 .login-form-button {
   width: 100%;
-  background-color: #ffffff;
 }
 
 .create-patient-modal {
   text-align: center;
   align-items: center;
-}
-
-.login-form-forgot {
-  float: right;
-}
-.login-form-button {
-  width: 100%;
-  background-color: #ffffff;
-}
-
-.login-form {
-  max-width: 300px;
-}
-.login-form-forgot {
-  float: right;
-}
-.login-form-button {
-  width: 100%;
-  background-color: #ffffff;
 }
 
 .Sidebar {
