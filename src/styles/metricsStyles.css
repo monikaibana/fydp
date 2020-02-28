@@ -1,33 +1,52 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 
-.metrics{
+.Metrics{
   font-family: "IBM Plex Sans";
+  background: #fafafa;
+  height: 100vh;
 }
-.BackButton {
+.PageTitle {
   position: absolute;
-  width: 90px;
-  height: 32px;
-  left: 325px;
-  top: 15px;
-  font-family: "IBM Plex Sans";
-  font-size: 20px;
-  line-height: 32px;
+  width: 351px;
+  height: 59px;
+  left: 295px;
+  top: 25px;
   text-align: left;
-  color: dodgerblue;
+}
+.PageTitle h2 {
+  font-family: "Montserrat";
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 48px;
+  line-height: 59px;
+  color: #000000;
+  text-align: left;
+}
+.MetricsTabs {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  width: 70vw;
 }
 .background {
   height: 100vh;
   width: 100vw;
   background-color: #fafafa;
 }
-
-.Introduction {
-  position: absolute;
-  left: 775px;
-  top: 160px;
-  width: 400px;
-  height: 80vh;
-  text-align: center;
-  padding: 10px;
+.MetricsTab{
+  text-align: left;
+  height: 500px;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
+}
+.MetricsTab h2{
+  font-family: "IBM Plex Sans";
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
 }
