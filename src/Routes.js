@@ -25,7 +25,7 @@ export default function Routes({ appProps }) {
         appProps={appProps}
       />
       <AppliedRoute
-        path="/info"
+        path="/info/:id"
         exact
         component={PatientInfo}
         appProps={appProps}

@@ -6,8 +6,9 @@ import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Input , Button, Icon} from "antd";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 const { Option } = Select;
-const { Search } = Input;
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
@@ -22,13 +23,11 @@ function requestBody() {
   };
   return body;
 }
-function handleSizeChange(value) {
-  const pageSize= {value};
-  this.state(pageSize);
-  console.log(`selected ${value}`);
-}
-
-
+function setId(id) {
+    id = id.toString();
+    console.log(id);
+    window.location.assign(`/info/${id}`)
+  }
 
 class PatientListPage extends React.Component {
   state = { db_data: [] };
@@ -103,25 +102,25 @@ class PatientListPage extends React.Component {
     //var dataSource = this.state.db_data["Items"];
     var StudyType = [];
     for (var i = 0; i < this.state.db_data.Count; i++) {
-      if (this.state.db_data["Items"][i].studyType == 1) {
+      if (this.state.db_data["Items"][i].studyType === 1) {
         StudyType[i]= "IDS"
       }
-      else if (this.state.db_data["Items"][i].studyType == 2) {
+      else if (this.state.db_data["Items"][i].studyType === 2) {
         StudyType[i]= "RDS-R"
       }
-      else if (this.state.db_data["Items"][i].studyType == 3) {
+      else if (this.state.db_data["Items"][i].studyType === 3) {
         StudyType[i]= "RDS-X"
       }
-      else if (this.state.db_data["Items"][i].studyType == 4) {
+      else if (this.state.db_data["Items"][i].studyType === 4) {
         StudyType[i]= "CPAP Study"
       }
-      else if (this.state.db_data["Items"][i].studyType == 5) {
+      else if (this.state.db_data["Items"][i].studyType === 5) {
         StudyType[i]= "BiPAP Study"
       }
-      else if (this.state.db_data["Items"][i].studyType == 6) {
+      else if (this.state.db_data["Items"][i].studyType === 6) {
         StudyType[i]= "Repeat Therapeutic Study"
       }
-      else if (this.state.db_data["Items"][i].studyType == 7) {
+      else if (this.state.db_data["Items"][i].studyType === 7) {
         StudyType[i]= "Study to Assess Other Therapy"
       }
       else {
@@ -130,15 +129,16 @@ class PatientListPage extends React.Component {
 
     };
     var dataSource = [];
-    for (var i = 0; i < this.state.db_data.Count; i++) {
-      dataSource[i] = {
-        name: this.state.db_data["Items"][i].surname + ", " + this.state.db_data["Items"][i].givenName,
-        id: this.state.db_data["Items"][i].id,
-        TIS: i + " days", // leave this for now
-        studyType: StudyType[i],
+    for (var count = 0; count < this.state.db_data.Count; count++) {
+      dataSource[count] = {
+        name: this.state.db_data["Items"][count].surname + ", " + this.state.db_data["Items"][count].givenName,
+        id: this.state.db_data["Items"][count].id,
+        TIS: count + " days", // leave this for now
+        studyType: StudyType[count],
         triageTag: "triage tag", //left for now
-        notes: this.state.db_data["Items"][i].notes,
-        Link: "Link" // left for now
+        notes: this.state.db_data["Items"][count].notes,
+        Link: "Link", // left for now
+        key: this.state.db_data["Items"][count].id
       };
     }
 
@@ -187,7 +187,7 @@ class PatientListPage extends React.Component {
         title: "Patient File",
         dataIndex: "Link",
         key: "Link",
-        render: text => <a>{text}</a>
+        render: text => <a href="list">{text}</a>
       }
     ];
 
@@ -255,14 +255,21 @@ class PatientListPage extends React.Component {
           </div>
           <div className="PerPage">items per page.</div> */}
           <div className="Table">
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              pagination={({ position: "bottom", alignment: "center" })}
-              scroll={{ y: 415 }}
-              size={"small"}
-              pagination={{showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100']}}
-            />
+            <Router>
+                <Table
+                  columns={columns}
+                  dataSource={dataSource}
+                  pagination={({ position: "bottom", alignment: "center", showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100'] })}
+                  scroll={{ y: 415 }}
+                  size={"small"}
+                  onRow={(record, rowIndex) => {
+                    return {
+                      onClick: event => {setId(record.id)}, // click row to open patient's info page with info/[PID] as url
+                    };
+                  }}
+                />
+              <Route path="/:id"/>
+            </Router>
           </div>
         </div>
       </div>

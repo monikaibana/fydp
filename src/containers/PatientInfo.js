@@ -1,8 +1,18 @@
 import React from "react";
-import { Tabs, Icon, Select, Form, Input, Button, DatePicker, Checkbox } from "antd";
+import {
+  Tabs,
+  Icon,
+  Select,
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  Checkbox
+} from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
-import moment from 'moment';
+import moment from "moment";
+import { getPatientInfo } from "../routes/api-routes";
 
 const { Option } = Select;
 function handleChange(value) {
@@ -14,29 +24,52 @@ function callback(key) {
   console.log(key);
 }
 
-const dateFormat = 'DD/MM/YYYY';
+const dateFormat = "DD/MM/YYYY";
 
 function onCheck(e) {
   console.log(`checked = ${e.target.checked}`);
 }
 
 function onBlur() {
-  console.log('blur');
+  console.log("blur");
 }
 
 function onFocus() {
-  console.log('focus');
+  console.log("focus");
 }
 
 function onSearch(val) {
-  console.log('search:', val);
+  console.log("search:", val);
+}
+
+function requestBody() {
+  var body = {
+    operation: "read",
+    tableName: "bluebook-patient",
+    payload: {
+      Key: {
+        id: 1000 // This is where the id number goes for the patient you are retrieving
+      }
+    }
+  };
+  return body;
 }
 
 class PatientInfoPage extends React.Component {
-  
   state = {
-    key: "Patient_Information"
+    key: "Patient_Information",
+    db_data: []
   };
+
+  async componentDidMount() {
+    try {
+      var objvalues = await getPatientInfo(requestBody());
+      this.setState({ db_data: objvalues });
+      console.log(this.state.db_data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   onTabChange = (key, type) => {
     console.log(key, type);
@@ -52,11 +85,10 @@ class PatientInfoPage extends React.Component {
 
   goBack() {
     this.props.history.goBack();
-  };
-  
+  }
 
   render() {
-    const {getFieldDecorator} = this.props.form;
+    const { getFieldDecorator } = this.props.form;
 
     return (
       <div className="PatientInfoPage">
@@ -82,7 +114,11 @@ class PatientInfoPage extends React.Component {
         </div>
         <div className="InfoTabs">
           <Tabs onChange={callback} type="card">
-            <TabPane tab="Patient Information" key="1" className="patientDetails">
+            <TabPane
+              tab="Patient Information"
+              key="1"
+              className="patientDetails"
+            >
               <div className="PatientInfo">
                 <div className="patientName">
                   <h2>
@@ -120,12 +156,14 @@ class PatientInfoPage extends React.Component {
                   <Form.Item key="dob">
                     {getFieldDecorator("dob")(
                       <Input
-                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                      placeholder="Date of Birth (dd/mm/yyyy)"
-                      onChange={this.handleDateChange}
-                      maxLength={10}
-                      style={{ width: 300 }}
-                    />
+                        prefix={
+                          <Icon type="calendar" style={{ fontSize: 13 }} />
+                        }
+                        placeholder="Date of Birth (dd/mm/yyyy)"
+                        onChange={this.handleDateChange}
+                        maxLength={10}
+                        style={{ width: 300 }}
+                      />
                     )}
                   </Form.Item>
                 </div>
@@ -193,7 +231,7 @@ class PatientInfoPage extends React.Component {
                       autoSize={{ minRows: 2, maxRows: 6 }}
                     />
                   </Form.Item>
-                    <div className="referralLink">
+                  <div className="referralLink">
                     <h2>
                       Link To Referral File <br />
                     </h2>
@@ -211,12 +249,14 @@ class PatientInfoPage extends React.Component {
                   <Form.Item key="study_date">
                     {getFieldDecorator("study_date")(
                       <Input
-                      prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
-                      placeholder="Study Date (dd/mm/yyyy)"
-                      onChange={this.handleDateChange}
-                      maxLength={10}
-                      style={{ width: 300 }}
-                    />
+                        prefix={
+                          <Icon type="calendar" style={{ fontSize: 13 }} />
+                        }
+                        placeholder="Study Date (dd/mm/yyyy)"
+                        onChange={this.handleDateChange}
+                        maxLength={10}
+                        style={{ width: 300 }}
+                      />
                     )}
                   </Form.Item>
                 </div>
@@ -292,16 +332,12 @@ class PatientInfoPage extends React.Component {
                 </div>
               </div>
             </TabPane>
-            <TabPane 
-            tab="Study Results" 
-            key="3"
-            className="studyResults"
-            >
+            <TabPane tab="Study Results" key="3" className="studyResults">
               <div className="scoring">
                 <div className="scorer">
                   Scorer
                   <Form.Item key="scorer">
-                  {getFieldDecorator("scorer", { initialValue: "0" })(
+                    {getFieldDecorator("scorer", { initialValue: "0" })(
                       <Select style={{ width: 300 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Scorer Name
@@ -312,27 +348,42 @@ class PatientInfoPage extends React.Component {
                   </Form.Item>
                 </div>
                 <div className="scoreDate">
-                  Scored Date <br/>
-                  <DatePicker key="scoreDate" format={dateFormat} style={{width: 300}} defaultValue={moment()}/> <br/><br/>
+                  Scored Date <br />
+                  <DatePicker
+                    key="scoreDate"
+                    format={dateFormat}
+                    style={{ width: 300 }}
+                    defaultValue={moment()}
+                  />{" "}
+                  <br />
+                  <br />
                 </div>
                 <div className="ahi">
                   AHI
                   <Form.Item key="AHI">
                     {getFieldDecorator("AHI")(
-                      <Input style={{width:300}} maxLength="2" placeholder="AHI"/>
+                      <Input
+                        style={{ width: 300 }}
+                        maxLength="2"
+                        placeholder="AHI"
+                      />
                     )}
                   </Form.Item>
                   REM AHI
                   <Form.Item key="REMAHI">
                     {getFieldDecorator("REMAHI")(
-                      <Input style={{width:300}} maxLength="2" placeholder="REM AHI"/>
+                      <Input
+                        style={{ width: 300 }}
+                        maxLength="2"
+                        placeholder="REM AHI"
+                      />
                     )}
                   </Form.Item>
                 </div>
-                <div className= "score">
+                <div className="score">
                   Sleep Study Score
                   <Form.Item key="studyScore">
-                  {getFieldDecorator("studyScore", { initialValue: "0" })(
+                    {getFieldDecorator("studyScore", { initialValue: "0" })(
                       <Select style={{ width: 300 }} onChange={handleChange}>
                         <Option value="0" hidden>
                           Score
@@ -351,8 +402,8 @@ class PatientInfoPage extends React.Component {
                 <div className="studyTag">
                   Study Tag
                   <Form.Item key="studyTag">
-                    {getFieldDecorator("studyTag", {initialValue: "0"})(
-                      <Select style={{width:300}} onChange={handleChange}>
+                    {getFieldDecorator("studyTag", { initialValue: "0" })(
+                      <Select style={{ width: 300 }} onChange={handleChange}>
                         <Option value="0">None</Option>
                         <Option value="1">Tag 1</Option>
                         <Option value="2">Tag 2</Option>
@@ -366,22 +417,24 @@ class PatientInfoPage extends React.Component {
                   <Form.Item key="referringPhysician">
                     {getFieldDecorator("referringPhysician")(
                       <Select
-                      showSearch
-                      style={{ width: 300 }}
-                      placeholder="Referring Physician"
-                      optionFilterProp="children"
-                      onChange={handleChange}
-                      onFocus={onFocus}
-                      onBlur={onBlur}
-                      onSearch={onSearch}
-                      filterOption={(input, option) =>
-                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="Dr. Goodman">Dr. Goodman</Option>
-                      <Option value="Dr. Gooderman">Dr. Gooderman</Option>
-                      <Option value="Dr. Goodestman">Dr. Goodestman</Option>
-                    </Select>,
+                        showSearch
+                        style={{ width: 300 }}
+                        placeholder="Referring Physician"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="Dr. Goodman">Dr. Goodman</Option>
+                        <Option value="Dr. Gooderman">Dr. Gooderman</Option>
+                        <Option value="Dr. Goodestman">Dr. Goodestman</Option>
+                      </Select>
                     )}
                   </Form.Item>
                 </div>
@@ -396,33 +449,27 @@ class PatientInfoPage extends React.Component {
               key="4"
               className="interpretationDetails"
             >
-                <div className="studyDets">
-                  <div className="AHI">
-                    <h2>
-                      AHI
-                    </h2>
-                    <b>25</b>
-                  </div>
-                  <div className="REMAHI">
-                    <h2>
-                      REM AHI
-                    </h2>
-                    <b>12</b>
-                  </div>
-                  <div className="studyScore">
-                    <h2>
-                      Sleep Study Score
-                    </h2>
-                    <b>4</b>
-                  </div>
-                  <div className="StudyLink">
-                    <h2>
-                      Link To Study <br />
-                    </h2>
-                    <p> Link </p>
-                  </div>
+              <div className="studyDets">
+                <div className="AHI">
+                  <h2>AHI</h2>
+                  <b>25</b>
                 </div>
-                <div className="Interpretation">
+                <div className="REMAHI">
+                  <h2>REM AHI</h2>
+                  <b>12</b>
+                </div>
+                <div className="studyScore">
+                  <h2>Sleep Study Score</h2>
+                  <b>4</b>
+                </div>
+                <div className="StudyLink">
+                  <h2>
+                    Link To Study <br />
+                  </h2>
+                  <p> Link </p>
+                </div>
+              </div>
+              <div className="Interpretation">
                 <div className="InterpretingDoctor">
                   <h2>
                     Interpreting Doctor <br />
@@ -443,11 +490,17 @@ class PatientInfoPage extends React.Component {
                   <h2>
                     Interpretation Date <br />
                   </h2>
-                  <DatePicker key="interpretationDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/>
+                  <DatePicker
+                    key="interpretationDate"
+                    format={dateFormat}
+                    style={{ width: 200 }}
+                    defaultValue={moment()}
+                  />{" "}
+                  <br />
                 </div>
                 <div className="Rating">
                   <h2>
-                     Rating <br />{" "}
+                    Rating <br />{" "}
                   </h2>
                   <Form.Item>
                     <Select
@@ -463,9 +516,13 @@ class PatientInfoPage extends React.Component {
                     </Select>
                   </Form.Item>
                 </div>
-                <Checkbox className= "urgentAction" onChange={onCheck}>Urgent Action Required</Checkbox>
+                <Checkbox className="urgentAction" onChange={onCheck}>
+                  Urgent Action Required
+                </Checkbox>
                 <div className="Comments">
-                  <h2> <br/>
+                  <h2>
+                    {" "}
+                    <br />
                     Special Comments <br />
                   </h2>
                   <Form.Item>
@@ -481,29 +538,37 @@ class PatientInfoPage extends React.Component {
             <TabPane tab="Post-Study Details" key="5">
               <div className="postStudyDetails">
                 <div className="reportSendDate">
-                  Date Report Sent <br/>
-                  <DatePicker key="reportSendDate" format={dateFormat} style={{width: 200}} defaultValue={moment()}/> <br/><br/>
+                  Date Report Sent <br />
+                  <DatePicker
+                    key="reportSendDate"
+                    format={dateFormat}
+                    style={{ width: 200 }}
+                    defaultValue={moment()}
+                  />{" "}
+                  <br />
+                  <br />
                   <Checkbox onChange={onCheck}>Study Billed</Checkbox>
                 </div>
               </div>
             </TabPane>
           </Tabs>
           <div className="bottomButtons">
-          <Button type='danger' ghost htmlType="delete" className="archive-button">
-            Archive Patient
-          </Button>
-            <div className="changeStatus">
-            Change Status to: &nbsp;
-            </div>
+            <Button
+              type="danger"
+              ghost
+              htmlType="delete"
+              className="archive-button"
+            >
+              Archive Patient
+            </Button>
+            <div className="changeStatus">Change Status to: &nbsp;</div>
             <Form.Item className="statusUpdate">
               <Select
                 defaultValue="Referral Received"
                 onChange={handleChange}
-                style={{width: 250}}
+                style={{ width: 250 }}
               >
-                <Option value="Referral Received">
-                  Referral Received
-                </Option>
+                <Option value="Referral Received">Referral Received</Option>
                 <Option value="Triaged">Triaged</Option>
                 <Option value="Consultation Booked">Consultation Booked</Option>
                 <Option value="Consultation Complete">
@@ -529,12 +594,22 @@ class PatientInfoPage extends React.Component {
                 </Option>
               </Select>
             </Form.Item>
-          <Button type="primary" htmlType="submit" className="save-button" style={{width: 75}}>
-            Save
-          </Button>
-          <Button type='normal' htmlType="cancel" className="cancel-button" style={{width: 75}}>
-            Cancel
-          </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="save-button"
+              style={{ width: 75 }}
+            >
+              Save
+            </Button>
+            <Button
+              type="normal"
+              htmlType="cancel"
+              className="cancel-button"
+              style={{ width: 75 }}
+            >
+              Cancel
+            </Button>
           </div>
         </div>
       </div>
