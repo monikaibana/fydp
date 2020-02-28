@@ -3,18 +3,35 @@ import "../styles/mainstyles.css";
 import logo from "../placeholder.svg";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
-import Amplify, { Auth } from "aws-amplify";
-import awsconfig from "../aws-exports.js";
-Amplify.configure(awsconfig);
+import { Auth } from "aws-amplify";
+
+async function SignIn(username, password) {
+  try {
+    const user = await Auth.signIn(username, password);
+    if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
+      // Confirm the temporary password as the confirmed password
+      await Auth.completeNewPassword(
+        user, // the Cognito User Object
+        password // the "new" password
+      ).then((window.location.href = "/list"));
+    } else {
+      // The user directly signs in
+      console.log(user);
+      window.location.href = "/list";
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const FormItem = Form.Item;
 class LoginPage extends React.Component {
   signIn = async (user, pass) => {
     try {
-      await Auth.signIn(user, pass);
+      SignIn(user, pass);
       console.log("Success");
       this.props.userHasAuthenticated(true);
-      window.location.href = "/list";
+      // window.location.href = "/";
     } catch (e) {
       console.log(e.message);
       alert(
