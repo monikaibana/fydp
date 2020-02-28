@@ -27,15 +27,9 @@ class HomePage extends React.Component {
             <br />
             <br />
           </h3>
-          {this.props.isAuthenticated ? (
-            <div />
-          ) : (
-            <>
-              <Button type="primary" size="large" href="login">
-                Login
-              </Button>
-            </>
-          )}
+          <Button type="primary" size="large" href="login">
+            Login
+          </Button>
         </div>
       </div>
     );
