@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
+
+.metrics{
+  font-family: "IBM Plex Sans";
+}
+.BackButton {
+  position: absolute;
+  width: 90px;
+  height: 32px;
+  left: 325px;
+  top: 15px;
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+  line-height: 32px;
+  text-align: left;
+  color: dodgerblue;
+}
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fafafa;
+}
+
+.Introduction {
+  position: absolute;
+  left: 775px;
+  top: 160px;
+  width: 400px;
+  height: 80vh;
+  text-align: center;
+  padding: 10px;
+}

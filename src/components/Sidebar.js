@@ -15,6 +15,9 @@ class Sidebar extends React.Component {
   state = {
     redirectHome: false
   };
+  state = {
+    redirectMetrics: false
+  };
   callbackFunction = () => {
     this.setState({ isModalVisible: false });
   };
@@ -28,12 +31,23 @@ class Sidebar extends React.Component {
       redirectHome: true
     });
   };
+  setRedirectMetrics = () => {
+    this.setState({
+      redirectMetrics: true
+    });
+  };
   renderRedirect = () => {
     if (this.state.redirect) {
       this.setState({
         redirect: false
       });
       return <Redirect to="/list" />;
+    }
+    if (this.state.redirectMetrics) {
+      this.setState({
+        redirectMetrics: false
+      });
+      return <Redirect to="/metrics" />;
     }
     if (this.state.redirectHome) {
       this.setState({
@@ -69,13 +83,12 @@ class Sidebar extends React.Component {
         <Menu
           defaultSelectedKeys={[key]}
           mode="vertical"
-          onClick={this.setRedirect}
         >
-          <Menu.Item key="1" align="left">
+          <Menu.Item key="1" align="left" onClick={this.setRedirect}>
             <Icon type="contacts" />
             Patient Listing
           </Menu.Item>
-          <Menu.Item key="2" align="left">
+          <Menu.Item key="2" align="left" onClick={this.setRedirectMetrics}>
             <Icon type="monitor" />
             Metrics
           </Menu.Item>
