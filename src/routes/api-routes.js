@@ -58,3 +58,19 @@ export function getPatientInfo(body) {
       );
     });
 }
+
+export function archivePatient(body) {
+  var params = {};
+  var pathTemplate = "";
+  var method = "POST";
+  var additionalParams = {};
+  apigClient
+    .invokeApi(params, pathTemplate, method, additionalParams, body)
+    .then(function(result) {
+      console.log("Patient archived.");
+    })
+    .catch(function(result) {
+      console.log(result);
+      alert("Error with archiving patient, please try again later.");
+    });
+}
