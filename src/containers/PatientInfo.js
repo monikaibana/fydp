@@ -12,6 +12,7 @@ import {
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
 import moment from "moment";
+import { getPatientInfo } from "../routes/api-routes";
 
 const { Option } = Select;
 function handleChange(value) {
@@ -41,10 +42,34 @@ function onSearch(val) {
   console.log("search:", val);
 }
 
+function requestBody() {
+  var body = {
+    operation: "read",
+    tableName: "bluebook-patient",
+    payload: {
+      Key: {
+        id: 1000 // This is where the id number goes for the patient you are retrieving
+      }
+    }
+  };
+  return body;
+}
+
 class PatientInfoPage extends React.Component {
   state = {
-    key: "Patient_Information"
+    key: "Patient_Information",
+    db_data: []
   };
+
+  async componentDidMount() {
+    try {
+      var objvalues = await getPatientInfo(requestBody());
+      this.setState({ db_data: objvalues });
+      console.log(this.state.db_data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   onTabChange = (key, type) => {
     console.log(key, type);

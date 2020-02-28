@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Input, Button, Icon } from "antd";
+
 const { Option } = Select;
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -21,6 +22,12 @@ function requestBody() {
   };
   return body;
 }
+
+function setId(id) {
+    id = id.toString();
+    console.log(id);
+    window.location.assign(`/info/${id}`)
+  }
 
 class PatientListPage extends React.Component {
   state = { db_data: [] };
@@ -184,7 +191,7 @@ class PatientListPage extends React.Component {
         title: "Patient File",
         dataIndex: "Link",
         key: "Link",
-        render: text => <p>{text}</p>
+        render: text => <a href="list">{text}</a>
       }
     ];
 
