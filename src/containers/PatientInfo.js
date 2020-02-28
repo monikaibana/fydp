@@ -93,7 +93,8 @@ class PatientInfoPage extends React.Component {
     return (
       <>
         {this.props.isAuthenticated ? (
-      <div className="PatientInfoPage">
+          <>
+                 <div className="PatientInfoPage">
         <Sidebar value={"PatientInfo"} />
         <Button
           type="link"
@@ -690,64 +691,51 @@ class PatientInfoPage extends React.Component {
                 defaultValue="Referral Received"
                 onChange={handleChange}
                 style={{width: 250}}
-                    >
-                      <Option value="Referral Received">
-                        Referral Received
-                      </Option>
-                      <Option value="Triaged">Triaged</Option>
-                      <Option value="Consultation Booked">
-                        Consultation Booked
-                      </Option>
-                      <Option value="Consultation Complete">
-                        Consultation Complete
-                      </Option>
-                      <Option value="Study Booked">Study Booked</Option>
-                      <Option value="Study Data Collected">
-                        Study Data Collected
-                      </Option>
-                      <Option value="Study Scored">Study Scored</Option>
-                      <Option value="Results Interpreted by Physician">
-                        Results Interpreted by Physician
-                      </Option>
-                      <Option value="Study Follow-up booked">
-                        Study Follow-up booked
-                      </Option>
-                      <Option value="Follow-up complete">
-                        Follow-up Complete
-                      </Option>
-                      <Option value="Treatment Follow-up Booked">
-                        Treatment Follow-up Booked
-                      </Option>
-                      <Option value="Treatment Follow-up Complete">
-                        Treatment Follow-up Complete
-                      </Option>
-                    </Select>
-                  </Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="save-button"
-                    style={{ width: 75 }}
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    type="normal"
-                    className="cancel-button"
-                    style={{ width: 75 }}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </div>
+              >
+                <Option value="Referral Received">
+                  Referral Received
+                </Option>
+                <Option value="Triaged">Triaged</Option>
+                <Option value="Consultation Booked">Consultation Booked</Option>
+                <Option value="Consultation Complete">
+                  Consultation Complete
+                </Option>
+                <Option value="Study Booked">Study Booked</Option>
+                <Option value="Study Data Collected">
+                  Study Data Collected
+                </Option>
+                <Option value="Study Scored">Study Scored</Option>
+                <Option value="Results Interpreted by Physician">
+                  Results Interpreted by Physician
+                </Option>
+                <Option value="Study Follow-up booked">
+                  Study Follow-up booked
+                </Option>
+                <Option value="Follow-up complete">Follow-up Complete</Option>
+                <Option value="Treatment Follow-up Booked">
+                  Treatment Follow-up Booked
+                </Option>
+                <Option value="Treatment Follow-up Complete">
+                  Treatment Follow-up Complete
+                </Option>
+              </Select>
+            </Form.Item>
+          <Button type="primary" htmlType="submit" className="save-button" style={{width: 75}}>
+            Save
+          </Button>
+          <Button type='normal' htmlType="cancel" className="cancel-button" style={{width: 75}}>
+            Cancel
+          </Button>
+          </div>
+        </div>
             </div>
-          </>
-        ) : (
-          <p>Access Denied</p>
-        )}
-      </>
-    );
-  }
-}
+           </>
+         ) : (
+           <p>Access Denied</p>
+         )}
+       </>
+     );
+   }
+ }
 
 export default Form.create()(PatientInfoPage);
