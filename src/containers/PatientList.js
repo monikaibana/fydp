@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
 // import { Auth } from "aws-amplify";
 import { Form, Select, Table, Input, Button, Icon } from "antd";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const { Option } = Select;
 function handleChange(value) {
@@ -25,10 +25,10 @@ function requestBody() {
 }
 
 function setId(id) {
-    id = id.toString();
-    console.log(id);
-    window.location.assign(`/info/${id}`)
-  }
+  id = id.toString();
+  console.log(id);
+  window.location.assign(`/info/${id}`);
+}
 
 class PatientListPage extends React.Component {
   state = { db_data: [] };
@@ -267,25 +267,32 @@ class PatientListPage extends React.Component {
             </Form.Item>
           </div>
           <div className="PerPage">items per page.</div> */}
-            <div className="Table">
-              <Router>
-                  <Table
-                    columns={columns}
-                    dataSource={dataSource}
-                    pagination={({ position: "bottom", alignment: "center", showSizeChanger: true, pageSizeOptions: ['10', '25', '50', '100'] })}
-                    scroll={{ y: 415 }}
-                    size={"small"}
-                    onRow={(record, rowIndex) => {
-                      return {
-                        onClick: event => {setId(record.id)}, // click row to open patient's info page with info/[PID] as url
-                      };
-                    }}
-                  />
-                <Route path="/:id"/>
-              </Router>
+                <div className="Table">
+                  <Router>
+                    <Table
+                      columns={columns}
+                      dataSource={dataSource}
+                      pagination={{
+                        position: "bottom",
+                        alignment: "center",
+                        showSizeChanger: true,
+                        pageSizeOptions: ["10", "25", "50", "100"]
+                      }}
+                      scroll={{ y: 415 }}
+                      size={"small"}
+                      onRow={(record, rowIndex) => {
+                        return {
+                          onClick: event => {
+                            setId(record.id);
+                          } // click row to open patient's info page with info/[PID] as url
+                        };
+                      }}
+                    />
+                    <Route path="/:id" />
+                  </Router>
+                </div>
+              </div>
             </div>
-            </div>
-          </div>
           </>
         ) : (
           <p>Access Denied</p>
