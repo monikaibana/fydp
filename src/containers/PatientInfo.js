@@ -60,11 +60,11 @@ function archivePatientBody() {
     tableName: "bluebook-patient",
     payload: {
       Key: {
-        id: 122 // This is where the id number goes for the patient you are retrieving
+        id: 1000 // This is where the id number goes for the patient you are retrieving
       },
       UpdateExpression: "set #st = :archive",
       ExpressionAttributeValues: {
-        ":archive": 0
+        ":archive": 13
       },
       ExpressionAttributeNames: {
         "#st": "status"
