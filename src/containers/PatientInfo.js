@@ -60,11 +60,11 @@ function archivePatientBody() {
     tableName: "bluebook-patient",
     payload: {
       Key: {
-        id: 1000 // This is where the id number goes for the patient you are retrieving
+        id: 122 // This is where the id number goes for the patient you are retrieving
       },
       UpdateExpression: "set #st = :archive",
       ExpressionAttributeValues: {
-        ":archive": 13
+        ":archive": 0
       },
       ExpressionAttributeNames: {
         "#st": "status"
@@ -106,8 +106,10 @@ class PatientInfoPage extends React.Component {
     this.props.history.goBack();
   }
 
-  onArchive = () => {
-    archivePatient(archivePatientBody());
+  onArchive = async () => {
+    await archivePatient(archivePatientBody()).then(
+      (window.location.href = "/list")
+    );
   };
 
   render() {
@@ -811,7 +813,7 @@ class PatientInfoPage extends React.Component {
                     className="archive-button"
                     onClick={() => {
                       this.onArchive();
-                      window.location.href = "/list";
+                      // window.location.href = "/list";
                     }}
                   >
                     Archive Patient

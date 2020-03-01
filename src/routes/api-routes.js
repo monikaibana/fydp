@@ -64,7 +64,7 @@ export function archivePatient(body) {
   var pathTemplate = "";
   var method = "POST";
   var additionalParams = {};
-  apigClient
+  return apigClient
     .invokeApi(params, pathTemplate, method, additionalParams, body)
     .then(function(result) {
       console.log("Patient archived.");
