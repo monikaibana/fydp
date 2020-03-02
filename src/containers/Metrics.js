@@ -1,19 +1,68 @@
 import React from "react";
 import "../styles/metricsStyles.css";
-import { Button, Icon, Tabs } from "antd";
+import { Tabs, Button, Radio } from "antd";
 import Sidebar from "../components/Sidebar.js";
+import StatusGraph from "./metrics_page_images/current-patient-statuses-graph.png";
+import StatusTable from "./metrics_page_images/current-patient-statuses-table.png";
+import QaGraph from "./metrics_page_images/qa-graph.png";
+import QaTable from "./metrics_page_images/qa-table.png";
+import TrendsGraph from "./metrics_page_images/trends-graph.png";
+import TrendsTable from "./metrics_page_images/trends-table.png";
 
 const { TabPane } = Tabs;
 
 function callback(key) {
   console.log(key);
-}
+};
+function displayStatusImage(e) {
+  var value = e.target.value;
+  var graph = document.getElementById("statusGraph");
+  var table = document.getElementById("statusTable");
+  if (value==="statusGraph") {
+    console.log("graph");
+    table.style.display = "none";
+    graph.style.display = "block";
+  };
+  if (value==="statusTable") {
+    graph.style.display = "none";
+    table.style.display = "block";
+  };
+};
+function displayQaImage(e) {
+  var value = e.target.value;
+  var graph = document.getElementById("QaGraph");
+  var table = document.getElementById("QaTable");
+  if (value==="QaGraph") {
+    console.log("graph");
+    table.style.display = "none";
+    graph.style.display = "block";
+  };
+  if (value==="QaTable") {
+    graph.style.display = "none";
+    table.style.display = "block";
+  };
+};
+function displayTrendsImage(e) {
+  var value = e.target.value;
+  var graph = document.getElementById("TrendsGraph");
+  var table = document.getElementById("TrendsTable");
+  if (value==="TrendsGraph") {
+    console.log("graph");
+    table.style.display = "none";
+    graph.style.display = "block";
+  };
+  if (value==="TrendsTable") {
+    graph.style.display = "none";
+    table.style.display = "block";
+  };
+};
 
 class MetricsPage extends React.Component {
   onTabChange = (key, type) => {
     console.log(key, type);
     this.setState({ [type]: key });
   };
+
   render() {
     return (
       <>
@@ -31,11 +80,73 @@ class MetricsPage extends React.Component {
               <div className="MetricsTabs">
                 <Tabs onChange={callback} type="card">
                   {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
-                  <TabPane tab="Metrics 1" key="1" className="MetricsTab">
+                  <TabPane tab="Current Patient Statuses" key="1" className="MetricsTab">
+                    <div className="ImageFrame">
+                      <div className="TabTitle">
+                        <h2>Current Patient Statuses</h2>
+                      </div>
+                      <div className="StatusGraph">
+                        <img id="statusGraph" src={StatusGraph} alt="Current Patient Status Graph" style={{ height: 400 }} />
+                      </div>
+                      <div className="StatusTable">
+                        <img id="statusTable" src={StatusTable} alt="Current Patient Status Table" style={{ height: 400, display: "none" }} />
+                      </div>
+                    </div>
+                    <div className="ToggleView">
+                      <Radio.Group defaultValue="statusGraph" onChange={displayStatusImage}>
+                        <Radio.Button value="statusGraph">View as Graph</Radio.Button>
+                        <Radio.Button value="statusTable">View as Table</Radio.Button>
+                      </Radio.Group>
+                    </div>
+                    <div className="SaveButton">
+                      <Button type="primary" icon="download" >Export as CSV</Button>
+                    </div>
                   </TabPane>
-                  <TabPane tab="Metrics 2" key="2" className="MetricsTab">
+                {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 2 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+                  <TabPane tab="Quality Assurance" key="2" className="MetricsTab">
+                    <div className="ImageFrame">
+                      <div className="TabTitle">
+                        <h2>Quality Assurance</h2>
+                      </div>
+                      <div className="StatusGraph">
+                        <img id="QaGraph" src={QaGraph} alt="Quality Assurance Graph" style={{ height: 400 }} />
+                      </div>
+                      <div className="StatusTable">
+                        <img id="QaTable" src={QaTable} alt="Quality Assurance Table" style={{ height: 400, display: "none" }} />
+                      </div>
+                    </div>
+                    <div className="ToggleView">
+                      <Radio.Group defaultValue="QaGraph" onChange={displayQaImage}>
+                        <Radio.Button value="QaGraph">View as Graph</Radio.Button>
+                        <Radio.Button value="QaTable">View as Table</Radio.Button>
+                      </Radio.Group>
+                    </div>
+                    <div className="SaveButton">
+                      <Button type="primary" icon="download" >Export as CSV</Button>
+                    </div>
                   </TabPane>
-                  <TabPane tab="Metrics 3" key="3" className="MetricsTab">
+                {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 3 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+                  <TabPane tab="Trends" key="3" className="MetricsTab">
+                    <div className="ImageFrame">
+                      <div className="TabTitle">
+                        <h2>Trends</h2>
+                      </div>
+                      <div className="StatusGraph">
+                        <img id="TrendsGraph" src={TrendsGraph} alt="Trends Graph" style={{ height: 400 }} />
+                      </div>
+                      <div className="StatusTable">
+                        <img id="TrendsTable" src={TrendsTable} alt="Trends Table" style={{ height: 350, display: "none" }} />
+                      </div>
+                    </div>
+                    <div className="ToggleView">
+                      <Radio.Group defaultValue="TrendsGraph" onChange={displayTrendsImage}>
+                        <Radio.Button value="TrendsGraph">View as Graph</Radio.Button>
+                        <Radio.Button value="TrendsTable">View as Table</Radio.Button>
+                      </Radio.Group>
+                    </div>
+                    <div className="SaveButton">
+                      <Button type="primary" icon="download" >Export as CSV</Button>
+                    </div>
                   </TabPane>
                 </Tabs>
               </div>
