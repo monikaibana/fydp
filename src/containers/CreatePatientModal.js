@@ -15,6 +15,8 @@ import {
 import createPatient from "../routes/api-routes";
 const { Option } = Select;
 const { TextArea } = Input;
+const today = new Date().toISOString().slice(0, 10);
+
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
@@ -52,7 +54,9 @@ function requestBody(values) {
         givenName: values.givenName,
         dob: formatDate(values.dob),
         gender: values.gender,
-        notes: values.notes
+        notes: values.notes,
+        status: 1,
+        time_1: today
       }
     }
   };
