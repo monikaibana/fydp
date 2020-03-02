@@ -207,8 +207,7 @@ class PatientListPage extends React.Component {
         studyType: StudyType[j],
         triageTag: triageTag[j],
         notes: this.state.db_data["Items"][j].notes,
-        Link: "Link", // left for now
-        lastUpdated: lastUpdated
+        Link: "Link" // left for now
       };
     }
 
