@@ -11,7 +11,7 @@ import {
 } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
-import { getPatientInfo } from "../routes/api-routes";
+import { getPatientInfo, archivePatient } from "../routes/api-routes";
 
 const { Option } = Select;
 function handleChange(value) {
@@ -41,13 +41,33 @@ function onSearch(val) {
   console.log("search:", val);
 }
 
-function requestBody() {
+function getPatientInfoBody() {
   var body = {
     operation: "read",
     tableName: "bluebook-patient",
     payload: {
       Key: {
         id: 1000 // This is where the id number goes for the patient you are retrieving
+      }
+    }
+  };
+  return body;
+}
+
+function archivePatientBody() {
+  var body = {
+    operation: "update",
+    tableName: "bluebook-patient",
+    payload: {
+      Key: {
+        id: 1000 // This is where the id number goes for the patient you are retrieving
+      },
+      UpdateExpression: "set #st = :archive",
+      ExpressionAttributeValues: {
+        ":archive": 13
+      },
+      ExpressionAttributeNames: {
+        "#st": "status"
       }
     }
   };
@@ -62,7 +82,7 @@ class PatientInfoPage extends React.Component {
 
   loadData = async () => {
     try {
-      var objvalues = await getPatientInfo(requestBody());
+      var objvalues = await getPatientInfo(getPatientInfoBody());
       this.setState({ db_data: objvalues, didLoad: true });
       console.log(this.state.db_data);
     } catch (err) {
@@ -107,8 +127,15 @@ class PatientInfoPage extends React.Component {
     };
   };
 
+  onArchive = async () => {
+    await archivePatient(archivePatientBody()).then(
+      (window.location.href = "/list")
+    );
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
+    console.log(window.location.href);
 
     return (
       <>
@@ -801,7 +828,15 @@ class PatientInfoPage extends React.Component {
                 </Tabs>
                 {/* ––––––––––––––––––––––––––––––––––––––––––– Buttons ––––––––––––––––––––––––––––––––––––––––––––––– */}
                 <div className="bottomButtons">
-                  <Button type="danger" ghost className="archive-button">
+                  <Button
+                    type="danger"
+                    ghost
+                    className="archive-button"
+                    onClick={() => {
+                      this.onArchive();
+                      // window.location.href = "/list";
+                    }}
+                  >
                     Archive Patient
                   </Button>
                   <div className="changeStatus">Change Status to: &nbsp;</div>
