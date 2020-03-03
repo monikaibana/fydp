@@ -7,7 +7,8 @@ import {
   Input,
   Button,
   DatePicker,
-  Checkbox
+  Checkbox,
+  message
 } from "antd";
 import "../styles/PatientInfoStyles.css";
 import Sidebar from "../components/Sidebar.js";
@@ -89,6 +90,12 @@ class PatientInfoPage extends React.Component {
       console.log(err);
     }
   }
+  handleSave() {
+    message.loading("Saving..", 0.5)
+      .then(() => message.success("Saved", 0.5))
+      .then(() => message.info("Your updates have been sucessfully saved", 0.5))
+      .then(() => window.location.href = "/list")
+  };
 
   onTabChange = (key, type) => {
     console.log(key, type);
@@ -862,6 +869,7 @@ class PatientInfoPage extends React.Component {
                     htmlType="submit"
                     className="save-button"
                     style={{ width: 75 }}
+                    onClick={this.handleSave}
                   >
                     Save
                   </Button>
