@@ -92,9 +92,8 @@ class PatientInfoPage extends React.Component {
   }
   handleSave() {
     message.loading("Saving..", 0.5)
-      .then(() => message.success("Saved", 0.5))
-      .then(() => message.info("Your updates have been sucessfully saved", 0.5))
-      .then(() => window.location.href = "/list")
+    .then(() => message.success("Saved", 0.5))
+    .then(() => window.location.href = "/list")
   };
 
   onTabChange = (key, type) => {
