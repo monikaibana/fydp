@@ -147,38 +147,65 @@ class PatientListPage extends React.Component {
     this.setState({ filter: parseInt(value) });
   };
 
+  getTimeInStatus = lastUpdated => {
+    const today = new Date();
+    const updateDate = new Date(lastUpdated);
+    var one_day = 1000 * 60 * 60 * 24;
+    var timeInStatus = (today.getTime() - updateDate.getTime()) / one_day;
+    if (isNaN(timeInStatus)) {
+      return null;
+    } else {
+      return Math.floor(timeInStatus) - 1;
+    }
+  };
+
   render() {
     var StudyType = [];
+    var triageTag = [];
+    const studyTypeString = [
+      "IDS",
+      "RDS-R",
+      "RDS-X",
+      "CPAP Study",
+      "BiPAP Study",
+      "Repeat Therapeutic Study",
+      "Study to Assess Other Therapy"
+    ];
+    const triageTagString = ["Urgent", "ASAP", "HP CL", "HP", "Routine"];
     for (var i = 0; i < this.state.db_data.Count; i++) {
-      if (this.state.db_data["Items"][i].studyType === 1) {
-        StudyType[i] = "IDS";
-      } else if (this.state.db_data["Items"][i].studyType === 2) {
-        StudyType[i] = "RDS-R";
-      } else if (this.state.db_data["Items"][i].studyType === 3) {
-        StudyType[i] = "RDS-X";
-      } else if (this.state.db_data["Items"][i].studyType === 4) {
-        StudyType[i] = "CPAP Study";
-      } else if (this.state.db_data["Items"][i].studyType === 5) {
-        StudyType[i] = "BiPAP Study";
-      } else if (this.state.db_data["Items"][i].studyType === 6) {
-        StudyType[i] = "Repeat Therapeutic Study";
-      } else if (this.state.db_data["Items"][i].studyType === 7) {
-        StudyType[i] = "Study to Assess Other Therapy";
+      if (this.state.db_data["Items"][i].studyType) {
+        StudyType[i] =
+          studyTypeString[this.state.db_data["Items"][i].studyType - 1];
       } else {
         StudyType[i] = "Undetermined";
       }
+      if (this.state.db_data["Items"][i].priority) {
+        triageTag[i] =
+          triageTagString[this.state.db_data["Items"][i].priority - 1];
+      }
     }
+
     var dataSource = [];
     for (var j = 0; j < this.state.db_data.Count; j++) {
+      var lastUpdated = "";
+      var item = this.state.db_data["Items"][j];
+      for (var k = 13; k > 0; k--) {
+        var timeVar = "time_" + k.toString();
+        if (item[timeVar]) {
+          lastUpdated = item[timeVar];
+          break;
+        }
+      }
+
       dataSource[j] = {
         name:
           this.state.db_data["Items"][j].surname +
           ", " +
           this.state.db_data["Items"][j].givenName,
         id: this.state.db_data["Items"][j].id,
-        TIS: j, // leave this for now
+        TIS: this.getTimeInStatus(lastUpdated),
         studyType: StudyType[j],
-        triageTag: "triage tag", //left for now
+        triageTag: triageTag[j],
         notes: this.state.db_data["Items"][j].notes,
         Link: "Link" // left for now
       };
