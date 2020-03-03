@@ -6,8 +6,8 @@
   width: 100vw;
   background-color: #fafafa;
 }
-.NavBar{
-  position: absolute;
+.NavBar {
+  position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
@@ -16,27 +16,7 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
 }
-.NavBarLogin{
-  position: absolute;
-  margin-top: 10px;
-  right: 10px;
-}
-.NavBarContact{
-  position: absolute;
-  margin-top: 10px;
-  right: 170px;
-}
-.MedicalPhoto {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 50vw;
-  height: 85vh;
-  background: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
-  background-size: 100% 100%;
-  border-radius: 10px 10px 10px 10px;
-}
-.NavBarLogo button {
+.NavBarLogo h2 {
   position: absolute;
   border: none;
   background-color: inherit;
@@ -48,26 +28,75 @@
   height: 70px;
   letter-spacing: -0.05em;
   color: #2196f3;
-  left: 0px;
-  top: -5px;
+  left: 10px;
+  top: 10px;
 }
-
-
-
-.Introduction {
+.NavBarContact {
   position: absolute;
-  left: 775px;
-  top: 160px;
-  width: 400px;
-  height: 80vh;
+  margin-top: 10px;
+  right: 170px;
+}
+.NavBarLogin {
+  position: absolute;
+  margin-top: 10px;
+  right: 10px;
+}
+.MountainsPhoto {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
+  background-size: 100% 100%;
+}
+.SloganContainerBackground {
+  position: absolute;
+  left: 10vw;
+  right: 10vw;
+  top: 17vh;
+  height: 400px;
+  background: #ffffff;
+  opacity: 0.8;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
-  padding: 10px;
 }
-.Introduction h1 {
+.SloganContainerContent {
+  position: absolute;
+  left: 10vw;
+  right: 10vw;
+  top: 17vh;
+  height: 400px;
+  text-align: left;
+}
+.SloganLogoText h2 {
+  position: absolute;
+  border: none;
+  background-color: inherit;
   font-family: "Varela Round";
-  color: dodgerblue;
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 72px;
+  line-height: 43px;
+  height: 70px;
+  letter-spacing: -0.05em;
+  color: #2196f3;
+  left: 66px;
+  top: 295px;
 }
-.Introduction h3 {
-  color: #979797;
+.SloganLogoImage {
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  left: 100px;
+  top: 45px;
+}
+.Slogan h1 {
+  position: absolute;
+  left: 450px;
+  top: 100px;
+  width: 630px;
   font-family: "IBM Plex Sans";
+  font-size: 40px; 
 }
