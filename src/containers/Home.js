@@ -1,15 +1,30 @@
 import React from "react";
-import "../styles/mainstyles.css";
 import "../styles/homeStyles.css";
+import logo from "../placeholder.svg";
 import { Button } from "antd";
 
 class HomePage extends React.Component {
   render() {
     return (
-      <div className="homepage">
-        <div className="background" />
+      <div className="Homepage">
+        <div className="Background" />
+        <div className="NavBar">
+          <div className="NavBarContact">
+            <Button type="secondary" size="large" href="contact-us" style={{ width: 150}}>
+              Contact Us
+            </Button>
+          </div>
+          <div className="NavBarLogin">
+            <Button type="primary" size="large" href="login" style={{ width: 150}}>
+              Login
+            </Button>
+          </div>
+          <div className="NavBarLogo">
+            <Button>BlueBook</Button>
+          </div>
+        </div>
         <div className="MedicalPhoto" />
-        <div className="TextBackground" />
+        <img src={logo} alt="logo" style={{ height: 300 }}></img>
         <div className="Introduction">
           <h1>What is Bluebook? </h1>
           <h3>
@@ -27,9 +42,7 @@ class HomePage extends React.Component {
             <br />
             <br />
           </h3>
-          <Button type="primary" size="large" href="login">
-            Login
-          </Button>
+
         </div>
       </div>
     );
