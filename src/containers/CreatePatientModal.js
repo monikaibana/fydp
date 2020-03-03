@@ -156,7 +156,8 @@ class CreatePatientModal extends React.Component {
           ]}
         >
           <div className="create-patient-container">
-            <Form.Item label="Patient Surname" key="surname">
+          <div className="modal-field">
+            <Form.Item label="Patient Surname" key="surname" style={{ marginBottom: "0px", marginTop: "-10px"}}>
               {getFieldDecorator("surname", {
                 rules: [
                   {
@@ -171,7 +172,8 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item label="Patient Given Name(s)" key="givenName">
+            </div>
+            <Form.Item label="Patient Given Name(s)" key="givenName" style={{ marginBottom: "0px", marginTop: "10px" }}>
               {getFieldDecorator("givenName", {
                 rules: [
                   {
@@ -186,7 +188,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item label="PID" key="id">
+            <Form.Item label="PID" key="id" style={{ marginBottom: "0px", marginTop: "10px" }}>
               {getFieldDecorator("id", {
                 rules: [
                   { required: true, message: "Please input the patient's PID" }
@@ -199,7 +201,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item label="Date of Birth" key="dob">
+            <Form.Item label="Date of Birth" key="dob" style={{ marginBottom: "0px", marginTop: "10px" }}>
               {getFieldDecorator("dob", {
                 rules: [
                   {
@@ -217,7 +219,7 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item label="Gender" key="gender">
+            <Form.Item label="Gender" key="gender" style={{ marginBottom: "0px", marginTop: "10px" }}>
               {getFieldDecorator("gender", {
                 rules: [
                   {
@@ -236,13 +238,13 @@ class CreatePatientModal extends React.Component {
                 </Select>
               )}
             </Form.Item>
-            <Form.Item label="Notes" key="notes" onChange={handleChange}>
+            <Form.Item label="Notes" key="notes" onChange={handleChange} style={{ marginBottom: "0px", marginTop: "10px" }}>
               {getFieldDecorator("notes")(
                 <TextArea placeholder="Notes" autoSize />
               )}
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
-            <Form.Item key="attached_referral">
+            <Form.Item key="attached_referral" style={{ marginBottom: "0px", marginTop: "10px" }}>
               <Upload {...props}>
                 <Button>
                   <Icon type="upload" /> Click to Attach a Referral

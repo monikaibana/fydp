@@ -9,7 +9,6 @@
   background-size: 100% 100%;
   height: 100%;
 }
-
 .login-container {
   min-height: 400px;
   min-width: 400px;
@@ -25,16 +24,13 @@
   background-color: #f2f2f2;
   vertical-align: "middle";
 }
-
 .login-container h1 {
   color: dodgerblue;
   font-family: "Courier";
 }
-
 .login-header {
   margin: 60px;
 }
-
 .login-form {
   max-width: 300px;
 }
@@ -44,12 +40,24 @@
 .login-form-button {
   width: 100%;
 }
-
 .create-patient-modal {
-  text-align: center;
-  align-items: center;
+  position: absolute;
+  text-align: left;
+  align-items: left;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
-
+.create-patient-container {
+  font-size: 15px;
+  line-height: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  top: 0px;
+}
 .Sidebar {
   position: "absolute";
   width: 20vw;
@@ -70,7 +78,6 @@
   letter-spacing: -0.05em;
   color: #2196f3;
 }
-
 .SidebarHeaderButton button {
   border: none;
   background-color: inherit;
@@ -83,12 +90,10 @@
   letter-spacing: -0.05em;
   color: #2196f3;
 }
-
 .LogoutButton {
   position: relative;
   top: 350px;
 }
-
 .CreatePatientButton {
   position: relative;
   top: 50px;
