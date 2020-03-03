@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=<Montserrat&display=swap");
 
-{/* –––––– Patient Info Page ––––––– */}
+/* –––––– Patient Info Page ––––––– */
 .PatientInfoPage {
   background: #fafafa;
   height: 120vh;
@@ -10,7 +10,7 @@
   position: absolute;
   width: 305px;
   height: 59px;
-  left: 335px;
+  left: 22.5vw;
   top: 50px;
   font-family: "Montserrat";
   color: #000000;
@@ -21,7 +21,7 @@
   position: absolute;
   width: 90px;
   height: 32px;
-  left: 325px;
+  left: 21.5vw;
   top: 15px;
   font-family: "IBM Plex Sans";
   font-size: 20px;
@@ -34,35 +34,35 @@
 }
 .bottomButtons{
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   left: 0px;
   width: 70vw;
   background-color: #fafafa;
 }
 .save-button{
   position: absolute;
-  top: 0px;
-  left: 810px;
+  top: 40px;
+  right: 90px;
 }
 .cancel-button{
   position: absolute;
   top: 40px;
-  left: 810px;
+  right: 0px;
 }
 .archive-button{
   position: absolute;
-  left: 10px;
+  left: 0px;
   top: 0px;
 }
 .changeStatus{
   position: absolute;
   top: 3px;
-  left: 425px;
+  right: 250px;
   height: 25px;
 }
 .StatusInfo {
   position: absolute;
-  left: 340px;
+  left: 22.5vw;
   top: 115px;
   text-align: left;
   font-family: "IBM Plex Sans";
@@ -70,7 +70,7 @@
 .StatusUpdate{
   position: absolute;
   top: -5px;
-  left: 550px;
+  right: 0px;
 }
 .TimeInStatus {
   position: relative;
@@ -80,11 +80,11 @@
 .InfoTabs {
   position: absolute;
   top: 175px;
-  left: 340px;
+  left: 22.5vw;
   width: 70vw;
 }
 
-{/* –––––– Tab 1 ––––––– */}
+/* –––––– Tab 1 ––––––– */
 .PatientDetails{
   text-align: left;
   height: 500px;
@@ -118,7 +118,7 @@
   line-height: 16px;
 }
 
-{/* –––––– Tab 2 ––––––– */}
+/* –––––– Tab 2 ––––––– */
 .StudyDetails{
   text-align: left;
   height: 500px;
@@ -148,7 +148,7 @@
   left: 450px;
 }
 
-{/* –––––– Tab 3 ––––––– */}
+/* –––––– Tab 3 ––––––– */
 .StudyResults{
   text-align: left;
   height: 500px;
@@ -182,7 +182,7 @@
   line-height: 16px;
 }
 
-{/* –––––– Tab 4 ––––––– */}
+/* –––––– Tab 4 ––––––– */
 .InterpretationDetails{
   text-align: left;
   height: 500px;
@@ -217,7 +217,7 @@
   left: 450px;
 }
 
-{/* –––––– Tab 5 ––––––– */}
+/* –––––– Tab 5 ––––––– */
 .PostStudyDetails{
   text-align: left;
   height: 200px;

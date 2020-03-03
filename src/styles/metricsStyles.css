@@ -10,7 +10,7 @@
   position: absolute;
   width: 351px;
   height: 59px;
-  left: 295px;
+  left:22.5vw;
   top: 25px;
   text-align: left;
 }
@@ -26,7 +26,7 @@
 .MetricsTabs {
   position: absolute;
   top: 100px;
-  left: 300px;
+  left: 22.5vw;
   width: 70vw;
 }
 .background {
