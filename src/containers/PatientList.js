@@ -230,7 +230,8 @@ class PatientListPage extends React.Component {
         title: "Days in Status",
         key: "TIS",
         dataIndex: "TIS",
-        sorter: (a, b) => a.TIS - b.TIS
+        sorter: (a, b) => a.TIS - b.TIS,
+        defaultSortOrder: 'descend'
       },
       {
         title: "Study Type",
