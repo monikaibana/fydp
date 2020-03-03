@@ -55,10 +55,15 @@
   left: 40px;
   top: 30px;
 }
+.TabTitleRight{
+  position: absolute;
+  left: 500px;
+  top: 30px;
+}
 .ImageFrame{
   position: absolute;
   left: 40px;
-  top: 80px;
+  top: 140px;
   height: 470px;
   width: 930px;
   border-radius: 8px;
@@ -79,11 +84,11 @@
 }
 .SaveButton{
   position: absolute;
-  top: 580px;
+  top: 80px;
   left: 830px;
 }
 .ToggleView{
   position: absolute;
-  top: 580px;
+  top: 80px;
   left: 40px;
 }

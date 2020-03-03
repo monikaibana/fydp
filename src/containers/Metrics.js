@@ -106,13 +106,16 @@ class MetricsPage extends React.Component {
                   <TabPane tab="Quality Assurance" key="2" className="MetricsTab">
                     <div className="ImageFrame">
                       <div className="TabTitle">
-                        <h2>Quality Assurance</h2>
+                        <h2>Average Scorer Rating</h2>
+                      </div>
+                      <div className="TabTitleRight">
+                        <h2>Average Doctor Rating</h2>
                       </div>
                       <div className="StatusGraph">
                         <img id="QaGraph" src={QaGraph} alt="Quality Assurance Graph" style={{ height: 400 }} />
                       </div>
                       <div className="StatusTable">
-                        <img id="QaTable" src={QaTable} alt="Quality Assurance Table" style={{ height: 400, display: "none" }} />
+                        <img id="QaTable" src={QaTable} alt="Quality Assurance Table" style={{ height: 380, display: "none" }} />
                       </div>
                     </div>
                     <div className="ToggleView">
