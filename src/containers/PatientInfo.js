@@ -40,6 +40,10 @@ function onFocus() {
 function onSearch(val) {
   console.log("search:", val);
 }
+var bluebook= window.location.href
+
+var splitUrl = bluebook.split('/')
+console.log(splitUrl[4])
 
 function getPatientInfoBody() {
   var body = {
@@ -122,8 +126,79 @@ class PatientInfoPage extends React.Component {
   }
 
   getDefaultValue = () => {
+    if (this.state.db_data.Item.gender === 'M'){
+      var gender = "Male"
+    } else if (this.state.db_data.Item.gender === 'F'){
+      gender = "Female"
+    };
+
+    if (this.state.db_data.Item.triageResult === 1){
+      var triageResult = "IDS"
+    } else if (this.state.db_data.Item.triageResult === 2){
+      triageResult = "Consult-R"
+    } else if (this.state.db_data.Item.triageResult === 3){
+      triageResult = "Consult-X"
+    }else if (this.state.db_data.Item.triageResult === 4){
+      triageResult = "Consult-General"
+    };
+
+    if (this.state.db_data.Item.priority === 1){
+      var triageTag = "Urgent"
+    } else if (this.state.db_data.Item.priority === 2){
+      triageTag = "ASAP"
+    } else if (this.state.db_data.Item.priority === 3){
+      triageTag = "HPCL"
+    } else if (this.state.db_data.Item.priority === 4){
+      triageTag = "HP"
+    } else if (this.state.db_data.Item.priority === 5){
+      triageTag = "Routine"
+    };
+
+    if (this.state.db_data.Item.studyType === 1){
+      var studyType = "IDS"
+    } else if (this.state.db_data.Item.studyType === 2){
+      studyType = "RDS-R"
+    } else if (this.state.db_data.Item.studyType === 3){
+      studyType = "RDS-X"
+    } else if (this.state.db_data.Item.studyType === 4){
+      studyType = "CPAP"
+    } else if (this.state.db_data.Item.studyType === 5){
+      studyType = "BiPAP"
+    } else if (this.state.db_data.Item.studyType === 6){
+      studyType = "Repeat Therapeutic Study"
+    } else if (this.state.db_data.Item.studyType ===7){
+      studyType = "Study to Assess Other Therapy"
+    };
+
+
     return {
-      surname: this.state.db_data.Item.surname
+      /* patient info tab*/
+      surname: this.state.db_data.Item.surname,
+      givenName: this.state.db_data.Item.givenName,
+      PID: this.state.db_data.Item.id,
+      dob: this.state.db_data.Item.dob,
+      gender: gender,
+      triageResult: triageResult,
+      triageTag: triageTag,
+      notes: this.state.db_data.Item.notes,
+      
+      /* Appointment Info Tab */
+      studyDate: this.state.db_data.Item.time_1,
+      apptDate: this.state.db_data.Item.time_4,
+      acqTech: this.state.db_data.Item.acqTech,
+      bedNum: this.state.db_data.Item.location,
+      acq: this.state.db_data.Item.acq, //need to fix this in db
+      studyType: studyType,
+
+      /* Study Results Tab*/
+      scoringTech: this.state.db_data.Item.scoringTech,
+      scoringDate: this.state.db_data.Item.scoringDate,
+      ahi: this.state.db_data.Item.ahi,
+      rem_ahi: this.state.db_data.Item.rem,
+      studyScore: this.state.db_data.Item.studyScore,
+      studyTag: this.state.db_data.Item.studyTag,
+      refPhys: this.state.db_data.Item.refPhysician,
+
     };
   };
 
@@ -150,12 +225,12 @@ class PatientInfoPage extends React.Component {
               >
                 <Icon type="left" /> Back
               </Button>
-              <div className="PatientName">Patient Name</div>
+        <div className="PatientName">{this.state.db_data.Item.surname},  {this.state.db_data.Item.givenName}</div>
               <div className="StatusInfo">
                 <div>
                   Status
                   <br />
-                  <b>Patient Status</b>
+                  <b>{this.state.db_data.Item.status}</b> {/* will address later due to issue with .status thing*/}
                 </div>
                 <div className="TimeInStatus">
                   Time in Status
@@ -176,12 +251,12 @@ class PatientInfoPage extends React.Component {
                           Patient Surname <br />
                         </h2>
                         <Form.Item key="patientSurname">
-                          {getFieldDecorator("PatientSurname")(
+                          {getFieldDecorator("PatientSurname",{initialValue: this.getDefaultValue().surname})(
                             <Input
                               prefix={
                                 <Icon type="user" style={{ fontSize: 13 }} />
                               }
-                              placeholder={this.getDefaultValue().surname}
+                              placeholder="Surname"
                               style={{ width: 250 }}
                             />
                           )}
@@ -197,7 +272,7 @@ class PatientInfoPage extends React.Component {
                               prefix={
                                 <Icon type="user" style={{ fontSize: 13 }} />
                               }
-                              placeholder="Patient Given Name(s)"
+                              placeholder={this.getDefaultValue().givenName}
                               style={{ width: 250 }}
                             />
                           )}
@@ -213,7 +288,7 @@ class PatientInfoPage extends React.Component {
                               prefix={
                                 <Icon type="number" style={{ fontSize: 13 }} />
                               }
-                              placeholder="PID"
+                              placeholder={this.getDefaultValue().PID}
                               maxLength={9}
                               style={{ width: 250 }}
                             />
@@ -233,7 +308,7 @@ class PatientInfoPage extends React.Component {
                                   style={{ fontSize: 13 }}
                                 />
                               }
-                              placeholder="Date of Birth (dd/mm/yyyy)"
+                              placeholder={this.getDefaultValue().dob}
                               onChange={this.handleDateChange}
                               maxLength={10}
                               style={{ width: 250 }}
@@ -250,7 +325,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Gender"
+                              placeholder= {this.getDefaultValue().gender}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -279,7 +354,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Triage Type"
+                              placeholder={this.getDefaultValue().triageResult}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -303,12 +378,12 @@ class PatientInfoPage extends React.Component {
                         <h2>
                           Triage Tag <br />{" "}
                         </h2>
-                        <Form.Item key="study_type">
-                          {getFieldDecorator("studyType")(
+                        <Form.Item key="priority">
+                          {getFieldDecorator("priority")(
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Triage Tag"
+                              placeholder={this.getDefaultValue().triageTag}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -335,18 +410,19 @@ class PatientInfoPage extends React.Component {
                           Notes <br />{" "}
                         </h2>
                         <Form.Item>
+                          {getFieldDecorator("notes", {initialValue: this.getDefaultValue().notes})(
                           <TextArea
                             style={({ fontSize: 13 }, { width: 450 })}
                             placeholder="Notes"
                             autoSize={{ minRows: 2, maxRows: 6 }}
-                          />
+                          />)}
                         </Form.Item>
                       </div>
                       <div className="ReferralLink">
                         <h2>
                           Link To Referral File <br />
                         </h2>
-                        <p> filename.pdf </p>
+                        <p> {this.state.db_data.Item.studyLink} </p> {/* not actually working yet*/}
                       </div>
                     </div>
                   </TabPane>
@@ -366,6 +442,7 @@ class PatientInfoPage extends React.Component {
                             key="apptDate"
                             format={dateFormat}
                             style={{ width: 250 }}
+                            placeholder= {this.getDefaultValue().studyDate}
                           />{" "}
                           <br />
                         </Form.Item>
@@ -387,6 +464,7 @@ class PatientInfoPage extends React.Component {
                             key="nextApptDate"
                             format={dateFormat}
                             style={{ width: 250 }}
+                            placeholder={this.getDefaultValue().apptDate}
                           />{" "}
                           <br />
                         </Form.Item>
@@ -402,7 +480,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Tech Name"
+                              placeholder={this.getDefaultValue().acqTech}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -423,14 +501,14 @@ class PatientInfoPage extends React.Component {
                       </div>
                       <div>
                         <h2>
-                          Location <br />
+                          Bed Number <br />
                         </h2>
                         <Form.Item key="location">
                           {getFieldDecorator("location")(
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Bed Number"
+                              placeholder={this.getDefaultValue().bedNum}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -462,7 +540,7 @@ class PatientInfoPage extends React.Component {
                               prefix={
                                 <Icon type="number" style={{ fontSize: 13 }} />
                               }
-                              placeholder="ACQ"
+                              placeholder={this.getDefaultValue().acq}
                               maxLength={9}
                               style={{ width: 250 }}
                             />
@@ -478,7 +556,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Study Type"
+                              placeholder={this.getDefaultValue().studyType}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -519,7 +597,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Scorer"
+                              placeholder={this.getDefaultValue().scoringTech}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -546,6 +624,7 @@ class PatientInfoPage extends React.Component {
                           <DatePicker
                             format={dateFormat}
                             style={{ width: 250 }}
+                            placeholder={this.getDefaultValue().scoringDate}
                           />
                         </Form.Item>
                       </div>
@@ -558,7 +637,7 @@ class PatientInfoPage extends React.Component {
                             <Input
                               style={{ width: 250 }}
                               maxLength={2}
-                              placeholder="AHI"
+                              placeholder={this.getDefaultValue().ahi}
                             />
                           )}
                         </Form.Item>
@@ -572,7 +651,7 @@ class PatientInfoPage extends React.Component {
                             <Input
                               style={{ width: 250 }}
                               maxLength={2}
-                              placeholder="REM AHI"
+                              placeholder={this.getDefaultValue().rem_ahi}
                             />
                           )}
                         </Form.Item>
@@ -586,7 +665,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Study Score"
+                              placeholder={this.getDefaultValue().studyScore}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -618,7 +697,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Study Tag"
+                              placeholder={this.getDefaultValue().studyTag}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}
@@ -646,7 +725,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Referring Physician"
+                              placeholder={this.getDefaultValue().refPhys}
                               optionFilterProp="children"
                               onChange={handleChange}
                               onFocus={onFocus}

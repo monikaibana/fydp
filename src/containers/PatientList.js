@@ -297,7 +297,7 @@ class PatientListPage extends React.Component {
                         showSizeChanger: true,
                         pageSizeOptions: ["10", "25", "50", "100"]
                       }}
-                      scroll={{ y: 415 }}
+                      scroll={{ y: 800}}
                       size={"small"}
                       onRow={(record, rowIndex) => {
                         return {
