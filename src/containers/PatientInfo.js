@@ -854,7 +854,7 @@ class PatientInfoPage extends React.Component {
                       htmlType="submit"
                       className="save-button"
                       style={{ width: 75 }}
-                      // onClick={this.handleSave}
+                      onClick={this.handleSave}
                     >
                       Save
                     </Button>

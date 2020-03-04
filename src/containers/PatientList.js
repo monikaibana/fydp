@@ -185,6 +185,8 @@ class PatientListPage extends React.Component {
       if (this.state.db_data["Items"][i].priority) {
         triageTag[i] =
           triageTagString[this.state.db_data["Items"][i].priority - 1];
+      } else {
+        triageTag[i] = "";
       }
     }
 
@@ -246,7 +248,7 @@ class PatientListPage extends React.Component {
         title: "Triage Tag",
         key: "triageTag",
         dataIndex: "triageTag",
-        sorter: (a, b) => a.triageTag - b.triageTag
+        sorter: (a, b) => a.triageTag.localeCompare(b.triageTag)
       },
       {
         title: "Notes",
