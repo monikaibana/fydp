@@ -1,34 +1,298 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
-.background {
-  height: 100vh;
+.Background {
+  position: absolute;
+  height: 2000px;
   width: 100vw;
   background-color: #fafafa;
 }
-.MedicalPhoto {
-  position: absolute;
-  top: 25px;
-  left: 100px;
-  width: 50vw;
-  height: 85vh;
-  background: url("https://bluebook-public.s3.amazonaws.com/welcomepage.png");
-  background-size: 100% 100%;
-  border-radius: 10px 10px 10px 10px;
-}
-.Introduction {
-  position: absolute;
-  left: 775px;
-  top: 160px;
-  width: 400px;
-  height: 80vh;
+.NavBar {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
-  padding: 10px;
 }
-.Introduction h1 {
+.NavBarLogo h2 {
+  position: absolute;
+  border: none;
+  background-color: inherit;
   font-family: "Varela Round";
-  color: dodgerblue;
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 36px;
+  line-height: 43px;
+  height: 70px;
+  letter-spacing: -0.05em;
+  color: #2196f3;
+  left: 10px;
+  top: 10px;
 }
-.Introduction h3 {
-  color: #979797;
+.NavBarContact {
+  position: absolute;
+  margin-top: 10px;
+  right: 170px;
+}
+.NavBarLogin {
+  position: absolute;
+  margin-top: 10px;
+  right: 10px;
+}
+.MountainsPhoto1 {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100vw;
+  height: 90vh;
+  background: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
+  background-size: 100% 100%;
+  opacity: 0.7;
+}
+.MountainsPhoto2 {
+  position: absolute;
+  width: 100%;
+  height: 2000px;
+  top: -500px;
+  background: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
+  background-size: 100% 100%;
+  opacity: 0.7;
+}
+.MountainsPhoto3 {
+  position: absolute;
+  width: 100%;
+  height: 2000px;
+  top: 300px;
+  background: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
+  background-size: 100% 100%;
+  opacity: 0.7;
+}
+.HideMountains1 {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100vw;
+  height: 90vh;
+  background-color: #fafafa;
+}
+.HideMountains2 {
+  position: absolute;
+  width: 100%;
+  height: 2000px;
+  top: -500px;
+  background-color: #fafafa;
+}
+.WhatContainer {
+  position: absolute;
+  left: 0px;
+  top: 1100px;
+  width: 100%;
+  height: 500px;
+  background: #f7f7f7;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.WhatText h1 {
+  position: absolute;
+  left: 700px;
+  top: 70px;
   font-family: "IBM Plex Sans";
+  font-size: 40px; 
+}
+.WhatText h5 {
+  position: absolute;
+  text-align: left;
+  left: 700px;
+  top: 160px;
+  width: 520px;
+  font-family: "IBM Plex Sans";
+  font-size: 20px; 
+}
+.WhatLogo {
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  left: 230px;
+  top: 140px;
+}
+.AboutUsContainer {
+  position: absolute;
+  left: 0px;
+  top: 2000px;
+  width: 100%;
+  height: 500px;
+  background: #f7f7f7;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.AboutUsImage {
+  position: absolute;
+  left: 180px;
+  top: 100px;
+  width: 300px;
+  height: 300px;
+  background: url("https://bluebook-public.s3.amazonaws.com/DSCF3462.jpg");
+  background-size: 100% 100%;
+  object-fit: fill;
+}
+.AboutUsText h1 {
+  position: absolute;
+  left: 700px;
+  top: 110px;
+  font-family: "IBM Plex Sans";
+  font-size: 40px; 
+}
+.AboutUsText h5 {
+  position: absolute;
+  text-align: left;
+  left: 700px;
+  top: 200px;
+  width: 520px;
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+}
+.ContactUs {
+  position: absolute;
+  top: 340px;
+  left: 700px;
+}
+.SloganContainerBackground {
+  position: absolute;
+  left: 10vw;
+  right: 10vw;
+  top: 17vh;
+  height: 400px;
+  background: #ffffff;
+  opacity: 0.8;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.SloganContainerContent {
+  position: absolute;
+  left: 10vw;
+  right: 10vw;
+  top: 17vh;
+  height: 400px;
+  text-align: left;
+}
+.SloganLogoText h2 {
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  font-family: "Varela Round";
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 72px;
+  line-height: 43px;
+  height: 70px;
+  letter-spacing: -0.05em;
+  color: #2196f3;
+  left: 66px;
+  top: 295px;
+}
+.SloganLogoImage {
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  left: 100px;
+  top: 45px;
+}
+.Slogan h1 {
+  position: absolute;
+  left: 450px;
+  top: 100px;
+  width: 630px;
+  font-family: "IBM Plex Sans";
+  font-size: 40px; 
+}
+.ValuePropsContainer {
+  position: absolute;
+  left: 0px;
+  top: 650px;
+  width: 100%;
+  height: 250px;
+  background: #f7f7f7;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.Icon1 {
+  position: absolute;
+  left: 290px;
+  top: 40px;
+  font-size: 30px;
+  padding-right: 180px;
+  padding-bottom: 130px;
+  border-right: 1px solid #D9D9D9
+}
+.ValueProp1 h2{
+  position: absolute;
+  left: 110px;
+  top: 100px;
+  width: 390px;
+  height: 100px;
+  text-align: center;
+}
+.ValueProp1 h5{
+  position: absolute;
+  left: 150px;
+  top: 140px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
+}
+.Icon2 {
+  position: absolute;
+  left: 690px;
+  top: 40px;
+  font-size: 30px;
+  padding-right: 180px;
+  padding-bottom: 130px;
+  border-right: 1px solid #D9D9D9
+}
+.ValueProp2 h2{
+  position: absolute;
+  left: 510px;
+  top: 100px;
+  width: 390px;
+  height: 100px;
+  text-align: center;
+}
+.ValueProp2 h5{
+  position: absolute;
+  left: 550px;
+  top: 140px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
+}
+.Icon3 {
+  position: absolute;
+  left: 1090px;
+  top: 40px;
+  font-size: 30px;
+}
+.ValueProp3 h2{
+  position: absolute;
+  left: 910px;
+  top: 100px;
+  width: 390px;
+  height: 100px;
+  text-align: center;
+}
+.ValueProp3 h5{
+  position: absolute;
+  left: 950px;
+  top: 140px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
 }
