@@ -1,15 +1,38 @@
 import React from "react";
 import "../styles/homeStyles.css";
 import logo from "../placeholder.svg";
-import { Button, Icon } from "antd";
-//import { LikeOutlined, CheckCircleOutlined, SearchOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+import { LikeOutlined, CheckCircleOutlined, SearchOutlined } from "@ant-design/icons";
 
 class HomePage extends React.Component {
   render() {
     return (
       <div className="Homepage">
         <div className="Background" />
-        <div className="MountainsPhoto" />
+        <div className="MountainsPhoto3" />
+        <div className="HideMountains2" />
+        <div className="MountainsPhoto2" />
+        <div className="HideMountains1" />
+        <div className="MountainsPhoto1" />
+        <div className="WhatContainer">
+          <div className="WhatText">
+            <h1>
+              What is BlueBook?
+            </h1>
+            <h5>
+              BlueBook is a digital patient management system which 
+              aims to reduce the time taken by sleep clinic staff to track 
+              and monitor patient status as they progress through the diagnosis process. 
+              Typically, patient tracking at sleep clinics is completed manually, by 
+              editing spreadsheets, and renaming and moving files. BlueBook’s simplified
+              tracking process is designed to reduce human errors and increase clinic
+              efficiency.
+            </h5>
+          </div>
+          <div className="WhatLogo">
+            <img src={logo} alt="logo" style={{ height: 220 }}></img>
+          </div>
+        </div>
         <div className="SloganContainerBackground"/>
         <div className="SloganContainerContent">
           <div className="SloganLogoText">
@@ -27,7 +50,7 @@ class HomePage extends React.Component {
         <div className="ValuePropsContainer">
           <div className="ValueProp1">
             <div className="Icon1">
-              <Icon type="like" style={{ color: "#1890ff" }} />
+              <LikeOutlined style={{ color: "#1890ff" }} />
             </div>
             <h2>
               More Efficient
@@ -38,7 +61,7 @@ class HomePage extends React.Component {
           </div>
           <div className="ValueProp2">
             <div className="Icon2">
-              <Icon type="check-circle" style={{ color: "#1890ff"}} />
+              <CheckCircleOutlined style={{ color: "#1890ff"}} />
             </div>
             <h2>
               Designed
@@ -49,7 +72,7 @@ class HomePage extends React.Component {
           </div>
           <div className="ValueProp3">
             <div className="Icon3">
-              <Icon type="search" style={{ color: "#1890ff"}} />
+              <SearchOutlined style={{ color: "#1890ff"}} />
             </div>
             <h2>
               Analytics
