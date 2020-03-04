@@ -1,7 +1,10 @@
 import React from "react";
 import "../styles/mainstyles.css";
 import logo from "../placeholder.svg";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+// import { Form } from "@ant-design/compatible";
+import "@ant-design/compatible/assets/index.css";
+import { Input, Button, Checkbox, Form } from "antd";
 import "antd/dist/antd.css";
 import { Auth } from "aws-amplify";
 
@@ -40,57 +43,61 @@ class LoginPage extends React.Component {
     }
   };
 
-  handleSubmit = async e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      this.signIn(values.user, values.password);
-    });
+  // handleSubmit = async e => {
+  //   e.preventDefault();
+  //   this.props.form.validateFields((err, values) => {
+  //     this.signIn(values.user, values.password);
+  //   });
+  // };
+
+  onFinish = values => {
+    this.signIn(values.user, values.password);
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <div className="login-page">
         <div className="login-container">
           <img src={logo} alt="logo"></img>
           <h1> BlueBook </h1>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <FormItem>
-              {getFieldDecorator("user", {
-                rules: [
-                  { required: true, message: "Please input your username!" }
-                ]
-              })(
-                <Input
-                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                  placeholder="Username"
-                />
-              )}
+          <Form
+            className="login-form"
+            onFinish={this.onFinish}
+            initialValues={{
+              remember: true
+            }}
+          >
+            <FormItem
+              name="user"
+              rules={[
+                { required: true, message: "Please input your username!" }
+              ]}
+            >
+              <Input
+                prefix={<UserOutlined style={{ fontSize: 13 }} />}
+                placeholder="Username"
+              />
             </FormItem>
 
-            <FormItem>
-              {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your password!" }
-                ]
-              })(
-                <Input
-                  prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
-                  type="password"
-                  placeholder="Password"
-                />
-              )}
+            <FormItem
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password!" }
+              ]}
+            >
+              <Input
+                prefix={<LockOutlined style={{ fontSize: 13 }} />}
+                type="password"
+                placeholder="Password"
+              />
             </FormItem>
 
+            <Checkbox>Remember me</Checkbox>
+            <a className="login-form-forgot" href="">
+              Forgot password
+              {/* TODO: add link to href  */}
+            </a>
             <FormItem>
-              {getFieldDecorator("remember", {
-                valuePropName: "checked",
-                initialValue: true
-              })(<Checkbox>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href="">
-                Forgot password
-                {/* TODO: add link to href  */}
-              </a>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -101,12 +108,9 @@ class LoginPage extends React.Component {
             </FormItem>
           </Form>
         </div>
-        {/* <Routes /> */}
       </div>
     );
   }
 }
 
-const WrappedNormalLoginForm = Form.create()(LoginPage);
-
-export default WrappedNormalLoginForm;
+export default LoginPage;

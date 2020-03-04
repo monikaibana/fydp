@@ -4,43 +4,78 @@ import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
-// import { Auth } from "aws-amplify";
-import { Form, Select, Table, Input, Button, Icon } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Form } from "@ant-design/compatible";
+import "@ant-design/compatible/assets/index.css";
+import { Select, Table, Input, Button } from "antd";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const { Option } = Select;
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
-function requestBody() {
-  var body = {
-    operation: "list",
-    tableName: "bluebook-patient",
-    payload: {
-      tableName: "bluebook-patient"
-    }
-  };
-  return body;
-}
 
 function setId(id) {
   id = id.toString();
-  console.log(id);
   window.location.assign(`/info/${id}`);
 }
 
 class PatientListPage extends React.Component {
-  state = { db_data: [] };
+  state = { didLoad: null, db_data: [], filter: 0 };
 
-  async componentDidMount() {
+  requestBody() {
+    var body = {
+      operation: "list",
+      payload: {
+        TableName: "bluebook-patient"
+      }
+    };
+    if (this.state.filter === 0) {
+      return body;
+    } else {
+      body = {
+        operation: "list",
+        payload: {
+          TableName: "bluebook-patient",
+          FilterExpression: "#st = :filter",
+          ExpressionAttributeNames: {
+            "#st": "status"
+          },
+          ExpressionAttributeValues: {
+            ":filter": parseInt(this.state.filter)
+          }
+        }
+      };
+      return body;
+    }
+  }
+
+  loadData = async () => {
     try {
-      var objvalues = await getPatientList(requestBody());
-      this.setState({ db_data: objvalues });
+      var objvalues = await getPatientList(this.requestBody());
+      this.setState({ db_data: objvalues, didLoad: true });
       console.log(this.state.db_data);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.didLoad) {
+      this.loadData();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      nextState.didLoad !== this.state.didLoad ||
+      nextState.filter !== this.state.filter ||
+      nextState.db_data.length !== this.state.db_data.length ||
+      nextState.db_data.Count !== this.state.db_data.Count
+    )
+      return true;
+    return false;
   }
 
   getColumnSearchProps = dataIndex => ({
@@ -68,7 +103,7 @@ class PatientListPage extends React.Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon="search"
+          icon={<SearchOutlined />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -84,7 +119,7 @@ class PatientListPage extends React.Component {
       </div>
     ),
     filterIcon: filtered => (
-      <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -111,40 +146,73 @@ class PatientListPage extends React.Component {
     this.setState({ searchText: "" });
   };
 
+  handleChange = value => {
+    this.setState({ filter: parseInt(value) });
+  };
+
+  getTimeInStatus = lastUpdated => {
+    const today = new Date();
+    const updateDate = new Date(lastUpdated);
+    var one_day = 1000 * 60 * 60 * 24;
+    var timeInStatus = (today.getTime() - updateDate.getTime()) / one_day;
+    if (isNaN(timeInStatus)) {
+      return null;
+    } else {
+      return Math.floor(timeInStatus) - 1;
+    }
+  };
+
   render() {
     var StudyType = [];
+    var triageTag = [];
+    const studyTypeString = [
+      "IDS",
+      "RDS-R",
+      "RDS-X",
+      "CPAP Study",
+      "BiPAP Study",
+      "Repeat Therapeutic Study",
+      "Study to Assess Other Therapy"
+    ];
+    const triageTagString = ["Urgent", "ASAP", "HP CL", "HP", "Routine"];
     for (var i = 0; i < this.state.db_data.Count; i++) {
-      if (this.state.db_data["Items"][i].studyType === 1) {
-        StudyType[i] = "IDS";
-      } else if (this.state.db_data["Items"][i].studyType === 2) {
-        StudyType[i] = "RDS-R";
-      } else if (this.state.db_data["Items"][i].studyType === 3) {
-        StudyType[i] = "RDS-X";
-      } else if (this.state.db_data["Items"][i].studyType === 4) {
-        StudyType[i] = "CPAP Study";
-      } else if (this.state.db_data["Items"][i].studyType === 5) {
-        StudyType[i] = "BiPAP Study";
-      } else if (this.state.db_data["Items"][i].studyType === 6) {
-        StudyType[i] = "Repeat Therapeutic Study";
-      } else if (this.state.db_data["Items"][i].studyType === 7) {
-        StudyType[i] = "Study to Assess Other Therapy";
+      if (this.state.db_data["Items"][i].studyType) {
+        StudyType[i] =
+          studyTypeString[this.state.db_data["Items"][i].studyType - 1];
       } else {
-        StudyType[i] = "Undefined";
+        StudyType[i] = "Undetermined";
+      }
+      if (this.state.db_data["Items"][i].priority) {
+        triageTag[i] =
+          triageTagString[this.state.db_data["Items"][i].priority - 1];
+      } else {
+        triageTag[i] = "";
       }
     }
+
     var dataSource = [];
     for (var j = 0; j < this.state.db_data.Count; j++) {
+      var lastUpdated = "";
+      var item = this.state.db_data["Items"][j];
+      for (var k = 13; k > 0; k--) {
+        var timeVar = "time_" + k.toString();
+        if (item[timeVar]) {
+          lastUpdated = item[timeVar];
+          break;
+        }
+      }
+
       dataSource[j] = {
         name:
           this.state.db_data["Items"][j].surname +
           ", " +
           this.state.db_data["Items"][j].givenName,
         id: this.state.db_data["Items"][j].id,
-        TIS: j + " days", // leave this for now
+        TIS: this.getTimeInStatus(lastUpdated),
         studyType: StudyType[j],
-        triageTag: "triage tag", //left for now
+        triageTag: triageTag[j],
         notes: this.state.db_data["Items"][j].notes,
-        Link: "Link" // left for now
+        key: this.state.db_data["Items"][j].id
       };
     }
 
@@ -164,10 +232,11 @@ class PatientListPage extends React.Component {
         ...this.getColumnSearchProps("id")
       },
       {
-        title: "Time In Status",
+        title: "Days in Status",
         key: "TIS",
         dataIndex: "TIS",
-        sorter: (a, b) => a.TIS.localeCompare(b.TIS)
+        sorter: (a, b) => a.TIS - b.TIS,
+        defaultSortOrder: "descend"
       },
       {
         title: "Study Type",
@@ -179,7 +248,7 @@ class PatientListPage extends React.Component {
         title: "Triage Tag",
         key: "triageTag",
         dataIndex: "triageTag",
-        sorter: (a, b) => a.triageTag - b.triageTag
+        sorter: (a, b) => a.triageTag.localeCompare(b.triageTag)
       },
       {
         title: "Notes",
@@ -187,12 +256,6 @@ class PatientListPage extends React.Component {
         key: "notes",
         ellipsis: true,
         width: 200
-      },
-      {
-        title: "Patient File",
-        dataIndex: "Link",
-        key: "Link",
-        render: text => <a href="list">{text}</a>
       }
     ];
 
@@ -212,40 +275,23 @@ class PatientListPage extends React.Component {
                 <Form.Item>
                   <Select
                     defaultValue="All Statuses"
-                    onChange={handleChange}
+                    onChange={value => this.handleChange(value)}
                     style={{ width: 250 }}
                   >
-                    <Option value="All Statuses">All Statuses</Option>
-                    <Option value="Referral Received/For Triage">
-                      Referral Received/For Triage
-                    </Option>
-                    <Option value="Triaged">Triaged</Option>
-                    <Option value="Consultation Booked">
-                      Consultation Booked
-                    </Option>
-                    <Option value="Consultation Complete">
-                      Consultation Complete
-                    </Option>
-                    <Option value="Study Booked">Study Booked</Option>
-                    <Option value="Study Data Collected">
-                      Study Data Collected
-                    </Option>
-                    <Option value="Study Scored">Study Scored</Option>
-                    <Option value="Results Interpreted by Physician">
-                      Results Interpreted by Physician
-                    </Option>
-                    <Option value="Study Follow-up booked">
-                      Study Follow-up booked
-                    </Option>
-                    <Option value="Follow-up complete">
-                      Follow-up Complete
-                    </Option>
-                    <Option value="Treatment Follow-up Booked">
-                      Treatment Follow-up Booked
-                    </Option>
-                    <Option value="Treatment Follow-up Complete">
-                      Treatment Follow-up Complete
-                    </Option>
+                    <Option value="0">All Statuses</Option>
+                    <Option value="1">Referral Received/For Triage</Option>
+                    <Option value="2">Triaged</Option>
+                    <Option value="3">Consultation Booked</Option>
+                    <Option value="4">Consultation Complete</Option>
+                    <Option value="5">Study Booked</Option>
+                    <Option value="6">Study Data Collected</Option>
+                    <Option value="7">Study Scored</Option>
+                    <Option value="8">Results Interpreted by Physician</Option>
+                    <Option value="9">Study Follow-up booked</Option>
+                    <Option value="10">Follow-up Complete</Option>
+                    <Option value="11">Treatment Follow-up Booked</Option>
+                    <Option value="12">Treatment Follow-up Complete</Option>
+                    <Option value="13">Archived</Option>
                   </Select>
                 </Form.Item>
               </div>
@@ -254,19 +300,6 @@ class PatientListPage extends React.Component {
                   <b> {this.state.db_data.Count} </b> &nbsp; Patients in this
                   status
                 </div>
-                {/*
-          <div className="Display">Display</div>
-          <div className="NumberOfItems">
-            <Form.Item>
-              <Select defaultValue="10" onChange={handleSizeChange}>
-                <Option value="10">10</Option>
-                <Option value="25">25</Option>
-                <Option value="50">50</Option>
-                <Option value="100">100</Option>
-              </Select>
-            </Form.Item>
-          </div>
-          <div className="PerPage">items per page.</div> */}
                 <div className="Table">
                   <Router>
                     <Table
@@ -280,11 +313,12 @@ class PatientListPage extends React.Component {
                       }}
                       scroll={{ y: 415 }}
                       size={"small"}
+                      rowClassName={(record, index) => "row-class"}
                       onRow={(record, rowIndex) => {
                         return {
                           onClick: event => {
                             setId(record.id);
-                          } // click row to open patient's info page with info/[PID] as url
+                          }
                         };
                       }}
                     />

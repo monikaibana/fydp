@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/mainstyles.css";
-import { Icon, Menu, Button } from "antd";
+import { ContactsOutlined, MonitorOutlined, PlusOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { Menu, Button } from "antd";
 import CreatePatientModal from "../containers/CreatePatientModal";
 import { Redirect } from "react-router-dom";
 import { Auth } from "aws-amplify";
@@ -15,6 +16,9 @@ class Sidebar extends React.Component {
   state = {
     redirectHome: false
   };
+  state = {
+    redirectMetrics: false
+  };
   callbackFunction = () => {
     this.setState({ isModalVisible: false });
   };
@@ -28,12 +32,23 @@ class Sidebar extends React.Component {
       redirectHome: true
     });
   };
+  setRedirectMetrics = () => {
+    this.setState({
+      redirectMetrics: true
+    });
+  };
   renderRedirect = () => {
     if (this.state.redirect) {
       this.setState({
         redirect: false
       });
       return <Redirect to="/list" />;
+    }
+    if (this.state.redirectMetrics) {
+      this.setState({
+        redirectMetrics: false
+      });
+      return <Redirect to="/metrics" />;
     }
     if (this.state.redirectHome) {
       this.setState({
@@ -69,28 +84,27 @@ class Sidebar extends React.Component {
         <Menu
           defaultSelectedKeys={[key]}
           mode="vertical"
-          onClick={this.setRedirect}
         >
-          <Menu.Item key="1" align="left">
-            <Icon type="contacts" />
+          <Menu.Item key="1" align="left" onClick={this.setRedirect}>
+            <ContactsOutlined />
             Patient Listing
           </Menu.Item>
-          <Menu.Item key="2" align="left">
-            <Icon type="monitor" />
+          <Menu.Item key="2" align="left" onClick={this.setRedirectMetrics}>
+            <MonitorOutlined />
             Metrics
           </Menu.Item>
         </Menu>
         <div className="CreatePatientButton">
           <Button
             type="primary"
-            icon="plus"
+            icon={<PlusOutlined />}
             onClick={() => this.setState({ isModalVisible: true })}
           >
             Add patient
           </Button>
         </div>
         <div className="LogoutButton">
-          <Button type="primary" icon="poweroff" onClick={this.signOut} ghost>
+          <Button type="primary" icon={<PoweroffOutlined />} onClick={this.signOut} ghost>
             Logout
           </Button>
         </div>

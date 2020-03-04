@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
+
+.Metrics{
+  font-family: "IBM Plex Sans";
+  background: #fafafa;
+  height: 100vh;
+}
+.PageTitle {
+  position: absolute;
+  width: 351px;
+  height: 59px;
+  left:22.5vw;
+  top: 25px;
+  text-align: left;
+}
+.PageTitle h2 {
+  font-family: "Montserrat";
+  font-style: "normal";
+  font-weight: "normal";
+  font-size: 48px;
+  line-height: 59px;
+  color: #000000;
+  text-align: left;
+}
+.MetricsTabs {
+  position: absolute;
+  top: 100px;
+  left: 22.5vw;
+  width: 70vw;
+}
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fafafa;
+}
+.MetricsTab{
+  text-align: left;
+  height: 590px;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 0px;
+}
+.MetricsTab h2{
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+  line-height: 16px;
+  height: 16px;
+}
+.TabTitle{
+  position: absolute;
+  left: 40px;
+  top: 30px;
+}
+.TabTitleRight{
+  position: absolute;
+  left: 500px;
+  top: 30px;
+}
+.ImageFrame{
+  position: absolute;
+  left: 40px;
+  top: 140px;
+  height: 470px;
+  width: 930px;
+  border-radius: 8px;
+  border-color: #000000;
+  border: 1px solid #E5E5E5;
+}
+.StatusGraph{
+  position: absolute;
+  object-fit: contain;
+  padding-top: 50px;
+  padding-left: 30px;
+}
+.StatusTable{
+  position: absolute;
+  padding-top: 50px;
+  padding-left: 30px;
+  object-fit: contain;
+}
+.SaveButton{
+  position: absolute;
+  top: 80px;
+  left: 830px;
+}
+.ToggleView{
+  position: absolute;
+  top: 80px;
+  left: 40px;
+}

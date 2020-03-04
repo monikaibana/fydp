@@ -9,7 +9,7 @@
 .Filter {
   text-align: left;
   position: absolute;
-  left: 300px;
+  left: 22.5vw;
   top: 90px;
 }
 .Filter h2 {
@@ -27,10 +27,9 @@
   position: absolute;
   width: 351px;
   height: 59px;
-  left: 295px;
+  left: 22.5vw;
   top: 25px;
   text-align: left;
-
 }
 .PageTitle h2 {
   font-family: "Montserrat";
@@ -43,7 +42,7 @@
 }
 .ListedPatients {
   position: absolute;
-  left: 575px;
+  left: 45vw;
   top: 120px;
 }
 .NumberOfPatients {
@@ -104,8 +103,14 @@
 .Table {
   position: absolute;
   top: 50px;
-  left: -275px;
+  left: -22.5vw;
   background-color: #ffffff;
   border-radius: 2px 2px 2px 2px;
-  width: 70vw;
+  width: 75vw;
+  max-height: 80vh;
+  min-height: 50vh;
+}
+
+.row-class:hover {
+  cursor: pointer;
 }
