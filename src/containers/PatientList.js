@@ -4,7 +4,10 @@ import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
 import { getPatientList } from "../routes/api-routes";
-import { Form, Select, Table, Input, Button, Icon } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Form } from "@ant-design/compatible";
+import "@ant-design/compatible/assets/index.css";
+import { Select, Table, Input, Button } from "antd";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const { Option } = Select;
@@ -100,7 +103,7 @@ class PatientListPage extends React.Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon="search"
+          icon={<SearchOutlined />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -116,7 +119,7 @@ class PatientListPage extends React.Component {
       </div>
     ),
     filterIcon: filtered => (
-      <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -207,7 +210,6 @@ class PatientListPage extends React.Component {
         studyType: StudyType[j],
         triageTag: triageTag[j],
         notes: this.state.db_data["Items"][j].notes,
-        Link: "Link", // left for now
         key: this.state.db_data["Items"][j].id
       };
     }
@@ -232,7 +234,7 @@ class PatientListPage extends React.Component {
         key: "TIS",
         dataIndex: "TIS",
         sorter: (a, b) => a.TIS - b.TIS,
-        defaultSortOrder: 'descend'
+        defaultSortOrder: "descend"
       },
       {
         title: "Study Type",
@@ -252,12 +254,6 @@ class PatientListPage extends React.Component {
         key: "notes",
         ellipsis: true,
         width: 200
-      },
-      {
-        title: "Patient File",
-        dataIndex: "Link",
-        key: "Link",
-        render: text => <a href="list">{text}</a>
       }
     ];
 
@@ -302,19 +298,6 @@ class PatientListPage extends React.Component {
                   <b> {this.state.db_data.Count} </b> &nbsp; Patients in this
                   status
                 </div>
-                {/*
-          <div className="Display">Display</div>
-          <div className="NumberOfItems">
-            <Form.Item>
-              <Select defaultValue="10" onChange={handleSizeChange}>
-                <Option value="10">10</Option>
-                <Option value="25">25</Option>
-                <Option value="50">50</Option>
-                <Option value="100">100</Option>
-              </Select>
-            </Form.Item>
-          </div>
-          <div className="PerPage">items per page.</div> */}
                 <div className="Table">
                   <Router>
                     <Table
@@ -328,11 +311,12 @@ class PatientListPage extends React.Component {
                       }}
                       scroll={{ y: 415 }}
                       size={"small"}
+                      rowClassName={(record, index) => "row-class"}
                       onRow={(record, rowIndex) => {
                         return {
                           onClick: event => {
                             setId(record.id);
-                          } // click row to open patient's info page with info/[PID] as url
+                          }
                         };
                       }}
                     />

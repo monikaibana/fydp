@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/metricsStyles.css";
+import { DownloadOutlined } from '@ant-design/icons';
 import { Tabs, Button, Radio } from "antd";
 import Sidebar from "../components/Sidebar.js";
 import StatusGraph from "./metrics_page_images/current-patient-statuses-graph.png";
@@ -13,7 +14,7 @@ const { TabPane } = Tabs;
 
 function callback(key) {
   console.log(key);
-};
+}
 function displayStatusImage(e) {
   var value = e.target.value;
   var graph = document.getElementById("statusGraph");
@@ -27,7 +28,7 @@ function displayStatusImage(e) {
     graph.style.display = "none";
     table.style.display = "block";
   };
-};
+}
 function displayQaImage(e) {
   var value = e.target.value;
   var graph = document.getElementById("QaGraph");
@@ -41,7 +42,7 @@ function displayQaImage(e) {
     graph.style.display = "none";
     table.style.display = "block";
   };
-};
+}
 function displayTrendsImage(e) {
   var value = e.target.value;
   var graph = document.getElementById("TrendsGraph");
@@ -55,7 +56,7 @@ function displayTrendsImage(e) {
     graph.style.display = "none";
     table.style.display = "block";
   };
-};
+}
 
 class MetricsPage extends React.Component {
   onTabChange = (key, type) => {
@@ -64,102 +65,100 @@ class MetricsPage extends React.Component {
   };
 
   render() {
-    return (
-      <>
-        {this.props.isAuthenticated ? (
-          <>
-            <div className="Metrics">
-              <div className="Sidebar">
-                <Sidebar value={"Metrics"} />
-              </div>
-              <div className="PageTitle">
-                <h2>
-                  Metrics
-                </h2>
-              </div>
-              <div className="MetricsTabs">
-                <Tabs onChange={callback} type="card">
-                  {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
-                  <TabPane tab="Current Patient Statuses" key="1" className="MetricsTab">
-                    <div className="ImageFrame">
-                      <div className="TabTitle">
-                        <h2>Current Patient Statuses</h2>
-                      </div>
-                      <div className="StatusGraph">
-                        <img id="statusGraph" src={StatusGraph} alt="Current Patient Status Graph" style={{ height: 400 }} />
-                      </div>
-                      <div className="StatusTable">
-                        <img id="statusTable" src={StatusTable} alt="Current Patient Status Table" style={{ height: 400, display: "none" }} />
-                      </div>
-                    </div>
-                    <div className="ToggleView">
-                      <Radio.Group defaultValue="statusGraph" onChange={displayStatusImage}>
-                        <Radio.Button value="statusGraph">View as Graph</Radio.Button>
-                        <Radio.Button value="statusTable">View as Table</Radio.Button>
-                      </Radio.Group>
-                    </div>
-                    <div className="SaveButton">
-                      <Button type="primary" icon="download" >Export as CSV</Button>
-                    </div>
-                  </TabPane>
-                {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 2 ––––––––––––––––––––––––––––––––––––––––––––––– */}
-                  <TabPane tab="Quality Assurance" key="2" className="MetricsTab">
-                    <div className="ImageFrame">
-                      <div className="TabTitle">
-                        <h2>Average Scorer Rating</h2>
-                      </div>
-                      <div className="TabTitleRight">
-                        <h2>Average Doctor Rating</h2>
-                      </div>
-                      <div className="StatusGraph">
-                        <img id="QaGraph" src={QaGraph} alt="Quality Assurance Graph" style={{ height: 400 }} />
-                      </div>
-                      <div className="StatusTable">
-                        <img id="QaTable" src={QaTable} alt="Quality Assurance Table" style={{ height: 380, display: "none" }} />
-                      </div>
-                    </div>
-                    <div className="ToggleView">
-                      <Radio.Group defaultValue="QaGraph" onChange={displayQaImage}>
-                        <Radio.Button value="QaGraph">View as Graph</Radio.Button>
-                        <Radio.Button value="QaTable">View as Table</Radio.Button>
-                      </Radio.Group>
-                    </div>
-                    <div className="SaveButton">
-                      <Button type="primary" icon="download" >Export as CSV</Button>
-                    </div>
-                  </TabPane>
-                {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 3 ––––––––––––––––––––––––––––––––––––––––––––––– */}
-                  <TabPane tab="Trends" key="3" className="MetricsTab">
-                    <div className="ImageFrame">
-                      <div className="TabTitle">
-                        <h2>Trends</h2>
-                      </div>
-                      <div className="StatusGraph">
-                        <img id="TrendsGraph" src={TrendsGraph} alt="Trends Graph" style={{ height: 400 }} />
-                      </div>
-                      <div className="StatusTable">
-                        <img id="TrendsTable" src={TrendsTable} alt="Trends Table" style={{ height: 350, display: "none" }} />
-                      </div>
-                    </div>
-                    <div className="ToggleView">
-                      <Radio.Group defaultValue="TrendsGraph" onChange={displayTrendsImage}>
-                        <Radio.Button value="TrendsGraph">View as Graph</Radio.Button>
-                        <Radio.Button value="TrendsTable">View as Table</Radio.Button>
-                      </Radio.Group>
-                    </div>
-                    <div className="SaveButton">
-                      <Button type="primary" icon="download" >Export as CSV</Button>
-                    </div>
-                  </TabPane>
-                </Tabs>
-              </div>
+    return <>
+      {this.props.isAuthenticated ? (
+        <>
+          <div className="Metrics">
+            <div className="Sidebar">
+              <Sidebar value={"Metrics"} />
             </div>
-          </>
-         ) : (
-           <p>Access Denied</p>
-         )}
-       </>
-     );
+            <div className="PageTitle">
+              <h2>
+                Metrics
+              </h2>
+            </div>
+            <div className="MetricsTabs">
+              <Tabs onChange={callback} type="card">
+                {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <TabPane tab="Current Patient Statuses" key="1" className="MetricsTab">
+                  <div className="ImageFrame">
+                    <div className="TabTitle">
+                      <h2>Current Patient Statuses</h2>
+                    </div>
+                    <div className="StatusGraph">
+                      <img id="statusGraph" src={StatusGraph} alt="Current Patient Status Graph" style={{ height: 400 }} />
+                    </div>
+                    <div className="StatusTable">
+                      <img id="statusTable" src={StatusTable} alt="Current Patient Status Table" style={{ height: 400, display: "none" }} />
+                    </div>
+                  </div>
+                  <div className="ToggleView">
+                    <Radio.Group defaultValue="statusGraph" onChange={displayStatusImage}>
+                      <Radio.Button value="statusGraph">View as Graph</Radio.Button>
+                      <Radio.Button value="statusTable">View as Table</Radio.Button>
+                    </Radio.Group>
+                  </div>
+                  <div className="SaveButton">
+                    <Button type="primary" icon={<DownloadOutlined />} >Export as CSV</Button>
+                  </div>
+                </TabPane>
+              {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 2 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <TabPane tab="Quality Assurance" key="2" className="MetricsTab">
+                  <div className="ImageFrame">
+                    <div className="TabTitle">
+                      <h2>Average Scorer Rating</h2>
+                    </div>
+                    <div className="TabTitleRight">
+                      <h2>Average Doctor Rating</h2>
+                    </div>
+                    <div className="StatusGraph">
+                      <img id="QaGraph" src={QaGraph} alt="Quality Assurance Graph" style={{ height: 400 }} />
+                    </div>
+                    <div className="StatusTable">
+                      <img id="QaTable" src={QaTable} alt="Quality Assurance Table" style={{ height: 380, display: "none" }} />
+                    </div>
+                  </div>
+                  <div className="ToggleView">
+                    <Radio.Group defaultValue="QaGraph" onChange={displayQaImage}>
+                      <Radio.Button value="QaGraph">View as Graph</Radio.Button>
+                      <Radio.Button value="QaTable">View as Table</Radio.Button>
+                    </Radio.Group>
+                  </div>
+                  <div className="SaveButton">
+                    <Button type="primary" icon={<DownloadOutlined />} >Export as CSV</Button>
+                  </div>
+                </TabPane>
+              {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 3 ––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <TabPane tab="Trends" key="3" className="MetricsTab">
+                  <div className="ImageFrame">
+                    <div className="TabTitle">
+                      <h2>Trends</h2>
+                    </div>
+                    <div className="StatusGraph">
+                      <img id="TrendsGraph" src={TrendsGraph} alt="Trends Graph" style={{ height: 400 }} />
+                    </div>
+                    <div className="StatusTable">
+                      <img id="TrendsTable" src={TrendsTable} alt="Trends Table" style={{ height: 350, display: "none" }} />
+                    </div>
+                  </div>
+                  <div className="ToggleView">
+                    <Radio.Group defaultValue="TrendsGraph" onChange={displayTrendsImage}>
+                      <Radio.Button value="TrendsGraph">View as Graph</Radio.Button>
+                      <Radio.Button value="TrendsTable">View as Table</Radio.Button>
+                    </Radio.Group>
+                  </div>
+                  <div className="SaveButton">
+                    <Button type="primary" icon={<DownloadOutlined />} >Export as CSV</Button>
+                  </div>
+                </TabPane>
+              </Tabs>
+            </div>
+          </div>
+        </>
+       ) : (
+         <p>Access Denied</p>
+       )}
+     </>;
    }
  }
 

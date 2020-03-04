@@ -7,7 +7,7 @@
   align-items: center;
   background-image: url("https://bluebook-public.s3.amazonaws.com/mountains.jpg");
   background-size: 100% 100%;
-  height: 100%;
+  height: 100vh;
 }
 .login-container {
   min-height: 400px;
@@ -39,6 +39,7 @@
 }
 .login-form-button {
   width: 100%;
+  margin-top: 15px;
 }
 .create-patient-modal {
   position: absolute;

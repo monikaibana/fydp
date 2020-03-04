@@ -30,7 +30,6 @@
   left: 22.5vw;
   top: 25px;
   text-align: left;
-
 }
 .PageTitle h2 {
   font-family: "Montserrat";
@@ -104,10 +103,14 @@
 .Table {
   position: absolute;
   top: 50px;
-  left:-22.5vw;
+  left: -22.5vw;
   background-color: #ffffff;
   border-radius: 2px 2px 2px 2px;
   width: 75vw;
   max-height: 80vh;
   min-height: 50vh;
+}
+
+.row-class:hover {
+  cursor: pointer;
 }
