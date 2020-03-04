@@ -4,7 +4,6 @@ import AppliedRoute from "./components/AppliedRoute";
 import Login from "./containers/Login";
 import PatientList from "./containers/PatientList";
 import Home from "./containers/Home";
-import CreatePatient from "./containers/CreatePatient";
 import PatientInfo from "./containers/PatientInfo";
 import Metrics from "./containers/Metrics";
 
@@ -17,12 +16,6 @@ export default function Routes({ appProps }) {
         path="/list"
         exact
         component={PatientList}
-        appProps={appProps}
-      />
-      <AppliedRoute
-        path="/create"
-        exact
-        component={CreatePatient}
         appProps={appProps}
       />
       <AppliedRoute

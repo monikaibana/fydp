@@ -2,16 +2,14 @@ import React from "react";
 import "antd/dist/antd.css";
 import "../styles/mainstyles.css";
 import {
-  Form,
-  Icon,
-  Input,
-  Button,
-  Select,
-  Modal,
-  Checkbox,
-  Upload,
-  message
-} from "antd";
+  CalendarOutlined,
+  NumberOutlined,
+  UploadOutlined,
+  UserOutlined
+} from "@ant-design/icons";
+import { Form } from "@ant-design/compatible";
+import "@ant-design/compatible/assets/index.css";
+import { Input, Button, Select, Modal, Checkbox, Upload, message } from "antd";
 import createPatient from "../routes/api-routes";
 const { Option } = Select;
 const { TextArea } = Input;
@@ -156,22 +154,32 @@ class CreatePatientModal extends React.Component {
           ]}
         >
           <div className="create-patient-container">
-            <Form.Item label="Patient Surname" key="surname">
-              {getFieldDecorator("surname", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please input the patient's surname"
-                  }
-                ]
-              })(
-                <Input
-                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                  placeholder="Patient Surname"
-                />
-              )}
-            </Form.Item>
-            <Form.Item label="Patient Given Name(s)" key="givenName">
+            <div className="modal-field">
+              <Form.Item
+                label="Patient Surname"
+                key="surname"
+                style={{ marginBottom: "0px", marginTop: "-10px" }}
+              >
+                {getFieldDecorator("surname", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Please input the patient's surname"
+                    }
+                  ]
+                })(
+                  <Input
+                    prefix={<UserOutlined style={{ fontSize: 13 }} />}
+                    placeholder="Patient Surname"
+                  />
+                )}
+              </Form.Item>
+            </div>
+            <Form.Item
+              label="Patient Given Name(s)"
+              key="givenName"
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               {getFieldDecorator("givenName", {
                 rules: [
                   {
@@ -181,25 +189,33 @@ class CreatePatientModal extends React.Component {
                 ]
               })(
                 <Input
-                  prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                  prefix={<UserOutlined style={{ fontSize: 13 }} />}
                   placeholder="Patient Given Name(s)"
                 />
               )}
             </Form.Item>
-            <Form.Item label="PID" key="id">
+            <Form.Item
+              label="PID"
+              key="id"
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               {getFieldDecorator("id", {
                 rules: [
                   { required: true, message: "Please input the patient's PID" }
                 ]
               })(
                 <Input
-                  prefix={<Icon type="number" style={{ fontSize: 13 }} />}
+                  prefix={<NumberOutlined style={{ fontSize: 13 }} />}
                   placeholder="PID"
                   maxLength={9}
                 />
               )}
             </Form.Item>
-            <Form.Item label="Date of Birth" key="dob">
+            <Form.Item
+              label="Date of Birth"
+              key="dob"
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               {getFieldDecorator("dob", {
                 rules: [
                   {
@@ -209,7 +225,7 @@ class CreatePatientModal extends React.Component {
                 ]
               })(
                 <Input
-                  prefix={<Icon type="calendar" style={{ fontSize: 13 }} />}
+                  prefix={<CalendarOutlined style={{ fontSize: 13 }} />}
                   placeholder="Date of Birth (dd/mm/yyyy)"
                   onChange={this.handleDateChange}
                   maxLength={10}
@@ -217,7 +233,11 @@ class CreatePatientModal extends React.Component {
                 />
               )}
             </Form.Item>
-            <Form.Item label="Gender" key="gender">
+            <Form.Item
+              label="Gender"
+              key="gender"
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               {getFieldDecorator("gender", {
                 rules: [
                   {
@@ -236,16 +256,24 @@ class CreatePatientModal extends React.Component {
                 </Select>
               )}
             </Form.Item>
-            <Form.Item label="Notes" key="notes" onChange={handleChange}>
+            <Form.Item
+              label="Notes"
+              key="notes"
+              onChange={handleChange}
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               {getFieldDecorator("notes")(
                 <TextArea placeholder="Notes" autoSize />
               )}
               <div style={{ margin: "24px 0" }} />
             </Form.Item>
-            <Form.Item key="attached_referral">
+            <Form.Item
+              key="attached_referral"
+              style={{ marginBottom: "0px", marginTop: "10px" }}
+            >
               <Upload {...props}>
                 <Button>
-                  <Icon type="upload" /> Click to Attach a Referral
+                  <UploadOutlined /> Click to Attach a Referral
                 </Button>
               </Upload>
             </Form.Item>

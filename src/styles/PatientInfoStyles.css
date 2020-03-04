@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css?family=<Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
-{/* –––––– Patient Info Page ––––––– */}
+/* –––––– Patient Info Page ––––––– */
 .PatientInfoPage {
   background: #fafafa;
   height: 120vh;
 }
 .PatientName {
   position: absolute;
-  width: 305px;
+  width: auto;
   height: 59px;
-  left: 335px;
+  left: 22.5vw;
   top: 50px;
   font-family: "Montserrat";
   color: #000000;
@@ -21,7 +21,7 @@
   position: absolute;
   width: 90px;
   height: 32px;
-  left: 325px;
+  left: 21.5vw;
   top: 15px;
   font-family: "IBM Plex Sans";
   font-size: 20px;
@@ -29,48 +29,48 @@
   text-align: left;
   color: dodgerblue;
 }
-.link p{
+.link p {
   color: dodgerblue;
 }
-.bottomButtons{
+.bottomButtons {
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   left: 0px;
   width: 70vw;
   background-color: #fafafa;
 }
-.save-button{
-  position: absolute;
-  top: 0px;
-  left: 810px;
-}
-.cancel-button{
+.save-button {
   position: absolute;
   top: 40px;
-  left: 810px;
+  right: 90px;
 }
-.archive-button{
+.cancel-button {
   position: absolute;
-  left: 10px;
+  top: 40px;
+  right: 0px;
+}
+.archive-button {
+  position: absolute;
+  left: 0px;
   top: 0px;
 }
-.changeStatus{
+.changeStatus {
   position: absolute;
   top: 3px;
-  left: 425px;
+  right: 250px;
   height: 25px;
 }
 .StatusInfo {
   position: absolute;
-  left: 340px;
+  left: 22.5vw;
   top: 115px;
   text-align: left;
   font-family: "IBM Plex Sans";
 }
-.StatusUpdate{
+.StatusUpdate {
   position: absolute;
   top: -5px;
-  left: 550px;
+  right: 0px;
 }
 .TimeInStatus {
   position: relative;
@@ -80,12 +80,12 @@
 .InfoTabs {
   position: absolute;
   top: 175px;
-  left: 340px;
+  left: 22.5vw;
   width: 70vw;
 }
 
-{/* –––––– Tab 1 ––––––– */}
-.PatientDetails{
+/* –––––– Tab 1 ––––––– */
+.PatientDetails {
   text-align: left;
   height: 500px;
   background-color: #ffffff;
@@ -95,31 +95,31 @@
   font-size: 15px;
   line-height: 0px;
 }
-.PatientDetails h2{
+.PatientDetails h2 {
   font-family: "IBM Plex Sans";
   font-size: 15px;
   line-height: 16px;
   height: 16px;
 }
-.PatientInfo{
+.PatientInfo {
   position: absolute;
   left: 48px;
   width: 350px;
   top: 85px;
-  border-right: 1px solid #D9D9D9
+  border-right: 1px solid #d9d9d9;
 }
-.Triaging{
+.Triaging {
   position: absolute;
   top: 85px;
   left: 450px;
 }
-.ReferralLink p{
+.ReferralLink p {
   color: dodgerblue;
   line-height: 16px;
 }
 
-{/* –––––– Tab 2 ––––––– */}
-.StudyDetails{
+/* –––––– Tab 2 ––––––– */
+.StudyDetails {
   text-align: left;
   height: 500px;
   background-color: #ffffff;
@@ -129,27 +129,27 @@
   font-size: 15px;
   line-height: 0px;
 }
-.StudyDetails h2{
+.StudyDetails h2 {
   font-family: "IBM Plex Sans";
   font-size: 15px;
   line-height: 16px;
   height: 16px;
 }
-.ApptInfo{
+.ApptInfo {
   position: absolute;
   left: 48px;
   width: 350px;
   top: 85px;
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #d9d9d9;
 }
-.StudyInfo{
+.StudyInfo {
   position: absolute;
   top: 85px;
   left: 450px;
 }
 
-{/* –––––– Tab 3 ––––––– */}
-.StudyResults{
+/* –––––– Tab 3 ––––––– */
+.StudyResults {
   text-align: left;
   height: 500px;
   background-color: #ffffff;
@@ -159,31 +159,31 @@
   font-size: 15px;
   line-height: 0px;
 }
-.StudyResults h2{
+.StudyResults h2 {
   font-family: "IBM Plex Sans";
   font-size: 15px;
   line-height: 16px;
   height: 16px;
 }
-.Scoring{
+.Scoring {
   position: absolute;
   left: 48px;
   width: 350px;
   top: 85px;
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #d9d9d9;
 }
-.AdditionalInfo{
+.AdditionalInfo {
   position: absolute;
   top: 85px;
   left: 450px;
 }
-.StudyLink p{
+.StudyLink p {
   color: dodgerblue;
   line-height: 16px;
 }
 
-{/* –––––– Tab 4 ––––––– */}
-.InterpretationDetails{
+/* –––––– Tab 4 ––––––– */
+.InterpretationDetails {
   text-align: left;
   height: 500px;
   background-color: #ffffff;
@@ -193,32 +193,32 @@
   font-size: 15px;
   line-height: 0px;
 }
-.InterpretationDetails h2{
+.InterpretationDetails h2 {
   font-family: "IBM Plex Sans";
   font-size: 15px;
   line-height: 16px;
   height: 16px;
 }
-.StudyDets{
+.StudyDets {
   position: absolute;
   left: 48px;
   width: 350px;
   top: 85px;
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #d9d9d9;
   line-height: 32px;
 }
-.InterpStudyLink p{
+.InterpStudyLink p {
   color: dodgerblue;
   line-height: 16px;
 }
-.Interpretation{
+.Interpretation {
   position: absolute;
   top: 85px;
   left: 450px;
 }
 
-{/* –––––– Tab 5 ––––––– */}
-.PostStudyDetails{
+/* –––––– Tab 5 ––––––– */
+.PostStudyDetails {
   text-align: left;
   height: 200px;
   background-color: #ffffff;
@@ -228,13 +228,13 @@
   font-size: 15px;
   line-height: 0px;
 }
-.PostStudyDetails h2{
+.PostStudyDetails h2 {
   font-family: "IBM Plex Sans";
   font-size: 15px;
   line-height: 16px;
   height: 16px;
 }
-.ReportSendDate{
+.ReportSendDate {
   position: absolute;
   left: 48px;
   width: 350px;

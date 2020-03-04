@@ -12,3 +12,7 @@
 .CreatePatientForm {
   width: 300px;
 }
+input,
+label {
+  display: block;
+}
