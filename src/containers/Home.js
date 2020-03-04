@@ -33,6 +33,23 @@ class HomePage extends React.Component {
             <img src={logo} alt="logo" style={{ height: 220 }}></img>
           </div>
         </div>
+        <div className="AboutUsContainer">
+          <div className="AboutUsImage"/>
+          <div className="AboutUsText">
+            <h1>
+              About Us
+            </h1>
+            <h5>
+              BlueBook was designed and built by Monika, Andy, Amelia, and Alex.
+              We are 4th year Systems Design engineering students at the University of Waterloo.
+            </h5>
+          </div>
+          <div className="ContactUs">
+            <Button type="secondary" size="large" href="mailto:info.mybluebook@gmail.com?subject=Mail from Our Site" style={{ width: 150}}>
+              Contact Us
+            </Button>
+          </div>
+        </div>
         <div className="SloganContainerBackground"/>
         <div className="SloganContainerContent">
           <div className="SloganLogoText">
@@ -84,7 +101,7 @@ class HomePage extends React.Component {
         </div>
         <div className="NavBar">
           <div className="NavBarContact">
-            <Button type="secondary" size="large" href="contact-us" style={{ width: 150}}>
+            <Button type="secondary" size="large" href="mailto:info.mybluebook@gmail.com?subject=Mail from Our Site" style={{ width: 150}}>
               Contact Us
             </Button>
           </div>
