@@ -166,9 +166,15 @@ class PatientInfoPage extends React.Component {
     this.formRef.current.resetFields();
   };
 
-  render() {
-    console.log(window.location.href);
+  checkStatus = () => {
+    var isDisabled = false;
+    if (this.state.db_data.Item.status === 13) {
+      isDisabled = true;
+    }
+    return isDisabled;
+  };
 
+  render() {
     return (
       <>
         {this.props.isAuthenticated ? (
@@ -226,6 +232,7 @@ class PatientInfoPage extends React.Component {
                               placeholder="Patient Surname"
                               style={{ width: 250 }}
                               autoComplete="off"
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -239,6 +246,7 @@ class PatientInfoPage extends React.Component {
                               placeholder="Patient Given Name(s)"
                               style={{ width: 250 }}
                               autoComplete="off"
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -255,6 +263,7 @@ class PatientInfoPage extends React.Component {
                               maxLength={9}
                               style={{ width: 250 }}
                               autoComplete="off"
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -271,6 +280,7 @@ class PatientInfoPage extends React.Component {
                               onChange={this.handleDateChange}
                               maxLength={10}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -286,6 +296,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -311,6 +322,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -336,6 +348,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -360,6 +373,7 @@ class PatientInfoPage extends React.Component {
                               style={({ fontSize: 13 }, { width: 450 })}
                               placeholder="Notes"
                               autoSize={{ minRows: 2, maxRows: 6 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -387,12 +401,16 @@ class PatientInfoPage extends React.Component {
                               key="appDate"
                               format={dateFormat}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
                         <div>
                           <Form.Item name="appBooked" valuePropName="checked">
-                            <Checkbox key="apptBooked">
+                            <Checkbox
+                              key="apptBooked"
+                              disabled={this.checkStatus()}
+                            >
                               Next Appointment Booked
                             </Checkbox>
                           </Form.Item>
@@ -406,6 +424,7 @@ class PatientInfoPage extends React.Component {
                               key="nextApptDate"
                               format={dateFormat}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -423,6 +442,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -447,6 +467,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -474,6 +495,7 @@ class PatientInfoPage extends React.Component {
                               placeholder="ACQ"
                               maxLength={9}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -489,6 +511,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -530,6 +553,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -551,6 +575,7 @@ class PatientInfoPage extends React.Component {
                               key="scoringDate"
                               format={dateFormat}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -563,6 +588,7 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               maxLength={2}
                               placeholder="AHI"
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -575,6 +601,7 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               maxLength={2}
                               placeholder="REM AHI"
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -590,6 +617,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -617,6 +645,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -641,6 +670,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -708,6 +738,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -728,6 +759,7 @@ class PatientInfoPage extends React.Component {
                             <DatePicker
                               key="interDate"
                               format={dateFormat}
+                              disabled={this.checkStatus()}
                               style={{ width: 250 }}
                             />
                           </Form.Item>
@@ -744,6 +776,7 @@ class PatientInfoPage extends React.Component {
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
+                              disabled={this.checkStatus()}
                               filterOption={(input, option) =>
                                 option.props.children
                                   .toLowerCase()
@@ -766,6 +799,7 @@ class PatientInfoPage extends React.Component {
                             <Checkbox
                               className="urgentAction"
                               onChange={onCheck}
+                              disabled={this.checkStatus()}
                             >
                               Urgent Action Required
                             </Checkbox>
@@ -781,6 +815,7 @@ class PatientInfoPage extends React.Component {
                               style={({ fontSize: 13 }, { width: 450 })}
                               placeholder="Comments"
                               autoSize={{ minRows: 2, maxRows: 6 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                         </div>
@@ -798,66 +833,88 @@ class PatientInfoPage extends React.Component {
                               key="reportSendDate"
                               format={dateFormat}
                               style={{ width: 250 }}
+                              disabled={this.checkStatus()}
                             />
                           </Form.Item>
                           <Form.Item name="billed" valuePropName="checked">
-                            <Checkbox onChange={onCheck}>Study Billed</Checkbox>
+                            <Checkbox
+                              onChange={onCheck}
+                              disabled={this.checkStatus()}
+                            >
+                              Study Billed
+                            </Checkbox>
                           </Form.Item>
                         </div>
                       </div>
                     </TabPane>
                   </Tabs>
                   {/* ––––––––––––––––––––––––––––––––––––––––––– Buttons ––––––––––––––––––––––––––––––––––––––––––––––– */}
-                  <div className="bottomButtons">
-                    <Button
-                      type="danger"
-                      ghost
-                      className="archive-button"
-                      onClick={() => {
-                        this.onArchive();
-                        // window.location.href = "/list";
-                      }}
-                    >
-                      Archive Patient
-                    </Button>
-                    <div className="changeStatus">Change Status to: &nbsp;</div>
-                    <Form.Item className="StatusUpdate" name="status">
-                      <Select onChange={handleChange} style={{ width: 250 }}>
-                        <Option value="1">Referral Received</Option>
-                        <Option value="2">Triaged</Option>
-                        <Option value="3">Consultation Booked</Option>
-                        <Option value="4">Consultation Complete</Option>
-                        <Option value="5">Study Booked</Option>
-                        <Option value="6">Study Data Collected</Option>
-                        <Option value="7">Study Scored</Option>
-                        <Option value="8">
-                          Results Interpreted by Physician
-                        </Option>
-                        <Option value="9">Study Follow-up booked</Option>
-                        <Option value="10">Study Follow-up Complete</Option>
-                        <Option value="11">Treatment Follow-up Booked</Option>
-                        <Option value="12">Treatment Follow-up Complete</Option>
-                        <Option value="13">Archived</Option>
-                      </Select>
-                    </Form.Item>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="save-button"
-                      style={{ width: 75 }}
-                      onClick={this.handleSave}
-                    >
-                      Save
-                    </Button>
-                    <Button
-                      type="normal"
-                      className="cancel-button"
-                      style={{ width: 75 }}
-                      onClick={this.onReset}
-                    >
-                      Cancel
-                    </Button>
-                  </div>
+                  {this.checkStatus() === true ? (
+                    <div className="Unarchive">
+                      <Button
+                        type="primary"
+                        className="unarchive_button"
+                        style={{ width: 100 }}
+                      >
+                        Unarchive
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="bottomButtons">
+                      <Button
+                        type="danger"
+                        ghost
+                        className="archive-button"
+                        onClick={() => {
+                          this.onArchive();
+                          // window.location.href = "/list";
+                        }}
+                      >
+                        Archive Patient
+                      </Button>
+                      <div className="changeStatus">
+                        Change Status to: &nbsp;
+                      </div>
+                      <Form.Item className="StatusUpdate" name="status">
+                        <Select onChange={handleChange} style={{ width: 250 }}>
+                          <Option value="1">Referral Received</Option>
+                          <Option value="2">Triaged</Option>
+                          <Option value="3">Consultation Booked</Option>
+                          <Option value="4">Consultation Complete</Option>
+                          <Option value="5">Study Booked</Option>
+                          <Option value="6">Study Data Collected</Option>
+                          <Option value="7">Study Scored</Option>
+                          <Option value="8">
+                            Results Interpreted by Physician
+                          </Option>
+                          <Option value="9">Study Follow-up booked</Option>
+                          <Option value="10">Study Follow-up Complete</Option>
+                          <Option value="11">Treatment Follow-up Booked</Option>
+                          <Option value="12">
+                            Treatment Follow-up Complete
+                          </Option>
+                          <Option value="13">Archived</Option>
+                        </Select>
+                      </Form.Item>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        className="save-button"
+                        style={{ width: 75 }}
+                        onClick={this.handleSave}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        type="normal"
+                        className="cancel-button"
+                        style={{ width: 75 }}
+                        onClick={this.onReset}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </Form>
             </div>
