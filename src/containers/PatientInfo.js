@@ -586,7 +586,7 @@ class PatientInfoPage extends React.Component {
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Study Score"
+                              placeholder="Scorer Rating"
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
@@ -600,7 +600,6 @@ class PatientInfoPage extends React.Component {
                               <Option value="2">2</Option>
                               <Option value="3">3</Option>
                               <Option value="4">4</Option>
-                              <Option value="5">5</Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -689,9 +688,9 @@ class PatientInfoPage extends React.Component {
                           <br />
                           <br />
                         </div>
-                        <div className="StudyScore">
+                        <div className="ScorerRating">
                           <h2>
-                            Sleep Study Score <br />
+                            Scorer Rating <br />
                           </h2>
                           <b>4</b>
                           <br />
