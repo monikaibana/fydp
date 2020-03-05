@@ -634,7 +634,7 @@ class PatientInfoPage extends React.Component {
                             Referring Physician <br />
                           </h2>
                           <Form.Item name="refPhysician">
-                            <Select
+                            <Input
                               showSearch
                               style={{ width: 250 }}
                               placeholder="Referring Physician"
@@ -646,15 +646,7 @@ class PatientInfoPage extends React.Component {
                                   .toLowerCase()
                                   .indexOf(input.toLowerCase()) >= 0
                               }
-                            >
-                              <Option value="Dr. Goodman">Dr. Goodman</Option>
-                              <Option value="Dr. Gooderman">
-                                Dr. Gooderman
-                              </Option>
-                              <Option value="Dr. Goodestman">
-                                Dr. Goodestman
-                              </Option>
-                            </Select>
+                            />
                           </Form.Item>
                         </div>
                         <div className="StudyLink">
