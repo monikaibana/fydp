@@ -162,6 +162,25 @@ class PatientInfoPage extends React.Component {
     return patientStatus[this.state.db_data.Item.status - 1];
   };
 
+  getDefaultTab = () => {
+    const defaultTab = [
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "4",
+      "4",
+      "4",
+      "5",
+      "4",
+      "5",
+      "1"
+    ];
+    return defaultTab[this.state.db_data.Item.status - 1];
+  };
+
   onReset = () => {
     this.formRef.current.resetFields();
   };
@@ -214,7 +233,11 @@ class PatientInfoPage extends React.Component {
                 ref={this.formRef}
               >
                 <div className="InfoTabs">
-                  <Tabs onChange={callback} type="card">
+                  <Tabs
+                    onChange={callback}
+                    type="card"
+                    defaultActiveKey={this.getDefaultTab()}
+                  >
                     {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
                     <TabPane
                       tab="Patient Information"
