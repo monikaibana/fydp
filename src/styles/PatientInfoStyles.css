@@ -83,6 +83,11 @@
   left: 22.5vw;
   width: 70vw;
 }
+.Unarchive {
+  position: absolute;
+  bottom: -45px;
+  right: 0px;
+}
 
 /* –––––– Tab 1 ––––––– */
 .PatientDetails {
