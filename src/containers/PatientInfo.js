@@ -580,13 +580,13 @@ class PatientInfoPage extends React.Component {
                         </div>
                         <div>
                           <h2>
-                            Sleep Study Score <br />
+                            Scorer Rating <br />
                           </h2>
                           <Form.Item name="studyScore">
                             <Select
                               showSearch
                               style={{ width: 250 }}
-                              placeholder="Study Score"
+                              placeholder="Scorer Rating"
                               optionFilterProp="children"
                               onChange={handleChange}
                               onSearch={onSearch}
@@ -600,7 +600,6 @@ class PatientInfoPage extends React.Component {
                               <Option value="2">2</Option>
                               <Option value="3">3</Option>
                               <Option value="4">4</Option>
-                              <Option value="5">5</Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -635,7 +634,7 @@ class PatientInfoPage extends React.Component {
                             Referring Physician <br />
                           </h2>
                           <Form.Item name="refPhysician">
-                            <Select
+                            <Input
                               showSearch
                               style={{ width: 250 }}
                               placeholder="Referring Physician"
@@ -647,15 +646,7 @@ class PatientInfoPage extends React.Component {
                                   .toLowerCase()
                                   .indexOf(input.toLowerCase()) >= 0
                               }
-                            >
-                              <Option value="Dr. Goodman">Dr. Goodman</Option>
-                              <Option value="Dr. Gooderman">
-                                Dr. Gooderman
-                              </Option>
-                              <Option value="Dr. Goodestman">
-                                Dr. Goodestman
-                              </Option>
-                            </Select>
+                            />
                           </Form.Item>
                         </div>
                         <div className="StudyLink">
@@ -677,7 +668,7 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             AHI <br />
                           </h2>
-                          <b>25</b>
+                          <b>{this.state.db_data.Item.ahi}</b>
                           <br />
                           <br />
                         </div>
@@ -685,15 +676,15 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             REM AHI <br />
                           </h2>
-                          <b>12</b>
+                          <b>{this.state.db_data.Item.remahi}</b>
                           <br />
                           <br />
                         </div>
-                        <div className="StudyScore">
+                        <div className="ScorerRating">
                           <h2>
-                            Sleep Study Score <br />
+                            Scorer Rating <br />
                           </h2>
-                          <b>4</b>
+                          <b>{this.state.db_data.Item.studyScore}</b>
                           <br />
                           <br />
                         </div>
