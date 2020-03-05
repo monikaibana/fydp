@@ -676,7 +676,7 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             AHI <br />
                           </h2>
-                          <b>25</b>
+                          <b>{this.state.db_data.Item.ahi}</b>
                           <br />
                           <br />
                         </div>
@@ -684,7 +684,7 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             REM AHI <br />
                           </h2>
-                          <b>12</b>
+                          <b>{this.state.db_data.Item.remahi}</b>
                           <br />
                           <br />
                         </div>
@@ -692,7 +692,7 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             Scorer Rating <br />
                           </h2>
-                          <b>4</b>
+                          <b>{this.state.db_data.Item.studyScore}</b>
                           <br />
                           <br />
                         </div>
