@@ -580,7 +580,7 @@ class PatientInfoPage extends React.Component {
                         </div>
                         <div>
                           <h2>
-                            Sleep Study Score <br />
+                            Scorer Rating <br />
                           </h2>
                           <Form.Item name="studyScore">
                             <Select
