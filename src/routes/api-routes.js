@@ -74,3 +74,19 @@ export function archivePatient(body) {
       alert("Error with archiving patient, please try again later.");
     });
 }
+
+export function updatePatient(body) {
+  var params = {};
+  var pathTemplate = "";
+  var method = "POST";
+  var additionalParams = {};
+  return apigClient
+    .invokeApi(params, pathTemplate, method, additionalParams, body)
+    .then(function(result) {
+      console.log("Patient information saved successfully.");
+    })
+    .catch(function(result) {
+      console.log(result);
+      alert("Error with saving patient information, please try again later.");
+    });
+}
