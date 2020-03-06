@@ -165,6 +165,7 @@ class PatientListPage extends React.Component {
   render() {
     var StudyType = [];
     var triageTag = [];
+    var patientStatus = [];
     const studyTypeString = [
       "IDS",
       "RDS-R",
@@ -175,6 +176,21 @@ class PatientListPage extends React.Component {
       "Study to Assess Other Therapy"
     ];
     const triageTagString = ["Urgent", "ASAP", "HP CL", "HP", "Routine"];
+    const statusString = [
+      "Referral Received",
+      "Triaged",
+      "Consultation Booked",
+      "Consultation Complete",
+      "Study Booked",
+      "Study Data Collected",
+      "Study Scored",
+      "Results Interpreted",
+      "Study Follow-up booked",
+      "Study Follow-up Complete",
+      "Treatment Follow-up Booked",
+      "Treatment Follow-up Complete",
+      "Archived"
+    ];
     for (var i = 0; i < this.state.db_data.Count; i++) {
       if (this.state.db_data["Items"][i].studyType) {
         StudyType[i] =
@@ -187,6 +203,12 @@ class PatientListPage extends React.Component {
           triageTagString[this.state.db_data["Items"][i].priority - 1];
       } else {
         triageTag[i] = "";
+      }
+      if (this.state.db_data["Items"][i].status) {
+        patientStatus[i] =
+          statusString[this.state.db_data["Items"][i].status - 1];
+      } else {
+        patientStatus[i] = "Undetermined";
       }
     }
 
@@ -212,7 +234,8 @@ class PatientListPage extends React.Component {
         studyType: StudyType[j],
         triageTag: triageTag[j],
         notes: this.state.db_data["Items"][j].notes,
-        key: this.state.db_data["Items"][j].id
+        key: this.state.db_data["Items"][j].id,
+        status: patientStatus[j]
       };
     }
 
@@ -259,6 +282,13 @@ class PatientListPage extends React.Component {
       }
     ];
 
+    const allColumns = columns.concat({
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      sorter: (a, b) => a.status.localeCompare(b.status)
+    });
+
     return (
       <>
         {this.props.isAuthenticated ? (
@@ -303,7 +333,7 @@ class PatientListPage extends React.Component {
                 <div className="Table">
                   <Router>
                     <Table
-                      columns={columns}
+                      columns={this.state.filter === 0 ? allColumns : columns}
                       dataSource={dataSource}
                       pagination={{
                         position: "bottom",
