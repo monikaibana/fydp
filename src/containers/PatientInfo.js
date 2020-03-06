@@ -17,6 +17,7 @@ import {
   Form
 } from "antd";
 import "../styles/PatientInfoStyles.css";
+import "../styles/mainstyles.css";
 import Sidebar from "../components/Sidebar.js";
 import getDefaultValues, {
   getPatientId,
@@ -180,6 +181,25 @@ class PatientInfoPage extends React.Component {
     return patientStatus[this.state.db_data.Item.status - 1];
   };
 
+  getDefaultTab = () => {
+    const defaultTab = [
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "4",
+      "4",
+      "4",
+      "5",
+      "4",
+      "5",
+      "1"
+    ];
+    return defaultTab[this.state.db_data.Item.status - 1];
+  };
+
   onReset = () => {
     this.formRef.current.resetFields();
   };
@@ -222,7 +242,9 @@ class PatientInfoPage extends React.Component {
                   <br />{" "}
                   <b>
                     {getTimeInStatus(this.state.db_data.Item)}
-                    {" Days"}
+                    {getTimeInStatus(this.state.db_data.Item) === 1
+                      ? " Day"
+                      : " Days"}
                   </b>
                 </div>
               </div>
@@ -232,7 +254,11 @@ class PatientInfoPage extends React.Component {
                 ref={this.formRef}
               >
                 <div className="InfoTabs">
-                  <Tabs type="card">
+                  <Tabs
+                    onChange={callback}
+                    type="card"
+                    defaultActiveKey={this.getDefaultTab()}
+                  >
                     {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
                     <TabPane
                       tab="Patient Information"
@@ -240,6 +266,7 @@ class PatientInfoPage extends React.Component {
                       className="PatientDetails"
                     >
                       <div className="PatientInfo">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Patient Surname <br />
@@ -407,6 +434,7 @@ class PatientInfoPage extends React.Component {
                       className="StudyDetails"
                     >
                       <div className="ApptInfo">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Date of Appointment <br />
@@ -553,6 +581,7 @@ class PatientInfoPage extends React.Component {
                       className="StudyResults"
                     >
                       <div className="Scoring">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Scorer <br />
@@ -694,6 +723,7 @@ class PatientInfoPage extends React.Component {
                       className="InterpretationDetails"
                     >
                       <div className="StudyDets">
+                        <div className="whiteBar" />
                         <div className="AHI">
                           <h2>
                             AHI <br />
@@ -823,6 +853,7 @@ class PatientInfoPage extends React.Component {
                     <TabPane tab="Post-Study Details" key="5">
                       <div className="PostStudyDetails">
                         <div className="ReportSendDate">
+                          <div className="whiteBar" />
                           <h2>
                             Date Report Sent <br />
                           </h2>
@@ -920,7 +951,13 @@ class PatientInfoPage extends React.Component {
             </div>
           </>
         ) : (
-          <p>Access Denied</p>
+          <div>
+            <div className="loadingScreen">
+              <br /> <br />
+              Loading...
+            </div>
+            <p className="accessDenied">Access Denied</p>
+          </div>
         )}
       </>
     );
