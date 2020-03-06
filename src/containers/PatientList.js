@@ -359,7 +359,13 @@ class PatientListPage extends React.Component {
             </div>
           </>
         ) : (
-          <p>Access Denied</p>
+          <div>
+            <div className="loadingScreen">
+              <br /> <br />
+              Loading...
+            </div>
+            <p className="accessDenied">Access Denied</p>
+          </div>
         )}
       </>
     );
