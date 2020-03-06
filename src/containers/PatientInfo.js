@@ -247,6 +247,7 @@ class PatientInfoPage extends React.Component {
                       className="PatientDetails"
                     >
                       <div className="PatientInfo">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Patient Surname <br />
@@ -417,6 +418,7 @@ class PatientInfoPage extends React.Component {
                       className="StudyDetails"
                     >
                       <div className="ApptInfo">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Date of Appointment <br />
@@ -566,6 +568,7 @@ class PatientInfoPage extends React.Component {
                       className="StudyResults"
                     >
                       <div className="Scoring">
+                        <div className="whiteBar" />
                         <div>
                           <h2>
                             Scorer <br />
@@ -719,6 +722,7 @@ class PatientInfoPage extends React.Component {
                       className="InterpretationDetails"
                     >
                       <div className="StudyDets">
+                        <div className="whiteBar" />
                         <div className="AHI">
                           <h2>
                             AHI <br />
@@ -850,6 +854,7 @@ class PatientInfoPage extends React.Component {
                     <TabPane tab="Post-Study Details" key="5">
                       <div className="PostStudyDetails">
                         <div className="ReportSendDate">
+                          <div className="whiteBar" />
                           <h2>
                             Date Report Sent <br />
                           </h2>
