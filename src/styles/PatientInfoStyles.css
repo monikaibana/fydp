@@ -83,7 +83,19 @@
   left: 22.5vw;
   width: 70vw;
 }
-
+.Unarchive {
+  position: absolute;
+  bottom: -45px;
+  right: 0px;
+}
+.whiteBar {
+  background-color: #ffffff;
+  width: 72vw;
+  height: 25px;
+  position: absolute;
+  top: -50px;
+  left: -50px;
+}
 /* –––––– Tab 1 ––––––– */
 .PatientDetails {
   text-align: left;

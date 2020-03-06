@@ -2,6 +2,32 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
+    opacity: 1;
+  }
+}
+
 .login-page {
   text-align: center;
   align-items: center;
@@ -26,7 +52,7 @@
 }
 .login-container h1 {
   color: dodgerblue;
-  font-family: "Courier";
+  font-family: "Varela Round";
 }
 .login-header {
   margin: 60px;
@@ -98,4 +124,26 @@
 .CreatePatientButton {
   position: relative;
   top: 50px;
+}
+
+.loadingScreen {
+  background-color: #f2f2f2;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Varela Round";
+  font-size: 25px;
+  text-align: center;
+  color: #2196f3;
+  animation-name: fadeout;
+  animation-duration: 3000ms;
+  animation-fill-mode: forwards;
+}
+
+.accessDenied {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  animation-name: fadein;
+  animation-duration: 3050ms;
+  animation-fill-mode: forwards;
 }

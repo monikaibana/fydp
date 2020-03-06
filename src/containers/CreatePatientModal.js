@@ -7,17 +7,20 @@ import {
   UploadOutlined,
   UserOutlined
 } from "@ant-design/icons";
-import { Form } from "@ant-design/compatible";
-import "@ant-design/compatible/assets/index.css";
-import { Input, Button, Select, Modal, Checkbox, Upload, message } from "antd";
+import {
+  Input,
+  Button,
+  Select,
+  Modal,
+  Checkbox,
+  Upload,
+  message,
+  Form
+} from "antd";
 import createPatient from "../routes/api-routes";
 const { Option } = Select;
 const { TextArea } = Input;
 const today = new Date().toISOString().slice(0, 10);
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
 
 const props = {
   name: "file",
@@ -122,108 +125,105 @@ class CreatePatientModal extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     const { visible, loading } = this.state;
 
     return (
       <div className="create-patient-modal">
-        <Modal
-          visible={visible}
-          title="Add Patient"
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Checkbox
-              key="add_another"
-              onChange={this.handleCheckbox}
-              style={{ float: "left" }}
-            >
-              Add another patient{" "}
-            </Checkbox>,
-            <Button key="cancel" onClick={this.handleCancel}>
-              Cancel
-            </Button>,
-            <Button
-              key="submit"
-              type="primary"
-              loading={loading}
-              onClick={this.handleSubmit}
-            >
-              Submit
-            </Button>
-          ]}
+        <Form
+          labelCol={{
+            span: 9
+          }}
+          wrapperCol={{
+            span: 13
+          }}
         >
-          <div className="create-patient-container">
-            <div className="modal-field">
+          <Modal
+            visible={visible}
+            title="Add Patient"
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+            footer={[
+              <Checkbox
+                key="add_another"
+                onChange={this.handleCheckbox}
+                style={{ float: "left" }}
+              >
+                Add another patient{" "}
+              </Checkbox>,
+              <Button key="cancel" onClick={this.handleCancel}>
+                Cancel
+              </Button>,
+              <Button
+                key="submit"
+                type="primary"
+                loading={loading}
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </Button>
+            ]}
+          >
+            <div className="create-patient-container">
               <Form.Item
+                name="surname"
                 label="Patient Surname"
                 key="surname"
-                style={{ marginBottom: "0px", marginTop: "-10px" }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the patient's surname"
+                  }
+                ]}
               >
-                {getFieldDecorator("surname", {
-                  rules: [
-                    {
-                      required: true,
-                      message: "Please input the patient's surname"
-                    }
-                  ]
-                })(
-                  <Input
-                    prefix={<UserOutlined style={{ fontSize: 13 }} />}
-                    placeholder="Patient Surname"
-                  />
-                )}
+                <Input
+                  prefix={<UserOutlined style={{ fontSize: 13 }} />}
+                  placeholder="Patient Surname"
+                />
               </Form.Item>
-            </div>
-            <Form.Item
-              label="Patient Given Name(s)"
-              key="givenName"
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              {getFieldDecorator("givenName", {
-                rules: [
+              <Form.Item
+                name="givenName"
+                label="Patient Given Name(s)"
+                key="givenName"
+                rules={[
                   {
                     required: true,
                     message: "Please input the patient's given name(s)"
                   }
-                ]
-              })(
+                ]}
+              >
                 <Input
                   prefix={<UserOutlined style={{ fontSize: 13 }} />}
                   placeholder="Patient Given Name(s)"
                 />
-              )}
-            </Form.Item>
-            <Form.Item
-              label="PID"
-              key="id"
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              {getFieldDecorator("id", {
-                rules: [
-                  { required: true, message: "Please input the patient's PID" }
-                ]
-              })(
+              </Form.Item>
+              <Form.Item
+                name="id"
+                label="PID"
+                key="id"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the patient's PID"
+                  }
+                ]}
+              >
                 <Input
                   prefix={<NumberOutlined style={{ fontSize: 13 }} />}
                   placeholder="PID"
                   maxLength={9}
                 />
-              )}
-            </Form.Item>
-            <Form.Item
-              label="Date of Birth"
-              key="dob"
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              {getFieldDecorator("dob", {
-                rules: [
+              </Form.Item>
+              <Form.Item
+                name="dob"
+                label="Date of Birth"
+                key="dob"
+                rules={[
                   {
                     required: true,
                     message: "Please input the patient's date of birth"
                   }
-                ]
-              })(
+                ]}
+              >
                 <Input
                   prefix={<CalendarOutlined style={{ fontSize: 13 }} />}
                   placeholder="Date of Birth (dd/mm/yyyy)"
@@ -231,56 +231,54 @@ class CreatePatientModal extends React.Component {
                   maxLength={10}
                   style={{ width: 240 }}
                 />
-              )}
-            </Form.Item>
-            <Form.Item
-              label="Gender"
-              key="gender"
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              {getFieldDecorator("gender", {
-                rules: [
+              </Form.Item>
+              <Form.Item
+                name="gender"
+                label="Gender"
+                key="gender"
+                rules={[
                   {
                     required: true,
                     message: "Please input the patient's gender"
                   }
-                ],
-                initialValue: "Gender"
-              })(
-                <Select style={{ width: 240 }} onChange={handleChange}>
-                  <Option value="Gender" hidden>
-                    Gender
-                  </Option>
+                ]}
+              >
+                <Select
+                  style={{ width: 240 }}
+                  showSearch
+                  placeholder="Gender"
+                  optionFilterProp="children"
+                  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
+                >
                   <Option value="M">Male</Option>
                   <Option value="F">Female</Option>
                 </Select>
-              )}
-            </Form.Item>
-            <Form.Item
-              label="Notes"
-              key="notes"
-              onChange={handleChange}
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              {getFieldDecorator("notes")(
+              </Form.Item>
+              <Form.Item name="notes" label="Notes" key="notes">
                 <TextArea placeholder="Notes" autoSize />
-              )}
-              <div style={{ margin: "24px 0" }} />
-            </Form.Item>
-            <Form.Item
-              key="attached_referral"
-              style={{ marginBottom: "0px", marginTop: "10px" }}
-            >
-              <Upload {...props}>
-                <Button>
-                  <UploadOutlined /> Click to Attach a Referral
-                </Button>
-              </Upload>
-            </Form.Item>
-          </div>
-        </Modal>
+                <div style={{ margin: "24px 0" }} />
+              </Form.Item>
+              <Form.Item
+                key="attached_referral"
+                style={{
+                  marginLeft: "135px"
+                }}
+              >
+                <Upload {...props}>
+                  <Button>
+                    <UploadOutlined /> Click to Attach a Referral
+                  </Button>
+                </Upload>
+              </Form.Item>
+            </div>
+          </Modal>
+        </Form>
       </div>
     );
   }
 }
-export default Form.create()(CreatePatientModal);
+export default CreatePatientModal;
