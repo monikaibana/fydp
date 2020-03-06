@@ -1,6 +1,11 @@
 import React from "react";
 import "../styles/mainstyles.css";
-import { ContactsOutlined, MonitorOutlined, PlusOutlined, PoweroffOutlined } from '@ant-design/icons';
+import {
+  ContactsOutlined,
+  MonitorOutlined,
+  PlusOutlined,
+  PoweroffOutlined
+} from "@ant-design/icons";
 import { Menu, Button } from "antd";
 import CreatePatientModal from "../containers/CreatePatientModal";
 import { Redirect } from "react-router-dom";
@@ -81,10 +86,7 @@ class Sidebar extends React.Component {
         <div className="SidebarHeaderButton">
           <Button onClick={this.setRedirectHome}>BlueBook</Button>
         </div>
-        <Menu
-          defaultSelectedKeys={[key]}
-          mode="vertical"
-        >
+        <Menu defaultSelectedKeys={[key]} mode="vertical">
           <Menu.Item key="1" align="left" onClick={this.setRedirect}>
             <ContactsOutlined />
             Patient Listing
@@ -104,7 +106,12 @@ class Sidebar extends React.Component {
           </Button>
         </div>
         <div className="LogoutButton">
-          <Button type="primary" icon={<PoweroffOutlined />} onClick={this.signOut} ghost>
+          <Button
+            type="primary"
+            icon={<PoweroffOutlined />}
+            onClick={this.signOut}
+            ghost
+          >
             Logout
           </Button>
         </div>

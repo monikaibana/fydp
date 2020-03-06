@@ -93,9 +93,8 @@ class LoginPage extends React.Component {
             </FormItem>
 
             <Checkbox>Remember me</Checkbox>
-            <a className="login-form-forgot" href="">
+            <a className="login-form-forgot" href="/login">
               Forgot password
-              {/* TODO: add link to href  */}
             </a>
             <FormItem>
               <Button
