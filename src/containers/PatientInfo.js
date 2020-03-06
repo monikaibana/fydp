@@ -21,19 +21,20 @@ import "../styles/mainstyles.css";
 import Sidebar from "../components/Sidebar.js";
 import getDefaultValues, {
   getPatientId,
-  getTimeInStatus
+  getTimeInStatus,
+  getExpressionValues,
+  getUpdateExpression,
+  getExpressionNames
 } from "../components/utils.js";
-import { getPatientInfo, archivePatient } from "../routes/api-routes";
+import {
+  getPatientInfo,
+  archivePatient,
+  updatePatient
+} from "../routes/api-routes";
 
 const { Option } = Select;
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
 const { TabPane } = Tabs;
 const { TextArea } = Input;
-function callback(key) {
-  console.log(key);
-}
 
 const dateFormat = "DD/MM/YYYY";
 
@@ -78,6 +79,23 @@ function archivePatientBody() {
   return body;
 }
 
+function savePatientBody(values) {
+  var body = {
+    operation: "update",
+    tableName: "bluebook-patient",
+    payload: {
+      Key: {
+        id: getPatientId(window.location.href)
+      },
+      UpdateExpression: getUpdateExpression(values),
+      ExpressionAttributeValues: getExpressionValues(values),
+      ExpressionAttributeNames: getExpressionNames(values)
+    }
+  };
+  console.log(body);
+  return body;
+}
+
 class PatientInfoPage extends React.Component {
   state = {
     key: "Patient_Information",
@@ -119,7 +137,6 @@ class PatientInfoPage extends React.Component {
   }
 
   onTabChange = (key, type) => {
-    console.log(key, type);
     this.setState({ [type]: key });
   };
 
@@ -140,8 +157,9 @@ class PatientInfoPage extends React.Component {
     );
   };
 
-  onFinish = values => {
-    console.log("Received values of form: ", values);
+  onFinish = async values => {
+    console.log(savePatientBody(values));
+    await updatePatient(savePatientBody(values));
   };
 
   getPatientStatus = () => {
@@ -281,7 +299,7 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             PID <br />
                           </h2>
-                          <Form.Item name="id">
+                          <Form.Item name="pid">
                             <Input
                               prefix={
                                 <NumberOutlined style={{ fontSize: 13 }} />
@@ -321,7 +339,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Gender"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -347,7 +364,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Triage Type"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -373,7 +389,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Triage Tag"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -468,7 +483,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Tech Name"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -493,7 +507,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Bed Number"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -537,7 +550,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Study Type"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -580,7 +592,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Scorer"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -644,7 +655,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Scorer Rating"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -672,7 +682,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Study Tag"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -693,18 +702,9 @@ class PatientInfoPage extends React.Component {
                           </h2>
                           <Form.Item name="refPhysician">
                             <Input
-                              showSearch
                               style={{ width: 250 }}
                               placeholder="Referring Physician"
-                              optionFilterProp="children"
-                              onChange={handleChange}
-                              onSearch={onSearch}
                               disabled={this.checkStatus()}
-                              filterOption={(input, option) =>
-                                option.props.children
-                                  .toLowerCase()
-                                  .indexOf(input.toLowerCase()) >= 0
-                              }
                             />
                           </Form.Item>
                         </div>
@@ -766,7 +766,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Interpreting Doctor"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -804,7 +803,6 @@ class PatientInfoPage extends React.Component {
                               style={{ width: 250 }}
                               placeholder="Doctor Rating"
                               optionFilterProp="children"
-                              onChange={handleChange}
                               onSearch={onSearch}
                               disabled={this.checkStatus()}
                               filterOption={(input, option) =>
@@ -907,7 +905,7 @@ class PatientInfoPage extends React.Component {
                         Change Status to: &nbsp;
                       </div>
                       <Form.Item className="StatusUpdate" name="status">
-                        <Select onChange={handleChange} style={{ width: 250 }}>
+                        <Select style={{ width: 250 }}>
                           <Option value="1">Referral Received</Option>
                           <Option value="2">Triaged</Option>
                           <Option value="3">Consultation Booked</Option>
@@ -927,15 +925,17 @@ class PatientInfoPage extends React.Component {
                           <Option value="13">Archived</Option>
                         </Select>
                       </Form.Item>
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        className="save-button"
-                        style={{ width: 75 }}
-                        onClick={this.handleSave}
-                      >
-                        Save
-                      </Button>
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          className="save-button"
+                          style={{ width: 75 }}
+                          onClick={this.handleSave}
+                        >
+                          Save
+                        </Button>
+                      </Form.Item>
                       <Button
                         type="normal"
                         className="cancel-button"
