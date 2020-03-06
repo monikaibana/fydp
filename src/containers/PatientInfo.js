@@ -204,7 +204,9 @@ class PatientInfoPage extends React.Component {
                   <br />{" "}
                   <b>
                     {getTimeInStatus(this.state.db_data.Item)}
-                    {" Days"}
+                    {getTimeInStatus(this.state.db_data.Item) === 1
+                      ? " Day"
+                      : " Days"}
                   </b>
                 </div>
               </div>
