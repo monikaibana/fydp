@@ -254,11 +254,7 @@ class PatientInfoPage extends React.Component {
                 ref={this.formRef}
               >
                 <div className="InfoTabs">
-                  <Tabs
-                    onChange={callback}
-                    type="card"
-                    defaultActiveKey={this.getDefaultTab()}
-                  >
+                  <Tabs type="card" defaultActiveKey={this.getDefaultTab()}>
                     {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
                     <TabPane
                       tab="Patient Information"
