@@ -19,7 +19,7 @@
   0% {
     opacity: 0;
   }
-  50% {
+  99% {
     opacity: 0;
   }
   100% {
@@ -144,6 +144,6 @@
   left: 0px;
   top: 0px;
   animation-name: fadein;
-  animation-duration: 6000ms;
+  animation-duration: 3050ms;
   animation-fill-mode: forwards;
 }
