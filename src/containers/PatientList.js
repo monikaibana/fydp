@@ -285,7 +285,8 @@ class PatientListPage extends React.Component {
     const allColumns = columns.concat({
       title: "Status",
       dataIndex: "status",
-      key: "status"
+      key: "status",
+      sorter: (a, b) => a.status.localeCompare(b.status)
     });
 
     return (
