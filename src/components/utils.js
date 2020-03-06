@@ -65,7 +65,12 @@ export function getTimeInStatus(item) {
   if (isNaN(timeInStatus)) {
     return null;
   } else {
-    return Math.floor(timeInStatus) - 1;
+    var days = Math.floor(timeInStatus);
+    if (days === 0) {
+      return days;
+    } else {
+      return days - 1;
+    }
   }
 }
 
