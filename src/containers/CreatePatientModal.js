@@ -265,7 +265,7 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 key="attached_referral"
                 style={{
-                  marginLeft: "140px"
+                  marginLeft: "135px"
                 }}
               >
                 <Upload {...props}>
