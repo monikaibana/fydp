@@ -17,6 +17,7 @@ import {
   Form
 } from "antd";
 import "../styles/PatientInfoStyles.css";
+import "../styles/mainstyles.css";
 import Sidebar from "../components/Sidebar.js";
 import getDefaultValues, {
   getPatientId,
@@ -920,7 +921,13 @@ class PatientInfoPage extends React.Component {
             </div>
           </>
         ) : (
-          <p>Access Denied</p>
+          <div>
+            <div className="loadingScreen">
+              <br /> <br />
+              Loading...
+            </div>
+            <p className="accessDenied">Access Denied</p>
+          </div>
         )}
       </>
     );
