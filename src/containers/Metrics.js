@@ -3,6 +3,7 @@ import "../styles/metricsStyles.css";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Tabs, Button, Radio } from "antd";
 import Sidebar from "../components/Sidebar.js";
+import AccessDenied from "../components/AccessDenied.js";
 import StatusGraph from "./metrics_page_images/current-patient-statuses-graph.png";
 import StatusTable from "./metrics_page_images/current-patient-statuses-table.png";
 import QaGraph from "./metrics_page_images/qa-graph.png";
@@ -225,7 +226,9 @@ class MetricsPage extends React.Component {
               <br /> <br />
               Loading...
             </div>
-            <p className="accessDenied">Access Denied</p>
+            <div>
+              <AccessDenied />
+            </div>
           </div>
         )}
       </>

@@ -3,6 +3,7 @@ import "../styles/mainstyles.css";
 import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
+import AccessDenied from "../components/AccessDenied.js";
 import { getPatientList } from "../routes/api-routes";
 import { SearchOutlined } from "@ant-design/icons";
 import { Form } from "@ant-design/compatible";
@@ -369,7 +370,9 @@ class PatientListPage extends React.Component {
               <br /> <br />
               Loading...
             </div>
-            <p className="accessDenied">Access Denied</p>
+            <div>
+              <AccessDenied />
+            </div>
           </div>
         )}
       </>

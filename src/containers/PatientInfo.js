@@ -1,4 +1,5 @@
 import React from "react";
+import AccessDenied from "../components/AccessDenied.js";
 import {
   CalendarOutlined,
   LeftOutlined,
@@ -952,7 +953,9 @@ class PatientInfoPage extends React.Component {
               <br /> <br />
               Loading...
             </div>
-            <p className="accessDenied">Access Denied</p>
+            <div>
+              <AccessDenied />
+            </div>
           </div>
         )}
       </>
