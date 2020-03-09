@@ -22,7 +22,7 @@ class HomePage extends React.Component {
             <h5>
               BlueBook is a digital patient management system which 
               aims to reduce the time taken by sleep clinic staff to track 
-              and monitor patient status as they progress through the diagnosis process. 
+              and monitor patient status as they progress through the diagnostic process. 
               Typically, patient tracking at sleep clinics is completed manually, by 
               editing spreadsheets, and renaming and moving files. BlueBook’s simplified
               tracking process is designed to reduce human errors and increase clinic
@@ -60,7 +60,7 @@ class HomePage extends React.Component {
           </div>
           <div className="Slogan">
             <h1>
-              The sleep clinic patient management tool that can help you and your patients sleep easier.
+              The sleep clinic patient tracking tool that can help you and your patients sleep easier.
             </h1>
           </div>
         </div>
