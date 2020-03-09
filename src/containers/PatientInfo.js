@@ -953,7 +953,7 @@ class PatientInfoPage extends React.Component {
               <br /> <br />
               Loading...
             </div>
-            <div>
+            <div className="accessDenied">
               <AccessDenied />
             </div>
           </div>
