@@ -83,18 +83,14 @@ class CreatePatientModal extends React.Component {
   };
 
   handleSubmit = async e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        createPatient(requestBody(values));
-        console.log(values);
-        setTimeout(() => {
-          this.props.parentCallback(false);
-        }, 3000);
-      } else {
-        console.log(err);
-      }
-    });
+    document.getElementById("submitButton").click();
+    setTimeout(() => {
+      this.props.parentCallback(false);
+    }, 2500);
+  };
+
+  onFinish = async values => {
+    await createPatient(requestBody(values));
   };
 
   state = {
@@ -117,19 +113,13 @@ class CreatePatientModal extends React.Component {
     this.setState({ checked: true });
   };
 
-  handleDateChange = e => {
-    e.target.value = e.target.value
-      .replace(/^(\d\d)(\d)$/g, "$1/$2")
-      .replace(/^(\d\d\/\d\d)(\d+)$/g, "$1/$2")
-      .replace(/[^\d/]/g, "");
-  };
-
   render() {
     const { visible, loading } = this.state;
 
     return (
       <div className="create-patient-modal">
         <Form
+          onFinish={this.onFinish}
           labelCol={{
             span: 9
           }}
@@ -154,8 +144,8 @@ class CreatePatientModal extends React.Component {
                 Cancel
               </Button>,
               <Button
-                key="submit"
                 type="primary"
+                key="submit"
                 loading={loading}
                 onClick={this.handleSubmit}
               >
@@ -167,7 +157,6 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="surname"
                 label="Patient Surname"
-                key="surname"
                 rules={[
                   {
                     required: true,
@@ -183,7 +172,6 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="givenName"
                 label="Patient Given Name(s)"
-                key="givenName"
                 rules={[
                   {
                     required: true,
@@ -199,7 +187,6 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="id"
                 label="PID"
-                key="id"
                 rules={[
                   {
                     required: true,
@@ -216,7 +203,12 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="dob"
                 label="Date of Birth"
-                key="dob"
+                getValueFromEvent={e =>
+                  e.target.value
+                    .replace(/^(\d\d)(\d)$/g, "$1/$2")
+                    .replace(/^(\d\d\/\d\d)(\d+)$/g, "$1/$2")
+                    .replace(/[^\d/]/g, "")
+                }
                 rules={[
                   {
                     required: true,
@@ -227,7 +219,6 @@ class CreatePatientModal extends React.Component {
                 <Input
                   prefix={<CalendarOutlined style={{ fontSize: 13 }} />}
                   placeholder="Date of Birth (dd/mm/yyyy)"
-                  onChange={this.handleDateChange}
                   maxLength={10}
                   style={{ width: 240 }}
                 />
@@ -235,7 +226,6 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="gender"
                 label="Gender"
-                key="gender"
                 rules={[
                   {
                     required: true,
@@ -260,10 +250,9 @@ class CreatePatientModal extends React.Component {
               </Form.Item>
               <Form.Item name="notes" label="Notes" key="notes">
                 <TextArea placeholder="Notes" autoSize />
-                <div style={{ margin: "24px 0" }} />
               </Form.Item>
               <Form.Item
-                key="attached_referral"
+                name="referral"
                 style={{
                   marginLeft: "135px"
                 }}
@@ -276,6 +265,9 @@ class CreatePatientModal extends React.Component {
               </Form.Item>
             </div>
           </Modal>
+          <Form.Item>
+            <Button htmlType="submit" id="submitButton" hidden />
+          </Form.Item>
         </Form>
       </div>
     );
