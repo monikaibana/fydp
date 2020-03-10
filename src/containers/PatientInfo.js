@@ -898,7 +898,7 @@ class PatientInfoPage extends React.Component {
                         Archive Patient
                       </Button>
                       <Form.Item
-                        label="Change Status:"
+                        label="Change Status to:"
                         className="change-status"
                         name="status"
                       >
