@@ -32,6 +32,13 @@
 .link p {
   color: dodgerblue;
 }
+.bottomButtons {
+  position: relative;
+  bottom: 20px;
+  left: 0px;
+  width: 70vw;
+  background-color: #fafafa;
+}
 .save-button {
   position: absolute;
   top: 80px;
@@ -39,17 +46,17 @@
 }
 .cancel-button {
   position: absolute;
-  top: 636px;
+  top: 24px;
   right: 0px;
 }
 .archive-button {
   position: absolute;
   left: 0px;
-  top: 590px;
+  top: 40px;
 }
-.changeStatus {
+.change-status {
   position: absolute;
-  top: 590px;
+  top: 30px;
   right: 0px;
   height: 25px;
 }

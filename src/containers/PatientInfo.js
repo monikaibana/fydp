@@ -885,7 +885,7 @@ class PatientInfoPage extends React.Component {
                       </Button>
                     </div>
                   ) : (
-                    <>
+                    <div className="bottomButtons">
                       <Button
                         type="danger"
                         ghost
@@ -899,7 +899,7 @@ class PatientInfoPage extends React.Component {
                       </Button>
                       <Form.Item
                         label="Change Status:"
-                        className="changeStatus"
+                        className="change-status"
                         name="status"
                       >
                         <Select style={{ width: 250 }}>
@@ -933,15 +933,17 @@ class PatientInfoPage extends React.Component {
                           Save
                         </Button>
                       </Form.Item>
-                      <Button
-                        type="normal"
-                        className="cancel-button"
-                        style={{ width: 75 }}
-                        onClick={this.onReset}
-                      >
-                        Cancel
-                      </Button>
-                    </>
+                      <Form.Item>
+                        <Button
+                          type="normal"
+                          className="cancel-button"
+                          style={{ width: 75 }}
+                          onClick={this.onReset}
+                        >
+                          Cancel
+                        </Button>
+                      </Form.Item>
+                    </div>
                   )}
                 </div>
               </Form>
