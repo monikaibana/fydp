@@ -1,4 +1,5 @@
 import React from "react";
+import { Link }from "react-router-dom";
 import "../styles/metricsStyles.css";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Tabs, Button, Radio } from "antd";
@@ -76,18 +77,29 @@ class MetricsPage extends React.Component {
               </div>
               <div className="PageTitle">
                 <h2>Metrics</h2>
+                <Radio.Group value={"ham"}>
+                  <Radio defaultChecked={true} value={"ham"}>
+                    Hamilton
+                  </Radio>
+                  <Radio dsa={false} value={"cam"} disabled={true}>
+                    Cambridge
+                  </Radio>
+                  <Radio defaultChecked={false} value={"nia"} disabled={true}>
+                    Niagara
+                  </Radio>
+                </Radio.Group>
               </div>
               <div className="MetricsTabs">
                 <Tabs onChange={callback} type="card">
                   {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 1 ––––––––––––––––––––––––––––––––––––––––––––––– */}
                   <TabPane
-                    tab="Current Patient Statuses"
+                    tab="Current Patient Status"
                     key="1"
                     className="MetricsTab"
                   >
                     <div className="ImageFrame">
                       <div className="TabTitle">
-                        <h2>Current Patient Statuses</h2>
+                        <h2>Current Patient Status</h2>
                       </div>
                       <div className="StatusGraph">
                         <img
@@ -120,9 +132,9 @@ class MetricsPage extends React.Component {
                       </Radio.Group>
                     </div>
                     <div className="SaveButton">
-                      <Button type="primary" icon={<DownloadOutlined />}>
-                        Export as CSV
-                      </Button>
+                      <div>
+                        <Link to="/metrics-download-files/BlueBook_Current_Patient_Status.csv" target="_blank" download>Export as CSV</Link>
+                      </div>
                     </div>
                   </TabPane>
                   {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 2 ––––––––––––––––––––––––––––––––––––––––––––––– */}
@@ -133,17 +145,17 @@ class MetricsPage extends React.Component {
                   >
                     <div className="ImageFrame">
                       <div className="TabTitle">
-                        <h2>Average Scorer Rating</h2>
+                        <h2>Average Scorer Ratings</h2>
                       </div>
                       <div className="TabTitleRight">
-                        <h2>Average Doctor Rating</h2>
+                        <h2>Average Doctor Ratings</h2>
                       </div>
                       <div className="StatusGraph">
                         <img
                           id="QaGraph"
                           src={QaGraph}
                           alt="Quality Assurance Graph"
-                          style={{ height: 400 }}
+                          style={{ height: 360 }}
                         />
                       </div>
                       <div className="StatusTable">
@@ -151,7 +163,7 @@ class MetricsPage extends React.Component {
                           id="QaTable"
                           src={QaTable}
                           alt="Quality Assurance Table"
-                          style={{ height: 380, display: "none" }}
+                          style={{ height: 300, display: "none" }}
                         />
                       </div>
                     </div>
@@ -169,9 +181,9 @@ class MetricsPage extends React.Component {
                       </Radio.Group>
                     </div>
                     <div className="SaveButton">
-                      <Button type="primary" icon={<DownloadOutlined />}>
-                        Export as CSV
-                      </Button>
+                      <div>
+                        <Link to="/metrics-download-files/BlueBook_Quality_Assurance.csv" target="_blank" download>Export as CSV</Link>
+                      </div>
                     </div>
                   </TabPane>
                   {/* ––––––––––––––––––––––––––––––––––––––––––– Tab 3 ––––––––––––––––––––––––––––––––––––––––––––––– */}
@@ -211,9 +223,9 @@ class MetricsPage extends React.Component {
                       </Radio.Group>
                     </div>
                     <div className="SaveButton">
-                      <Button type="primary" icon={<DownloadOutlined />}>
-                        Export as CSV
-                      </Button>
+                      <div>
+                        <Link to="/metrics-download-files/BlueBook_Trends.csv" target="_blank" download>Export as CSV</Link>
+                      </div>
                     </div>
                   </TabPane>
                 </Tabs>

@@ -1,0 +1,16 @@
+﻿Current Patient Statuses,
+Status,Number of Patients in Status
+Referral Received,10
+Triaged,13
+Study Booked,16
+Consultation Booked,20
+Total pre-appointment patients,59
+Consultation Complete,15
+Study Data Collected,6
+Study Scored,7
+Results Interpreted by Physician,20
+Study Follow-up booked,15
+Follow-up complete,40
+Treatment Follow-up Booked,24
+Treatment Follow-up Complete,13
+Total post appointment patients,140
