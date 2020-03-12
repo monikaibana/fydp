@@ -77,17 +77,6 @@ class MetricsPage extends React.Component {
               </div>
               <div className="PageTitle">
                 <h2>Metrics</h2>
-                <Radio.Group value={"ham"}>
-                  <Radio defaultChecked={true} value={"ham"}>
-                    Hamilton
-                  </Radio>
-                  <Radio dsa={false} value={"cam"} disabled={true}>
-                    Cambridge
-                  </Radio>
-                  <Radio defaultChecked={false} value={"nia"} disabled={true}>
-                    Niagara
-                  </Radio>
-                </Radio.Group>
               </div>
               <div className="MetricsTabs">
                 <Tabs onChange={callback} type="card">
