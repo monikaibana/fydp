@@ -25,7 +25,14 @@ class PatientListPage extends React.Component {
     var body = {
       operation: "list",
       payload: {
-        TableName: "bluebook-patient"
+        TableName: "bluebook-patient",
+        FilterExpression: "#st <= :s12",
+        ExpressionAttributeNames: {
+          "#st": "status"
+        },
+        ExpressionAttributeValues: {
+          ":s12": 12
+        }
       }
     };
     if (this.state.filter === 0) {
