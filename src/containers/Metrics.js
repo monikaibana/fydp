@@ -1,8 +1,7 @@
 import React from "react";
-import { Link }from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/metricsStyles.css";
-import { DownloadOutlined } from "@ant-design/icons";
-import { Tabs, Button, Radio } from "antd";
+import { Tabs, Radio } from "antd";
 import Sidebar from "../components/Sidebar.js";
 import AccessDenied from "../components/AccessDenied.js";
 import StatusGraph from "./metrics_page_images/current-patient-statuses-graph.png";
@@ -122,7 +121,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link to="/metrics-download-files/BlueBook_Current_Patient_Status.csv" target="_blank" download>Export as CSV</Link>
+                        <Link
+                          to="/metrics-download-files/BlueBook_Current_Patient_Status.csv"
+                          target="_blank"
+                          download
+                        >
+                          Export as CSV
+                        </Link>
                       </div>
                     </div>
                   </TabPane>
@@ -171,7 +176,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link to="/metrics-download-files/BlueBook_Quality_Assurance.csv" target="_blank" download>Export as CSV</Link>
+                        <Link
+                          to="/metrics-download-files/BlueBook_Quality_Assurance.csv"
+                          target="_blank"
+                          download
+                        >
+                          Export as CSV
+                        </Link>
                       </div>
                     </div>
                   </TabPane>
@@ -213,7 +224,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link to="/metrics-download-files/BlueBook_Trends.csv" target="_blank" download>Export as CSV</Link>
+                        <Link
+                          to="/metrics-download-files/BlueBook_Trends.csv"
+                          target="_blank"
+                          download
+                        >
+                          Export as CSV
+                        </Link>
                       </div>
                     </div>
                   </TabPane>

@@ -65,6 +65,7 @@ function requestBody(values) {
 }
 
 class CreatePatientModal extends React.Component {
+  formRef = React.createRef();
   createPatient = async (
     id,
     surname,
@@ -84,18 +85,28 @@ class CreatePatientModal extends React.Component {
 
   handleSubmit = async e => {
     document.getElementById("submitButton").click();
-    setTimeout(() => {
-      this.props.parentCallback(false);
-    }, 2500);
+  };
+
+  onReset = () => {
+    this.formRef.current.resetFields();
   };
 
   onFinish = async values => {
     await createPatient(requestBody(values));
+    if (this.state.checked !== true) {
+      setTimeout(() => {
+        this.props.parentCallback(false);
+      }, 2500);
+      window.location.reload();
+    } else {
+      this.onReset();
+    }
   };
 
   state = {
     loading: false,
-    visible: true
+    visible: true,
+    checked: false
   };
 
   showModal = () => {
@@ -110,7 +121,13 @@ class CreatePatientModal extends React.Component {
   };
 
   handleCheckbox = () => {
-    this.setState({ checked: true });
+    if (this.state.checked === true) {
+      this.setState({ checked: false });
+      console.log(this.state.checked);
+    } else {
+      this.setState({ checked: true });
+      console.log(this.state.checked);
+    }
   };
 
   render() {
@@ -119,6 +136,7 @@ class CreatePatientModal extends React.Component {
     return (
       <div className="create-patient-modal">
         <Form
+          ref={this.formRef}
           onFinish={this.onFinish}
           labelCol={{
             span: 9
@@ -157,6 +175,11 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="surname"
                 label="Patient Surname"
+                getValueFromEvent={e =>
+                  e.target.value.replace(/\b\w{3,}/g, function(l) {
+                    return l.charAt(0).toUpperCase() + l.slice(1);
+                  })
+                }
                 rules={[
                   {
                     required: true,
@@ -172,6 +195,11 @@ class CreatePatientModal extends React.Component {
               <Form.Item
                 name="givenName"
                 label="Patient Given Name(s)"
+                getValueFromEvent={e =>
+                  e.target.value.replace(/\b\w{3,}/g, function(l) {
+                    return l.charAt(0).toUpperCase() + l.slice(1);
+                  })
+                }
                 rules={[
                   {
                     required: true,
