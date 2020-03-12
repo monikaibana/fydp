@@ -3,6 +3,7 @@ import "../styles/mainstyles.css";
 import "../styles/PatientListStyles.css";
 import "antd/dist/antd.css";
 import Sidebar from "../components/Sidebar.js";
+import AccessDenied from "../components/AccessDenied.js";
 import { getPatientList } from "../routes/api-routes";
 import { SearchOutlined } from "@ant-design/icons";
 import { Form } from "@ant-design/compatible";
@@ -24,7 +25,14 @@ class PatientListPage extends React.Component {
     var body = {
       operation: "list",
       payload: {
-        TableName: "bluebook-patient"
+        TableName: "bluebook-patient",
+        FilterExpression: "#st <= :s12",
+        ExpressionAttributeNames: {
+          "#st": "status"
+        },
+        ExpressionAttributeValues: {
+          ":s12": 12
+        }
       }
     };
     if (this.state.filter === 0) {
@@ -369,7 +377,9 @@ class PatientListPage extends React.Component {
               <br /> <br />
               Loading...
             </div>
-            <p className="accessDenied">Access Denied</p>
+            <div className="accessDenied">
+              <AccessDenied />
+            </div>
           </div>
         )}
       </>
