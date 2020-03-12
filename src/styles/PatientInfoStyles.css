@@ -33,31 +33,31 @@
   color: dodgerblue;
 }
 .bottomButtons {
-  position: absolute;
-  bottom: -20px;
+  position: relative;
+  bottom: 20px;
   left: 0px;
   width: 70vw;
   background-color: #fafafa;
 }
 .save-button {
   position: absolute;
-  top: 40px;
+  top: 80px;
   right: 90px;
 }
 .cancel-button {
   position: absolute;
-  top: 40px;
+  top: 24px;
   right: 0px;
 }
 .archive-button {
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 40px;
 }
-.changeStatus {
+.change-status {
   position: absolute;
-  top: 3px;
-  right: 250px;
+  top: 30px;
+  right: 0px;
   height: 25px;
 }
 .StatusInfo {

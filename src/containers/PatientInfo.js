@@ -898,10 +898,11 @@ class PatientInfoPage extends React.Component {
                       >
                         Archive Patient
                       </Button>
-                      <div className="changeStatus">
-                        Change Status to: &nbsp;
-                      </div>
-                      <Form.Item className="StatusUpdate" name="status">
+                      <Form.Item
+                        label="Change Status to:"
+                        className="change-status"
+                        name="status"
+                      >
                         <Select style={{ width: 250 }}>
                           <Option value="1">Referral Received</Option>
                           <Option value="2">Triaged</Option>
@@ -933,14 +934,16 @@ class PatientInfoPage extends React.Component {
                           Save
                         </Button>
                       </Form.Item>
-                      <Button
-                        type="normal"
-                        className="cancel-button"
-                        style={{ width: 75 }}
-                        onClick={this.onReset}
-                      >
-                        Cancel
-                      </Button>
+                      <Form.Item>
+                        <Button
+                          type="normal"
+                          className="cancel-button"
+                          style={{ width: 75 }}
+                          onClick={this.onReset}
+                        >
+                          Cancel
+                        </Button>
+                      </Form.Item>
                     </div>
                   )}
                 </div>
