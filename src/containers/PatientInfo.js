@@ -191,7 +191,7 @@ class PatientInfoPage extends React.Component {
       "2",
       "3",
       "4",
-      "4",
+      "5", // hard code this
       "4",
       "5",
       "4",
@@ -771,9 +771,7 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="Raymond Gottschalk">
-                                Raymond Gottschalk
-                              </Option>
+                              <Option value="1">Raymond Gottschalk</Option>
                             </Select>
                           </Form.Item>
                         </div>
