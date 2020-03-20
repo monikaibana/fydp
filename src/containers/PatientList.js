@@ -257,6 +257,7 @@ class PatientListPage extends React.Component {
         title: "Name",
         dataIndex: "name",
         key: "name",
+        width: 150,
         sorter: (a, b) => a.name.localeCompare(b.name),
         ...this.getColumnSearchProps("name")
       },
@@ -299,6 +300,7 @@ class PatientListPage extends React.Component {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      width: 200,
       sorter: (a, b) => a.status.localeCompare(b.status)
     });
 
