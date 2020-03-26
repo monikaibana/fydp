@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/metricsStyles.css";
 import { Tabs, Radio } from "antd";
 import Sidebar from "../components/Sidebar.js";
@@ -121,13 +120,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link
-                          to="/metrics-download-files/BlueBook_Current_Patient_Status.csv"
+                        <a
+                          href="https://bluebook-public.s3.amazonaws.com/BlueBook_Current_Patient_Status.csv"
                           target="_blank"
-                          download
+                          rel="noopener noreferrer"
                         >
                           Export as CSV
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </TabPane>
@@ -176,13 +175,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link
-                          to="/metrics-download-files/BlueBook_Quality_Assurance.csv"
+                        <a
+                          href="https://bluebook-public.s3.amazonaws.com/BlueBook_Quality_Assurance.csv"
                           target="_blank"
-                          download
+                          rel="noopener noreferrer"
                         >
                           Export as CSV
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </TabPane>
@@ -224,13 +223,13 @@ class MetricsPage extends React.Component {
                     </div>
                     <div className="SaveButton">
                       <div>
-                        <Link
-                          to="/metrics-download-files/BlueBook_Trends.csv"
+                        <a
+                          href="https://bluebook-public.s3.amazonaws.com/BlueBook_Trends.csv"
                           target="_blank"
-                          download
+                          rel="noopener noreferrer"
                         >
                           Export as CSV
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </TabPane>
