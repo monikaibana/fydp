@@ -420,7 +420,16 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             Link To Referral File <br />
                           </h2>
-                          <p> filename.pdf </p>
+                          <p></p>
+                          <a
+                            href="https://bluebook-public.s3.amazonaws.com/patient-referral-file.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            smb://server/referrals/2020/
+                            {this.state.db_data.Item.surname}-
+                            {this.state.db_data.Item.givenName}-Referral.pdf
+                          </a>
                         </div>
                       </div>
                     </TabPane>
@@ -488,9 +497,9 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="1">Johnny</Option>
-                              <Option value="2">James</Option>
-                              <Option value="3">Jimmy</Option>
+                              <Option value="1">[Acquisition Tech #1]</Option>
+                              <Option value="2">[Acquisition Tech #2]</Option>
+                              <Option value="3">[Acquisition Tech #3]</Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -512,12 +521,30 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="1">Bed 1</Option>
-                              <Option value="2">Bed 2</Option>
-                              <Option value="3">Bed 3</Option>
-                              <Option value="4">Bed 4</Option>
-                              <Option value="5">Bed 5</Option>
-                              <Option value="6">Bed 6</Option>
+                              <Option value="1">HAM-1</Option>
+                              <Option value="2">HAM-2</Option>
+                              <Option value="3">HAM-3</Option>
+                              <Option value="4">HAM-4</Option>
+                              <Option value="5">HAM-5</Option>
+                              <Option value="6">HAM-6</Option>
+                              <Option value="7">HAM-7</Option>
+                              <Option value="8">HAM-8</Option>
+                              <Option value="9">HAM-9</Option>
+                              <Option value="10">HAM-10</Option>
+                              <Option value="11">HAM-11</Option>
+                              <Option value="12">HAM-12</Option>
+                              <Option value="13">STK-1</Option>
+                              <Option value="14">STK-2</Option>
+                              <Option value="15">STK-3</Option>
+                              <Option value="16">STK-4</Option>
+                              <Option value="17">STK-5</Option>
+                              <Option value="18">STK-6</Option>
+                              <Option value="19">CMH-1</Option>
+                              <Option value="20">CMH-2</Option>
+                              <Option value="21">CMH-3</Option>
+                              <Option value="22">CMH-4</Option>
+                              <Option value="23">CMH-5</Option>
+                              <Option value="24">CMH-6</Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -597,9 +624,9 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="1">Johnny</Option>
-                              <Option value="2">James</Option>
-                              <Option value="3">Jimmy</Option>
+                              <Option value="1">[Scoring Tech #1]</Option>
+                              <Option value="2">[Scoring Tech #2]</Option>
+                              <Option value="3">[Scoring Tech #3]</Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -687,9 +714,30 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="1">Tag 1</Option>
-                              <Option value="2">Tag 2</Option>
-                              <Option value="3">Tag 3</Option>
+                              <Option
+                                value="1"
+                                style={{ background: "#dd7e6b" }}
+                              >
+                                Urgent
+                              </Option>
+                              <Option
+                                value="2"
+                                style={{ background: "#a4c2f4" }}
+                              >
+                                CPAP/ BiPAP titration
+                              </Option>
+                              <Option
+                                value="3"
+                                style={{ background: "#b6d7a8" }}
+                              >
+                                Needs review
+                              </Option>
+                              <Option
+                                value="3"
+                                style={{ background: "#d9d2e9" }}
+                              >
+                                Daytime Study
+                              </Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -709,7 +757,16 @@ class PatientInfoPage extends React.Component {
                           <h2>
                             Link to Study <br />
                           </h2>
-                          <p>LinkToStudy.pdf</p>
+                          <p></p>
+                          <a
+                            href="https://bluebook-public.s3.amazonaws.com/patient-study-file.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            smb://server/study/2020/
+                            {this.state.db_data.Item.surname}-
+                            {this.state.db_data.Item.givenName}-Study.pdf
+                          </a>
                         </div>
                       </div>
                     </TabPane>
@@ -746,10 +803,16 @@ class PatientInfoPage extends React.Component {
                           <br />
                         </div>
                         <div className="InterpStudyLink">
-                          <h2>
-                            Link to Study <br />
-                          </h2>
-                          <p>LinkToStudy.pdf</p>
+                          <h2>Link to Study</h2>
+                          <a
+                            href="https://bluebook-public.s3.amazonaws.com/patient-study-file.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            smb://server/
+                            {this.state.db_data.Item.surname}-
+                            {this.state.db_data.Item.givenName}-Study.pdf
+                          </a>
                         </div>
                       </div>
                       <div className="Interpretation">
@@ -771,7 +834,15 @@ class PatientInfoPage extends React.Component {
                                   .indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <Option value="1">Raymond Gottschalk</Option>
+                              <Option value="1">
+                                [Interpreting Doctor #1]
+                              </Option>
+                              <Option value="2">
+                                [Interpreting Doctor #2]
+                              </Option>
+                              <Option value="3">
+                                [Interpreting Doctor #3]
+                              </Option>
                             </Select>
                           </Form.Item>
                         </div>
@@ -810,7 +881,6 @@ class PatientInfoPage extends React.Component {
                               <Option value="2">2</Option>
                               <Option value="3">3</Option>
                               <Option value="4">4</Option>
-                              <Option value="5">5</Option>
                             </Select>
                           </Form.Item>
                         </div>
